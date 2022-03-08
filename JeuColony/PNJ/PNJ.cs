@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ
 {
-    class PNJ
+    abstract class PNJ
     {
+        public string Name { get; }
+
     }
 }

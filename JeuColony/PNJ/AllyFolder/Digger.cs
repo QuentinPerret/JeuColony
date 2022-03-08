@@ -8,5 +8,6 @@ namespace JeuColony.PNJ.Ally
 {
     class Digger
     {
+
     }
 }

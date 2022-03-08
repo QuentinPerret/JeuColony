@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PNJ\Ally\Ally.cs" />
-    <Compile Include="PNJ\Ally\Carpenter.cs" />
-    <Compile Include="PNJ\Ally\Digger.cs" />
-    <Compile Include="PNJ\Ally\Forester.cs" />
-    <Compile Include="PNJ\Ally\Pioneer.cs" />
-    <Compile Include="PNJ\Ally\Colon.cs" />
-    <Compile Include="PNJ\Ally\Scout.cs" />
-    <Compile Include="PNJ\Ally\Soldier.cs" />
-    <Compile Include="PNJ\Enemy\Enemy.cs" />
+    <Compile Include="PNJ\AllyFolder\Ally.cs" />
+    <Compile Include="PNJ\AllyFolder\Carpenter.cs" />
+    <Compile Include="PNJ\AllyFolder\Digger.cs" />
+    <Compile Include="PNJ\AllyFolder\Forester.cs" />
+    <Compile Include="PNJ\AllyFolder\Pioneer.cs" />
+    <Compile Include="PNJ\AllyFolder\Colon.cs" />
+    <Compile Include="PNJ\AllyFolder\Scout.cs" />
+    <Compile Include="PNJ\AllyFolder\Soldier.cs" />
+    <Compile Include="PNJ\EnemyFolder\Enemy.cs" />
     <Compile Include="PNJ\PNJ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

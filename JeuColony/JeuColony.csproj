@@ -44,13 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PNJ\AllyFolder\Ally.cs" />
-    <Compile Include="PNJ\AllyFolder\Carpenter.cs" />
-    <Compile Include="PNJ\AllyFolder\Digger.cs" />
-    <Compile Include="PNJ\AllyFolder\Forester.cs" />
-    <Compile Include="PNJ\AllyFolder\Pioneer.cs" />
-    <Compile Include="PNJ\AllyFolder\Colon.cs" />
-    <Compile Include="PNJ\AllyFolder\Scout.cs" />
-    <Compile Include="PNJ\AllyFolder\Soldier.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Builder.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Digger.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Forester.cs" />
+    <Compile Include="PNJ\AllyFolder\Interface\IAllyCalculus.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Pioneer.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Scout.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Soldier.cs" />
     <Compile Include="PNJ\EnemyFolder\Enemy.cs" />
     <Compile Include="PNJ\PNJ.cs" />
     <Compile Include="Program.cs" />

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BATIMENTS\CampFormation.cs" />
     <Compile Include="PNJ\Ally.cs" />
     <Compile Include="PNJ\Colon.cs" />
     <Compile Include="PNJ\Enemy.cs" />

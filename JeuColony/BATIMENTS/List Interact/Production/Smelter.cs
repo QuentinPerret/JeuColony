@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS
+namespace JeuColony.BATIMENTS.List_Interact.Production
 {
-    class CampFormation
+    class Smelter
     {
+
     }
 }

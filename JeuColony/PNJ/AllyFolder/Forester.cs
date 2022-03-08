@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.PNJ.Ally
+namespace JeuColony.PNJ.AllyFolder
 {
-    class Forester
+    class Forester : Ally
     {
     }
 }

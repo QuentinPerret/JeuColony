@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PNJ\Ally.cs" />
+    <Compile Include="PNJ\Colon.cs" />
+    <Compile Include="PNJ\Enemy.cs" />
+    <Compile Include="PNJ\PNJ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

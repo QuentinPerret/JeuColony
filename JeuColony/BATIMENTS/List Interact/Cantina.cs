@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace JeuColony.BATIMENTS.List_Interact
 {
-    class Cantina
+    class Cantina:MainClass.CityBatiment
     {
+        public Cantina(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        {
+        }
+        protected override int GenerateCapaMax(int level)
+        {
+            return level * 3;
+        }
     }
 }

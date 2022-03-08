@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace JeuColony.BATIMENTS
 {
-    class TrainingCamp:MainClass.
+    class TrainingCamp : MainClass.CityBatiment
     {
+        public TrainingCamp(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        {
+        }
+        protected override int GenerateCapaMax(int level)
+        {
+            return level * 3;
+        }
     }
+    
+    
 }

@@ -10,8 +10,12 @@ namespace JeuColony.BATIMENTS.MainClass
     {
         public DefenseBatiment(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
-
+            HealthMax=1000;
         }
         protected abstract int GenerateProtection(int level);
+        private override void GenerateStat()
+        {
+            Health = HealthMax * Level;
+        }
     }
 }

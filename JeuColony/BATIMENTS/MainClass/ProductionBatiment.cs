@@ -11,8 +11,12 @@ namespace JeuColony.BATIMENTS.MainClass
         protected int Production { get; set; }
         public ProductionBatiment(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
-
+            HealthMax=300; 
         }
         protected abstract int GenerateProduction(int level);
+        private override void GenerateStat()
+        {
+            Health = HealthMax * Level;
+        }
     }
 }

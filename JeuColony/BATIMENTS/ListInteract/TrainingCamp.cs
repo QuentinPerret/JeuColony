@@ -10,10 +10,15 @@ namespace JeuColony.BATIMENTS
     {
         public TrainingCamp(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
+            HealthMax = 200;
         }
         protected override int GenerateCapaMax(int level)
         {
             return level * 3;
+        }
+        private override void GenerateStat()
+        {
+            Health = HealthMax * Level;
         }
     }
     

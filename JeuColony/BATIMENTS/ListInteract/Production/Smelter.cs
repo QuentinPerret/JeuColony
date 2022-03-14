@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.List_Interact.Production
+namespace JeuColony.BATIMENTS.ListInteract.Production
 {
-    class Farm:MainClass.ProductionBatiment
+    class Smelter : MainClass.ProductionBatiment
     {
-        
-        public Farm(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+
+        public Smelter(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
 
         }
@@ -17,5 +17,4 @@ namespace JeuColony.BATIMENTS.List_Interact.Production
         {
             return level * 4;
         }
-    }
 }

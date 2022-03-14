@@ -14,15 +14,12 @@ namespace JeuColony.PNJ
         protected int AttackPower { get; set; }
         protected int VisionRange { get; set; }
         protected int Speed { get; set; }
+        protected int Level { get; set; }
         public int[] Coordinate { get; set; }
-        public PNJ(string name, int healthpointmax, int healthpoint, int attackpower, int visionrange, int[] coordinate)
+        public PNJ(string name,int level)
         {
             Name = name;
-            HealthPointMax = healthpointmax;
-            HealthPoint = healthpoint;
-            AttackPower = attackpower;
-            VisionRange = visionrange;
-            Coordinate = coordinate;
+            Level = level;
         }
         protected abstract void GenerateAllStat();
         protected abstract void GenerateSpeed();

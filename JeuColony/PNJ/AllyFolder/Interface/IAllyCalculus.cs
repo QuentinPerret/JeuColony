@@ -8,6 +8,7 @@ namespace JeuColony.PNJ.AllyFolder
 {
     interface IAllyCalculus
     {
+        void GenerateAllStat();
         int GenerateHealthPointMax();
         int GenerateHealthPoint();
         int GenerateAttackPower();
@@ -15,6 +16,5 @@ namespace JeuColony.PNJ.AllyFolder
         int GenerateDiggerPower();
         int GenerateVisionRange();
         int MoveTo();
-
     }
 }

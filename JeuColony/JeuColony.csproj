@@ -47,7 +47,6 @@
     <Compile Include="PNJ\AllyFolder\Profession\Builder.cs" />
     <Compile Include="PNJ\AllyFolder\Profession\Digger.cs" />
     <Compile Include="PNJ\AllyFolder\Profession\Forester.cs" />
-    <Compile Include="PNJ\AllyFolder\Interface\IAllyCalculus.cs" />
     <Compile Include="PNJ\AllyFolder\Profession\Pioneer.cs" />
     <Compile Include="PNJ\AllyFolder\Profession\Scout.cs" />
     <Compile Include="PNJ\AllyFolder\Profession\Soldier.cs" />

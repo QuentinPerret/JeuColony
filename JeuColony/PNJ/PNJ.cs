@@ -9,11 +9,11 @@ namespace JeuColony.PNJ
     abstract class PNJ
     {
         public string Name { get; }
-        private int HealthPointMax { get; }
-        private int HealthPoint { get; set; }
-        private int AttackPower { get; set; }
-        private int VisionRange { get; set; }
-        private int Speed { get; set; }
+        protected int HealthPointMax { get; }
+        protected int HealthPoint { get; set; }
+        protected int AttackPower { get; set; }
+        protected int VisionRange { get; set; }
+        protected int Speed { get; set; }
         public int[] Coordinate { get; set; }
         public PNJ(string name, int healthpointmax, int healthpoint, int attackpower, int visionrange, int[] coordinate)
         {
@@ -24,5 +24,9 @@ namespace JeuColony.PNJ
             VisionRange = visionrange;
             Coordinate = coordinate;
         }
+        protected abstract void GenerateAllStat();
+        protected abstract void GenerateSpeed();
+        protected abstract void MoveTo();
+
     }
 }

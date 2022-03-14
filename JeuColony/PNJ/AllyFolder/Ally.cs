@@ -11,11 +11,49 @@ namespace JeuColony.PNJ.AllyFolder
         private int DiggerPower { get; set; }
         private int BuildingPower { get; set; }
         private int LoggingPower { get; set; }
-        public Ally(string name, int healthpointmax, int healthpoint, int attackpower,int visionrange, int[] coordinate,int diggerpower, int buildingpower, int loggingpower) : base(name,healthpointmax, healthpoint, attackpower,visionrange, coordinate)
+        protected bool TaskOccupied { get; set; }
+        public Ally(string name, int level) : base(name, level)
         {
-            DiggerPower = diggerpower;
-            BuildingPower = buildingpower;
-            LoggingPower = loggingpower;
+            GenerateAllStat();
+            TaskOccupied = false;
+        }
+        protected override void GenerateAllStat()
+        {
+            GenerateAttackPower();
+            GenerateDiggerPower();
+            GenerateHealthPointMax();
+            GenerateHealthPoint();
+            GenerateLoggingPower();
+            GenerateSpeed();
+            GenerateVisionRange();
+        }
+        protected virtual void GenerateHealthPointMax()
+        {
+            HealthPointMax = 20 * Level;
+        }
+        protected virtual void GenerateHealthPoint()
+        {
+            HealthPoint = HealthPointMax;
+        }
+        protected virtual void GenerateAttackPower()
+        {
+            AttackPower = 2 * Level;
+        }
+        protected virtual void GenerateLoggingPower()
+        {
+            LoggingPower = 0;
+        }
+        protected virtual void GenerateDiggerPower()
+        {
+            LoggingPower = 0;
+        }
+        protected virtual void GenerateVisionRange()
+        {
+            VisionRange = 1;
+        }
+        protected override void Spawn(Batiment B)
+        {
+
         }
     }
 }

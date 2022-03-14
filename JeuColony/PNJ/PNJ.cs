@@ -9,7 +9,7 @@ namespace JeuColony.PNJ
     abstract class PNJ
     {
         public string Name { get; }
-        protected int HealthPointMax { get; }
+        protected int HealthPointMax { get; set; }
         protected int HealthPoint { get; set; }
         protected int AttackPower { get; set; }
         protected int VisionRange { get; set; }

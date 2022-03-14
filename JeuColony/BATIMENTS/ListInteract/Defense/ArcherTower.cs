@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS
+namespace JeuColony.BATIMENTS.ListInteract.Defense
 {
-    class CampFormation
+    class ArcherTower
     {
+        //a ajouter plus tard
     }
 }

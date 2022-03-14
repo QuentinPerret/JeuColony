@@ -67,6 +67,14 @@
     <Compile Include="PNJ\Ally.cs" />
     <Compile Include="PNJ\Colon.cs" />
     <Compile Include="PNJ\Enemy.cs" />
+    <Compile Include="PNJ\AllyFolder\Ally.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Builder.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Digger.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Forester.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Pioneer.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Scout.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Soldier.cs" />
+    <Compile Include="PNJ\EnemyFolder\Enemy.cs" />
     <Compile Include="PNJ\PNJ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

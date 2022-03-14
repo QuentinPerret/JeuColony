@@ -10,7 +10,16 @@ namespace JeuColony.BATIMENTS.ListFixed.ListConstructed
     {
         public Road(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
+            _ready=false;
+            _length=0;
+            _lengthMax=30;
 
+        }
+        private override void Construct(List<Builder> Builders,length)
+        {
+            _duration = Bui
+            
+            Builders.occupied= false;
         }
     }
 }

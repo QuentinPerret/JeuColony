@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ
 {
-    class Allié
+    class Enemy : PNJ
     {
     }
 }

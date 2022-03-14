@@ -51,7 +51,7 @@ namespace JeuColony.PNJ.AllyFolder
         {
             VisionRange = 1;
         }
-        protected override void Spawn(Batiment B)
+        protected override void Spawn()
         {
 
         }

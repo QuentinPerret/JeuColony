@@ -24,6 +24,7 @@ namespace JeuColony.PNJ
         protected abstract void GenerateAllStat();
         protected abstract void GenerateSpeed();
         protected abstract void MoveTo();
+        protected abstract void Spawn();
 
     }
 }

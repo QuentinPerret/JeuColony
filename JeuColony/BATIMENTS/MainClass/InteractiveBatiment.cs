@@ -9,17 +9,18 @@ namespace JeuColony.BATIMENTS
     abstract class InteractiveBatiment:Batiment
     {
         private bool _activity;
+        
         public InteractiveBatiment(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate,state,level)
         {
-            
+            _activity = false;
         }
 
         public static void Isused()
         {
-            if (_activity)
+            /*if (_activity)
                 _activity=false;
             else
-                _activity = true;
+                _activity = true;*/
         }
     }
 }

@@ -15,8 +15,8 @@ namespace JeuColony.BATIMENTS.ListInteract.Production
         }
         protected override int GenerateProduction(int level)
         {
-            return level * 4;
+            return level * 6;
         }
-    {
+    
     }
 }

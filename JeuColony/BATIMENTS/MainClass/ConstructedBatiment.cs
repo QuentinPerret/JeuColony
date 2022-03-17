@@ -4,23 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.MainClass
+namespace JeuColony.BATIMENTS
 {
-    class ConstructedBatiment:FixedBatiment
+    abstract class ConstructedBatiment:FixedBatiment
     {
         protected int ConstructorsNeeded { get; set;}
         protected bool _ready;
         protected int _length;
-        protected int _lenghtMax;
+        protected int _lengthMax;
         protected int _duration;
-        public ConstructedBatiment(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public ConstructedBatiment(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
 
         }
         protected abstract void Construct();
-        protected Builder()
-        {
-
-        }
+        
     }
 }

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace JeuColony
+namespace JeuColony.GenerateMap
 {
-    class Program
+    class BaseMap
     {
-        static void Main(string[] args)
+        public BaseMap()
         {
-            GenerateMap.BaseMap M = new GenerateMap.BaseMap(); 
+            Console.SetWindowSize(90, 90);
         }
         
     }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ.AllyFolder
 {
-    class Builder : Ally
+    class Digger : Ally , IAllyCalculus
     {
-        public Builder(string name,int level) : base(name, level) { }
-        protected virtual void GenerateBuildingPower()
+        public Digger(string name,int level) : base(name, level) { }
+        protected virtual void GenerateDiggingPower()
         {
-            BuildingPower = 2;
+            DiggingPower = 2;
         }
         protected virtual void GenerateHealthPointMax()
         {

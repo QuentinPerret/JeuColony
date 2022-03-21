@@ -16,9 +16,9 @@ namespace JeuColony.BATIMENTS
         {
             return level * 3;
         }
-        private override void GenerateStat()
+        protected override void GenerateStat()
         {
-            Health = HealthMax * Level;
+            Health = HealthMax * 5*Level;
         }
     }
     

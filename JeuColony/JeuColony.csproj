@@ -64,21 +64,24 @@
     <Compile Include="BATIMENTS\MainClass\InteractiveBatiment.cs" />
     <Compile Include="BATIMENTS\MainClass\DefenseBatiment.cs" />
     <Compile Include="BATIMENTS\MainClass\ProductionBatiment.cs" />
-    <Compile Include="GenerateMap\BaseMap.cs" />
+    <Compile Include="PNJ\Ally.cs" />
+    <Compile Include="PNJ\Colon.cs" />
+    <Compile Include="PNJ\Enemy.cs" />
+    <Compile Include="PNJ\AllyFolder\Ally.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Builder.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Digger.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Forester.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Pioneer.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Scout.cs" />
+    <Compile Include="PNJ\AllyFolder\Profession\Soldier.cs" />
+    <Compile Include="PNJ\EnemyFolder\Enemy.cs" />
     <Compile Include="PNJ\PNJ.cs" />
-    <Compile Include="Pnj\AllyFolder\Ally.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Builder.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Digger.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Forester.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Pioneer.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Scout.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Soldier.cs" />
-    <Compile Include="Pnj\PNJ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram4.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

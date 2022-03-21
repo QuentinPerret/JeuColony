@@ -14,7 +14,7 @@ namespace JeuColony.BATIMENTS.MainClass
             HealthMax=300; 
         }
         protected abstract int GenerateProduction(int level);
-        private override void GenerateStat()
+        protected override void GenerateStat()
         {
             Health = HealthMax * Level;
         }

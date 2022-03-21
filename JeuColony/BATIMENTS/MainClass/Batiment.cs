@@ -12,6 +12,9 @@ namespace JeuColony.BATIMENTS
         private int[] Coordinate { get; } //coordinate x and y
         private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
+        protected int CapacityMax { get; }
+        protected int HealthMax { get; set; }
+        protected int Health { get; set; }
         public Batiment(double[] size, int[] coordinate, bool state, int level)
         {
             Coordinate = coordinate;

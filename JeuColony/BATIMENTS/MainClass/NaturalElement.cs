@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.Abstract_Class
+namespace JeuColony.BATIMENTS
 {
-    class NaturalElement:FixedBatiment
+    abstract class NaturalElement:FixedBatiment
     {
-        protected int Health { get; set;}
-        public NaturalElement(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public NaturalElement(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
 
         }
         protected abstract void Remove();
+        protected override void GenerateStat()
+        {
+            Health = HealthMax * 5 * Level;
+        }
     }
 }

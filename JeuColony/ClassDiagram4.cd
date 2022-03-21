@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JeuColony.BATIMENTS.ListInteract.Cantina" Collapsed="true">
+    <Position X="24.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\Cantina.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListInteract.Dormitory" Collapsed="true">
+    <Position X="26.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\Dormitory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListInteract.Defense.ArcherTower" Collapsed="true">
+    <Position X="33" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\Defense\ArcherTower.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListInteract.Defense.Bulwark" Collapsed="true">
+    <Position X="15.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\Defense\Bulwark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListInteract.Production.Farm" Collapsed="true">
+    <Position X="19.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\Production\Farm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListInteract.Production.Sawmill" Collapsed="true">
+    <Position X="22" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\Production\Sawmill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListInteract.Production.Smelter" Collapsed="true">
+    <Position X="17.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\Production\Smelter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.TrainingCamp" Collapsed="true">
+    <Position X="28.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\List Interact\TrainingCamp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.Batiment" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABCAAAAAAAhAAAAAAAAAAIAAAAAAABAAAgBAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\Batiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.FixedBatiment" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\FixedBatiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.InteractiveBatiment" Collapsed="true">
+    <Position X="22" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\InteractiveBatiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListFixed.ListConstructed.Bridge" Collapsed="true">
+    <Position X="13" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\ListFixed\ListConstructed\Bridge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListFixed.ListConstructed.Road" Collapsed="true">
+    <Position X="10.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\ListFixed\ListConstructed\Road.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListFixed.ListNaturalElement.Forest" Collapsed="true">
+    <Position X="6" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\ListFixed\ListNaturalElement\Forest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListFixed.ListNaturalElement.Mountain" Collapsed="true">
+    <Position X="4.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\ListFixed\ListNaturalElement\Mountain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ListFixed.ListNaturalElement.Water" Collapsed="true">
+    <Position X="8" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAIAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\ListFixed\ListNaturalElement\Water.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.MainClass.CityBatiment" Collapsed="true">
+    <Position X="26.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\CityBatiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.ConstructedBatiment" Collapsed="true">
+    <Position X="12" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAABAAAAAgAAQAAAAABAABAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\ConstructedBatiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.MainClass.DefenseBatiment" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\DefenseBatiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.MainClass.ProductionBatiment" Collapsed="true">
+    <Position X="19.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAgAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\ProductionBatiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.BATIMENTS.NaturalElement" Collapsed="true">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BATIMENTS\MainClass\NaturalElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJ.Allié" Collapsed="true">
+    <Position X="31.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PNJ\Ally.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJ.Colon" Collapsed="true">
+    <Position X="34.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PNJ\Colon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJ.Enemy" Collapsed="true">
+    <Position X="31.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PNJ\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJ.PNJ" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAABAAAAAEACASBAIAIQAABAAAAAAAACAA=</HashCode>
+      <FileName>PNJ\PNJ.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJ.AllyFolder.Ally" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgQAAAAGoAAAIEAAAAAAAgAEAAAAAAAAAAACAA=</HashCode>
+      <FileName>PNJ\AllyFolder\Ally.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Program" Collapsed="true">
+    <Position X="33" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

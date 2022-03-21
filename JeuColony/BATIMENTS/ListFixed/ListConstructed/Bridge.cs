@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace JeuColony.BATIMENTS.ListFixed.ListConstructed
 {
-    class Bridge:FixedBatiment
+    class Bridge:ConstructedBatiment
     {
-        public Bridge(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public Bridge(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state)
+        {
+
+        }
+        protected override void GenerateStat()
+        {
+            Health = HealthMax * 2* Level;
+        }
+        protected override void Construct()
         {
 
         }

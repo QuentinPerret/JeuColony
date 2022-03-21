@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 namespace JeuColony.BATIMENTS.ListFixed.ListConstructed
 {
-    class Road:FixedBatiment
+    class Road:ConstructedBatiment
     {
-        public Road(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public Road(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state)
         {
             _ready=false;
             _length=0;
             _lengthMax=30;
 
         }
-        private override void Construct(List<Builder> Builders,length)
+        protected override void Construct(/*List<Builder> Builders,length*/)
         {
-            _duration = Bui
             
-            Builders.occupied= false;
+        }
+        protected override void GenerateStat()
+        {
+            Health = HealthMax * 4 * Level;
         }
     }
 }

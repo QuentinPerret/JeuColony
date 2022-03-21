@@ -17,4 +17,5 @@ namespace JeuColony.BATIMENTS.ListInteract.Production
         {
             return level * 4;
         }
+    }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ.AllyFolder
 {
-    abstract class Ally : PNJ
+    abstract class Ally : PNJ 
     {
         private int DiggerPower { get; set; }
         private int BuildingPower { get; set; }
@@ -51,9 +51,9 @@ namespace JeuColony.PNJ.AllyFolder
         {
             VisionRange = 1;
         }
-        protected override void Spawn()
+        protected override void Spawn(Batiment B)
         {
-
+            
         }
     }
 }

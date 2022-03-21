@@ -55,7 +55,7 @@ namespace JeuColony.GenMap
             int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
             int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
             int[] tab = { posx, posy };
-            _listeBatiments.Add(new Batiment(1, tab, true, 1));// dortoir premier batiment
+            _listeBatiments.Add(B.GenerateBatiment(1, tab, true, 1));// dortoir premier batiment
         }
         public override string ToString()
         {

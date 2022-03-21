@@ -13,5 +13,9 @@ namespace JeuColony.PNJ.AllyFolder
         {
             VisionRange = 3;
         }
+        protected virtual void GenerateSpeed()
+        {
+            Speed = 2;
+        }
     }
 }

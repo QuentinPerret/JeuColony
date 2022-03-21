@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ.AllyFolder
 {
-    class Scout : Ally ,IAllyCalculus
+    class Scout : Ally 
     {
         public Scout(string name,int level) : base(name, level) { }
-        protected virtual void GenerateVisionRange()
+        protected override void GenerateVisionRange()
         {
             VisionRange = 3;
         }
-        protected virtual void GenerateSpeed()
+        protected override void GenerateSpeed()
         {
             Speed = 2;
         }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ.AllyFolder
 {
-    class Soldier : Ally ,IAllyCalculus
+    class Soldier : Ally 
     {
         public Soldier(string name,int level) : base(name, level) { }
-        protected virtual void GenerateHealthPointMax()
+        protected override void GenerateHealthPointMax()
         {
             HealthPointMax = 30 * Level;
         }
-        protected virtual void GenerateAttackPower()
+        protected override void GenerateAttackPower()
         {
             AttackPower = 3 * Level;
         }

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ.AllyFolder
 {
-    class Forester : Ally ,IAllyCalculus
+    class Forester : Ally 
     {
         public Forester(string name,int level) : base(name, level) { }
-        protected virtual void GenerateLoggingPower()
+        protected override void GenerateLoggingPower()
         {
             LoggingPower = 2;
         }
-        protected virtual void GenerateHealthPointMax()
+        protected override void GenerateHealthPointMax()
         {
             HealthPointMax = 25 * Level;
         }
-        protected virtual void GenerateAttackPower()
+        protected override void GenerateAttackPower()
         {
             AttackPower = 2 * Level + 1;
         }

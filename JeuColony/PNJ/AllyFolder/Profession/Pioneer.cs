@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace JeuColony.PNJ.AllyFolder
 {
-    class Pioneer : Ally , IAllyCalculus
+    class Pioneer : Ally 
     {
         public Pioneer(string name,int level) : base(name, level) { }
-        protected virtual void GenerateLoggingPower()
+        protected override void GenerateLoggingPower()
         {
             LoggingPower = 1;
         }
-        protected virtual void GenerateDiggingPower()
+        protected override void GenerateDiggingPower()
         {
             DiggingPower = 1;
         }
-        protected virtual void GenerateBuildingPower()
+        protected override void GenerateBuildingPower()
         {
             BuildingPower = 1;
         }
-        protected virtual void GenerateVisionRange()
+        protected override void GenerateVisionRange()
         {
             VisionRange = 2;
         }

@@ -76,7 +76,6 @@
     <Compile Include="Pnj\AllyFolder\Profession\Scout.cs" />
     <Compile Include="Pnj\AllyFolder\Profession\Soldier.cs" />
     <Compile Include="Pnj\EnemyFolder\Enemy.cs" />
-    <Compile Include="Pnj\PNJ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

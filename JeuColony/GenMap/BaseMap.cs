@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JeuColony.Batiments;
 
 namespace JeuColony.GenMap
 {
@@ -10,7 +11,7 @@ namespace JeuColony.GenMap
     {
         private int _nbl, _nbc;
         private object[,] _mat;
-        private List<BATIMENTS.Batiment> _listeBatiments;
+        private List<Batiments.Batiment> _listeBatiments;
         public BaseMap()
         {
             Console.SetWindowSize(85, 33);
@@ -49,12 +50,12 @@ namespace JeuColony.GenMap
 
 
         }
-        public void GenerateABatiment(BATIMENTS.Batiment B, Random r)
+        public void GenerateABatiment(Batiments.Batiment B, Random r)
         {
             int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
             int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
             int[] tab = { posx, posy };
-            _listeBatiments.Add(new BATIMENTS.Batiment.(1, tab, true, 1));// dortoir premier batiment
+            _listeBatiments.Add(new Batiment(1, tab, true, 1));// dortoir premier batiment
         }
         public override string ToString()
         {

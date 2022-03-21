@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.ListInteract
+namespace JeuColony.Batiments
 {
-    class Cantina:MainClass.CityBatiment
+    class TrainingCamp : MainClass.CityBatiment
     {
-        public Cantina(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public TrainingCamp(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
-            HealthMax = 500;
+            HealthMax = 200;
         }
         protected override int GenerateCapaMax(int level)
         {
@@ -18,7 +18,9 @@ namespace JeuColony.BATIMENTS.ListInteract
         }
         protected override void GenerateStat()
         {
-            Health = HealthMax *9* Level;
+            Health = HealthMax * 5*Level;
         }
     }
+    
+    
 }

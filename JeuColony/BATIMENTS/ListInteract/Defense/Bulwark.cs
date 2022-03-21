@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.ListInteract.Defense
+namespace JeuColony.Batiments.ListInteract.Defense
 {
     class Bulwark:MainClass.DefenseBatiment
     {

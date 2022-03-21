@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.MainClass
+namespace JeuColony.Batiments.MainClass
 {
     abstract class CityBatiment:InteractiveBatiment
     {

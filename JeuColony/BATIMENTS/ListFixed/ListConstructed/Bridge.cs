@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.ListFixed.ListConstructed
+namespace JeuColony.Batiments.ListFixed.ListConstructed
 {
     class Bridge:ConstructedBatiment
     {

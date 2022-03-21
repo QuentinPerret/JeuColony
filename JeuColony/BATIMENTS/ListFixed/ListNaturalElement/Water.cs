@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.ListFixed.ListNaturalElement
+namespace JeuColony.Batiments.ListFixed.ListNaturalElement
 {
     class Water:NaturalElement
     {

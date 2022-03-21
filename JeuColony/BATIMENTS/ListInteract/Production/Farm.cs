@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.BATIMENTS.ListInteract.Production
+namespace JeuColony.Batiments.ListInteract.Production
 {
     class Farm:MainClass.ProductionBatiment
     {

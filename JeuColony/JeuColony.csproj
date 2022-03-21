@@ -64,9 +64,6 @@
     <Compile Include="BATIMENTS\MainClass\InteractiveBatiment.cs" />
     <Compile Include="BATIMENTS\MainClass\DefenseBatiment.cs" />
     <Compile Include="BATIMENTS\MainClass\ProductionBatiment.cs" />
-    <Compile Include="PNJ\Ally.cs" />
-    <Compile Include="PNJ\Colon.cs" />
-    <Compile Include="PNJ\Enemy.cs" />
     <Compile Include="PNJ\PNJ.cs" />
     <Compile Include="Pnj\AllyFolder\Ally.cs" />
     <Compile Include="Pnj\AllyFolder\Profession\Builder.cs" />

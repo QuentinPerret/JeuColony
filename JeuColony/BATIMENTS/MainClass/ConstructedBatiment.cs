@@ -18,6 +18,7 @@ namespace JeuColony.Batiments
 
         }
         protected abstract void Construct();
+
         
     }
 }

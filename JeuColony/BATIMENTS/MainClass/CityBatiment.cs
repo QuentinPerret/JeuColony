@@ -13,5 +13,6 @@ namespace JeuColony.Batiments.MainClass
         {
         }
         protected abstract int GenerateCapaMax(int level);
+
     }
 }

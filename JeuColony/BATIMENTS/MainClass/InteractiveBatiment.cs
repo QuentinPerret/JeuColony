@@ -22,5 +22,6 @@ namespace JeuColony.Batiments
             else
                 _activity = true;*/
         }
+
     }
 }

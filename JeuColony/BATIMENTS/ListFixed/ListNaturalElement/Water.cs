@@ -26,5 +26,10 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
         {
            
         }
+        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
+        {
+            Water W = new Water(n, tab, b);
+            return W;
+        }
     }
 }

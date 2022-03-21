@@ -18,5 +18,6 @@ namespace JeuColony.Batiments.MainClass
         {
             Health = HealthMax * Level;
         }
+
     }
 }

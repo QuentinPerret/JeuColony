@@ -17,5 +17,10 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
         {
            
         }
+        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
+        {
+            Forest F = new Forest(n, tab, b);
+            return F;
+        }
     }
 }

@@ -17,9 +17,10 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
             Health = HealthMax * 5 * Level;
         }
 
-        protected override void Remove()
+        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
-            
+            Mountain M = new Mountain(n, tab, b);
+            return M;
         }
     }
 }

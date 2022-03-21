@@ -23,5 +23,10 @@ namespace JeuColony.Batiments.ListFixed.ListConstructed
         {
             Health = HealthMax * 4 * Level;
         }
+        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
+        {
+            Road R = new Road(n, tab, b, p);
+            return R;
+        }
     }
 }

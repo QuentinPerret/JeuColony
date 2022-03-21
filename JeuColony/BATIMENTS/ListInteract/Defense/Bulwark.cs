@@ -17,5 +17,10 @@ namespace JeuColony.Batiments.ListInteract.Defense
         {
             return level * 5;
         }
+        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
+        {
+            Bulwark B = new Bulwark(n, tab, b, p);
+            return B;
+        }
     }
 }

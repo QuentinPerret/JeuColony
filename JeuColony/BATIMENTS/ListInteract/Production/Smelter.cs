@@ -17,5 +17,10 @@ namespace JeuColony.Batiments.ListInteract.Production
         {
             return level * 4;
         }
+        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
+        {
+            Smelter S = new Smelter(n, tab, b, p);
+            return S;
+        }
     }
 }

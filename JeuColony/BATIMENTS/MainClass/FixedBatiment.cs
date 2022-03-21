@@ -13,5 +13,6 @@ namespace JeuColony.Batiments
         {
 
         }
+
     }
 }

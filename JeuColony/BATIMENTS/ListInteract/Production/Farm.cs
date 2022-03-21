@@ -17,5 +17,10 @@ namespace JeuColony.Batiments.ListInteract.Production
         {
             return level * 2;
         }
+        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
+        {
+            Farm F = new Farm(n, tab, b, p);
+            return F;
+        }
     }
 }

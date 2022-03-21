@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JeuColony.Batiment;
+using JeuColony.Batiments;
 
 namespace JeuColony.PNJ.AllyFolder
 {

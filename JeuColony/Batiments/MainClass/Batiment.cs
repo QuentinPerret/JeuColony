@@ -9,7 +9,7 @@ namespace JeuColony.Batiments
     abstract class Batiment
     {
         private int Size{ get; } // size in a tab, much easier to compare with other tabs of x and y
-        private int[] Coordinate { get; } //coordinate x and y
+        public int[] Coordinate { get; } //coordinate x and y
         private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
         protected int CapacityMax { get; }

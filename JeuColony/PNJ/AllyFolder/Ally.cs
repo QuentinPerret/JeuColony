@@ -8,7 +8,7 @@ namespace JeuColony.PNJ.AllyFolder
 {
     abstract class Ally : PNJ
     {
-        private int DiggerPower { get; set; }
+        private int DiggingPower { get; set; }
         private int BuildingPower { get; set; }
         private int LoggingPower { get; set; }
         protected bool TaskOccupied { get; set; }
@@ -43,17 +43,21 @@ namespace JeuColony.PNJ.AllyFolder
         {
             LoggingPower = 0;
         }
-        protected virtual void GenerateDiggerPower()
+        protected virtual void GenerateDiggingPower()
         {
-            LoggingPower = 0;
+            DiggingPower = 0;
+        }
+        protected virtual void GenerateBuildingPower()
+        {
+            BuildingPower = 0;
         }
         protected virtual void GenerateVisionRange()
         {
             VisionRange = 1;
         }
-        protected override void Spawn()
+        protected override void Spawn(BATIMENTS.Batiment B)
         {
-
+            Coordinate = B.Coordinate();
         }
     }
 }

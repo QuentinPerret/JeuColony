@@ -8,7 +8,10 @@ namespace JeuColony.PNJ.AllyFolder
 {
     class Scout : Ally ,IAllyCalculus
     {
-        public Scout(string name, int healthpointmax, int healthpoint, int attackpower, int visionrange, int[] coordinate, int diggerpower, int buildingpower, int loggingpower) : base(name, healthpointmax, healthpoint, attackpower, visionrange, coordinate, diggerpower, buildingpower, loggingpower) { }
-
+        public Scout(string name,int level) : base(name, level) { }
+        protected virtual void GenerateVisionRange()
+        {
+            VisionRange = 3;
+        }
     }
 }

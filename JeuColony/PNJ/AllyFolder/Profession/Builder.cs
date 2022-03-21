@@ -8,7 +8,18 @@ namespace JeuColony.PNJ.AllyFolder
 {
     class Builder : Ally
     {
-        public Builder(string name, int healthpointmax, int healthpoint, int attackpower, int visionrange, int[] coordinate, int diggerpower, int buildingpower, int loggingpower) : base(name, healthpointmax, healthpoint, attackpower, visionrange, coordinate, diggerpower, buildingpower, loggingpower) { }
-        
+        public Builder(string name,int level) : base(name, level) { }
+        protected virtual void GenerateBuildingPower()
+        {
+            BuildingPower = 2;
+        }
+        protected virtual void GenerateHealthPointMax()
+        {
+            HealthPointMax = 25 * Level;
+        }
+        protected virtual void GenerateAttackPower()
+        {
+            AttackPower = 2 * Level + 1;
+        }
     }
 }

@@ -64,6 +64,15 @@
     <Compile Include="BATIMENTS\MainClass\InteractiveBatiment.cs" />
     <Compile Include="BATIMENTS\MainClass\DefenseBatiment.cs" />
     <Compile Include="BATIMENTS\MainClass\ProductionBatiment.cs" />
+    <Compile Include="PNJ\PNJ.cs" />
+    <Compile Include="Pnj\AllyFolder\Ally.cs" />
+    <Compile Include="Pnj\AllyFolder\Profession\Builder.cs" />
+    <Compile Include="Pnj\AllyFolder\Profession\Digger.cs" />
+    <Compile Include="Pnj\AllyFolder\Profession\Forester.cs" />
+    <Compile Include="Pnj\AllyFolder\Profession\Pioneer.cs" />
+    <Compile Include="Pnj\AllyFolder\Profession\Scout.cs" />
+    <Compile Include="Pnj\AllyFolder\Profession\Soldier.cs" />
+    <Compile Include="Pnj\EnemyFolder\Enemy.cs" />
     <Compile Include="GenMap\BaseMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

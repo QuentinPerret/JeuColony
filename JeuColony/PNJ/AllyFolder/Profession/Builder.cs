@@ -9,17 +9,18 @@ namespace JeuColony.PNJ.AllyFolder
     class Builder : Ally
     {
         public Builder(string name,int level) : base(name, level) { }
-        protected virtual void GenerateBuildingPower()
+        protected override void GenerateBuildingPower()
         {
             BuildingPower = 2;
         }
-        protected virtual void GenerateHealthPointMax()
+        protected override void GenerateHealthPointMax()
         {
             HealthPointMax = 25 * Level;
         }
-        protected virtual void GenerateAttackPower()
+        protected override void GenerateAttackPower()
         {
             AttackPower = 2 * Level + 1;
         }
+        
     }
 }

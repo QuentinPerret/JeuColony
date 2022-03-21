@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JeuColony.Batiment;
 
 namespace JeuColony.PNJ.AllyFolder
 {
-    abstract class Ally : PNJ
+    class Ally : PNJ 
     {
-        private int DiggingPower { get; set; }
-        private int BuildingPower { get; set; }
-        private int LoggingPower { get; set; }
+        protected int DiggingPower { get; set; }
+        protected int BuildingPower { get; set; }
+        protected int LoggingPower { get; set; }
         protected bool TaskOccupied { get; set; }
         public Ally(string name, int level) : base(name, level)
         {
@@ -20,7 +21,7 @@ namespace JeuColony.PNJ.AllyFolder
         protected override void GenerateAllStat()
         {
             GenerateAttackPower();
-            GenerateDiggerPower();
+            GenerateDiggingPower();
             GenerateHealthPointMax();
             GenerateHealthPoint();
             GenerateLoggingPower();
@@ -47,17 +48,24 @@ namespace JeuColony.PNJ.AllyFolder
         {
             DiggingPower = 0;
         }
-        protected virtual void GenerateBuildingPower()
-        {
-            BuildingPower = 0;
+        protected virtual void GenerateBuildingPower(){
+            BuildingPower =0;
         }
         protected virtual void GenerateVisionRange()
         {
             VisionRange = 1;
         }
-        protected override void Spawn(BATIMENTS.Batiment B)
+        protected override void GenerateSpeed()
         {
-            Coordinate = B.Coordinate();
+            Speed = 1;
+        }
+        protected void MoveTo(int[] Coord)
+        {
+            Coordinate = Coord;
+        }
+        protected void Spawn(Batiment B)
+        {
+            Coordinate = B.Coordinate;
         }
     }
 }

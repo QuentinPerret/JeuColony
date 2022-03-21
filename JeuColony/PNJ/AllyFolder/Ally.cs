@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JeuColony.Batiment;
 
 namespace JeuColony.PNJ.AllyFolder
 {
@@ -62,7 +63,7 @@ namespace JeuColony.PNJ.AllyFolder
         {
             Coordinate = Coord;
         }
-        protected void Spawn(BATIMENTS.Batiment B)
+        protected void Spawn(Batiment B)
         {
             Coordinate = B.Coordinate;
         }

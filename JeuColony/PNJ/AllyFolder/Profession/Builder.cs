@@ -21,6 +21,5 @@ namespace JeuColony.PNJ.AllyFolder
         {
             AttackPower = 2 * Level + 1;
         }
-        
     }
 }

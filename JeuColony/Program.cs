@@ -11,7 +11,8 @@ namespace JeuColony
     {
         static void Main(string[] args)
         {
-            GenerateMap.BaseMap M = new GenerateMap.BaseMap(); 
+            GenMap.BaseMap M = new GenMap.BaseMap();
+            M.Print();
         }
         
     }

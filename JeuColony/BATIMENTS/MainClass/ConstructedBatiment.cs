@@ -13,7 +13,7 @@ namespace JeuColony.BATIMENTS
         protected int _length;
         protected int _lengthMax;
         protected int _duration;
-        public ConstructedBatiment(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public ConstructedBatiment(int size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
 
         }

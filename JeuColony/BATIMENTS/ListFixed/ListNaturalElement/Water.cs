@@ -8,7 +8,7 @@ namespace JeuColony.BATIMENTS.ListFixed.ListNaturalElement
 {
     class Water:NaturalElement
     {
-        public Water(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public Water(int size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
 
         }

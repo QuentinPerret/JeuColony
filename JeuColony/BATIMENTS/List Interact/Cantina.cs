@@ -8,7 +8,7 @@ namespace JeuColony.BATIMENTS.ListInteract
 {
     class Cantina:MainClass.CityBatiment
     {
-        public Cantina(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Cantina(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
             HealthMax = 500;
         }

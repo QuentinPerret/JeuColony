@@ -8,7 +8,7 @@ namespace JeuColony.BATIMENTS
 {
     class TrainingCamp : MainClass.CityBatiment
     {
-        public TrainingCamp(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public TrainingCamp(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
             HealthMax = 200;
         }

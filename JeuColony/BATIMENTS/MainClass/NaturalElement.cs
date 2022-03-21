@@ -8,7 +8,7 @@ namespace JeuColony.BATIMENTS
 {
     abstract class NaturalElement:FixedBatiment
     {
-        public NaturalElement(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public NaturalElement(int size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
 
         }

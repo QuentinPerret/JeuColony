@@ -8,7 +8,7 @@ namespace JeuColony.BATIMENTS.ListInteract
 {
     class Dormitory:MainClass.CityBatiment
     {
-        public Dormitory(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Dormitory(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
             HealthMax = 100;
         }

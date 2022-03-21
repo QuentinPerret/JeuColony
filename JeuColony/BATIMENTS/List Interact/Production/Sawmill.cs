@@ -9,7 +9,7 @@ namespace JeuColony.BATIMENTS.ListInteract.Production
     class Sawmill : MainClass.ProductionBatiment
     {
 
-        public Sawmill(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Sawmill(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
 
         }

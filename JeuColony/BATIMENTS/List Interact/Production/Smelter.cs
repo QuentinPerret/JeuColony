@@ -9,7 +9,7 @@ namespace JeuColony.BATIMENTS.ListInteract.Production
     class Smelter : MainClass.ProductionBatiment
     {
 
-        public Smelter(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Smelter(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
 
         }

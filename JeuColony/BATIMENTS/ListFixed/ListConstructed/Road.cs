@@ -8,7 +8,7 @@ namespace JeuColony.BATIMENTS.ListFixed.ListConstructed
 {
     class Road:ConstructedBatiment
     {
-        public Road(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state)
+        public Road(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state)
         {
             _ready=false;
             _length=0;

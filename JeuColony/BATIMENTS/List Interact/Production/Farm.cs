@@ -9,7 +9,7 @@ namespace JeuColony.BATIMENTS.ListInteract.Production
     class Farm:MainClass.ProductionBatiment
     {
         
-        public Farm(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Farm(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
 
         }

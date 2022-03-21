@@ -8,7 +8,7 @@ namespace JeuColony.BATIMENTS.ListFixed.ListNaturalElement
 {
     class Forest:NaturalElement
     {
-        public Forest(double[] size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public Forest(int size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
 
         }

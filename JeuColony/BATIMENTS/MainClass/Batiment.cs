@@ -15,7 +15,7 @@ namespace JeuColony.BATIMENTS
         protected int CapacityMax { get; }
         protected int HealthMax { get; set; }
         protected int Health { get; set; }
-        public Batiment(double[] size, int[] coordinate, bool state, int level)
+        public Batiment(int size, int[] coordinate, bool state, int level)
         {
             Coordinate = coordinate;
             State = state;
@@ -26,6 +26,14 @@ namespace JeuColony.BATIMENTS
         }
 
         protected abstract void GenerateStat();
-       
+
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes += " ## \n####";
+            return chRes;
+        }
+
+
     }
 }

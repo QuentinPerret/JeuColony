@@ -9,7 +9,7 @@ namespace JeuColony.BATIMENTS.ListInteract.Defense
     class Bulwark:MainClass.DefenseBatiment
     {
         protected int Protection { get; set; }
-        public Bulwark(double[] size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Bulwark(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
 
         }

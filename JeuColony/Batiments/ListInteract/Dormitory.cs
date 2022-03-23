@@ -11,6 +11,7 @@ namespace JeuColony.Batiments.ListInteract
         public Dormitory(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
             HealthMax = 100;
+            GenerateBatiment(size, coordinate, state, 1);
         }
         protected override int GenerateCapaMax(int level)
         {

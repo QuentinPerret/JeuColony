@@ -11,14 +11,17 @@ namespace JeuColony.GenMap
     {
         private int _nbl, _nbc;
         private object[,] _mat;
-        private List<Batiments.Batiment> _listeBatiments;
+        private  List<Batiments.Batiment> _listBatiments;
+        private readonly List<Batiments.Batiment> _basicBatiments;
         public BaseMap()
         {
             Console.SetWindowSize(85, 33);
             _nbc = 5;
             _nbl = 5;
+            _listBatiments = new List<Batiment>();
             this.GenerateSquare();
             this.GenerateBatiments();
+
         }
         public void GenerateSquare()
         {
@@ -32,6 +35,10 @@ namespace JeuColony.GenMap
             }
 
         }
+        public void GenerateBasicBatiments()
+        {
+            _basicBatiments.Add(new Batiments.ListInteract.Dormitory(1);
+        }
         public void GenerateBatiments()
         {
             Random r = new Random();
@@ -39,23 +46,21 @@ namespace JeuColony.GenMap
             int nbMaxBatiments = 20;
             nb = r.Next(0, nbMaxBatiments);
 
-
-            for (int i = 0; i < nb; i++)
-            {
-                
-            }
-
-
-
-
-
+            
         }
-        public void GenerateABatiment(Batiments.Batiment B, Random r)
+        public void ShowBatiments()
+        {
+            foreach (Batiment B in _listBatiments)
+            {
+                Console.WriteLine(B);
+            }
+        }
+        public void AddABatiment(Batiments.Batiment B, Random r)
         {
             int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
             int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
             int[] tab = { posx, posy };
-            _listeBatiments.Add(B.GenerateBatiment(1, tab, true, 1));// dortoir premier batiment
+            _listBatiments.Add(B);
         }
         public override string ToString()
         {

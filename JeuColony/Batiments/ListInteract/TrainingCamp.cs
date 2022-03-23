@@ -11,6 +11,7 @@ namespace JeuColony.Batiments
         public TrainingCamp(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
             HealthMax = 200;
+            GenerateBatiment(size, coordinate, state, 1);
         }
         protected override int GenerateCapaMax(int level)
         {

@@ -11,8 +11,8 @@ namespace JeuColony.GenMap
     {
         private int _nbl, _nbc;
         private object[,] _mat;
-        private  List<Batiments.Batiment> _listBatiments;
-        private readonly List<Batiments.Batiment> _basicBatiments;
+        private readonly List<Batiments.Batiment> _listBatiments;
+        //private readonly List<string> _basicBatiments;
         public BaseMap()
         {
             Console.SetWindowSize(85, 33);
@@ -21,31 +21,29 @@ namespace JeuColony.GenMap
             _listBatiments = new List<Batiment>();
             this.GenerateSquare();
             this.GenerateBatiments();
-
+            //this.ShowBatiments();
         }
         public void GenerateSquare()
         {
             _mat = new object[_nbl, _nbc];
-            for (int i = 0; i < _nbl; i++)
-            {
-                for (int j = 0; j < _nbc; j++)
-                {
-                    _mat[i, j] = new object();
-                }
-            }
+            
 
         }
         public void GenerateBasicBatiments()
         {
-            _basicBatiments.Add(new Batiments.ListInteract.Dormitory(1);
+            
+
         }
         public void GenerateBatiments()
         {
             Random r = new Random();
             int nb;
+            int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
+            int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
+            int[] tab = { posx, posy };
             int nbMaxBatiments = 20;
             nb = r.Next(0, nbMaxBatiments);
-
+            AddABatiment(new Batiments.ListInteract.Dormitory(2, tab, true, 1));
             
         }
         public void ShowBatiments()
@@ -55,12 +53,21 @@ namespace JeuColony.GenMap
                 Console.WriteLine(B);
             }
         }
-        public void AddABatiment(Batiments.Batiment B, Random r)
+        public void AddABatiment(Batiments.Batiment B)
         {
-            int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
-            int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
-            int[] tab = { posx, posy };
             _listBatiments.Add(B);
+            _mat[B.Coordinate[0], B.Coordinate[1]] = B;
+            for(int i = 0; i < B.Size; i++)
+            {
+                if (B.Coordinate[1] != _nbc)
+                {
+                    _mat[B.Coordinate[0]+i, B.Coordinate[1]] = B;
+                }
+                else
+                {
+                    _mat[B.Coordinate[0], B.Coordinate[1]+1] = B;
+                }
+            }
         }
         public override string ToString()
         {
@@ -69,7 +76,10 @@ namespace JeuColony.GenMap
             {
                 for (int j = 0; j < _nbc; j++)
                 {
-                    chRes += " . ";
+                    if (_mat[i, j] != null)
+                        chRes += _mat[i, j];
+                    else
+                        chRes += " . ";
                 }
                 chRes += "\n";
             }

@@ -10,7 +10,7 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
     {
         public Forest(int size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
-
+            GenerateBatiment(size, coordinate, state, 1);
         }
 
         protected override void Remove()

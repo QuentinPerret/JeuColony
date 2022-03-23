@@ -10,11 +10,11 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
     {
         public Water(int size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
-
+            GenerateBatiment(size, coordinate, state, 1);
         }
         public Water generateRiver()
         {
-            Water river = new Water(new[]{ 5.0,5.0},new[] { 0, 0 },true);
+            Water river = new Water(25,new[] { 0, 0 },true);
             return river;
         }
         protected override void GenerateStat()

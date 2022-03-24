@@ -11,7 +11,7 @@ namespace JeuColony.Batiments.ListInteract
         public Cantina(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
             HealthMax = 500;
-            GenerateBatiment(size, coordinate, state, 1);
+            //GenerateBatiment(size, coordinate, state, 1);
         }
         protected override int GenerateCapaMax(int level)
         {

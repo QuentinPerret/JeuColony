@@ -13,7 +13,7 @@ namespace JeuColony.Batiments.ListFixed.ListConstructed
             _ready=false;
             _length=0;
             _lengthMax=30;
-
+            GenerateBatiment(size, coordinate, state, 1);
         }
         protected override void Construct(/*List<Builder> Builders,length*/)
         {

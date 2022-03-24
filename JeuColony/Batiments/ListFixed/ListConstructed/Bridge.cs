@@ -10,7 +10,7 @@ namespace JeuColony.Batiments.ListFixed.ListConstructed
     {
         public Bridge(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state)
         {
-
+            //GenerateBatiment(size, coordinate, state, 1);
         }
         protected override void GenerateStat()
         {

@@ -11,42 +11,61 @@ namespace JeuColony.GenMap
     {
         private int _nbl, _nbc;
         private object[,] _mat;
-        private  List<Batiments.Batiment> _listBatiments;
-        private readonly List<Batiments.Batiment> _basicBatiments;
+        private readonly List<Batiments.Batiment> _listBatiments;
+        private List<string> _basicBatiments;
+        protected Random r = new Random();
         public BaseMap()
         {
             Console.SetWindowSize(85, 33);
-            _nbc = 5;
-            _nbl = 5;
+            _nbc = 30;
+            _nbl = 30;
             _listBatiments = new List<Batiment>();
             this.GenerateSquare();
             this.GenerateBatiments();
-
+            //r = new Random();
+            //this.ShowBatiments();
         }
         public void GenerateSquare()
         {
             _mat = new object[_nbl, _nbc];
-            for (int i = 0; i < _nbl; i++)
-            {
-                for (int j = 0; j < _nbc; j++)
-                {
-                    _mat[i, j] = new object();
-                }
-            }
+            
 
+        }
+        public List<string> BatimentsList()
+        {
+            _basicBatiments = new List<string>();
+            _basicBatiments.Add("Dormitory");
+            _basicBatiments.Add("Forest");
+            _basicBatiments.Add("Water");
+            return _basicBatiments;
         }
         public void GenerateBasicBatiments()
         {
-            _basicBatiments.Add(new Batiments.ListInteract.Dormitory(1);
+            int nb;
+            int nbMaxBatiments = 40;
+            nb = r.Next(4, nbMaxBatiments);
+            AddABatiment(new Batiments.ListInteract.Dormitory(1, GeneratePosition(), true, 1));
+            AddABatiment(new Batiments.ListInteract.Cantina(2, GeneratePosition(), true, 1));
+            for(int i=0; i<nb/4; i++)
+            {
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Forest(2, GeneratePosition(), true));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Mountain(2, GeneratePosition(), true));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Water(5, GeneratePosition(), true));
+            }
+            
+
         }
         public void GenerateBatiments()
         {
-            Random r = new Random();
-            int nb;
-            int nbMaxBatiments = 20;
-            nb = r.Next(0, nbMaxBatiments);
+            GenerateBasicBatiments();
 
-            
+        }
+        public int[] GeneratePosition()
+        {
+            int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
+            int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
+            int[] tab = { posx, posy };
+            return tab;
         }
         public void ShowBatiments()
         {
@@ -55,12 +74,21 @@ namespace JeuColony.GenMap
                 Console.WriteLine(B);
             }
         }
-        public void AddABatiment(Batiments.Batiment B, Random r)
+        public void AddABatiment(Batiments.Batiment B)
         {
-            int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
-            int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
-            int[] tab = { posx, posy };
             _listBatiments.Add(B);
+            _mat[B.Coordinate[0], B.Coordinate[1]] = B;
+            for(int i = 0; i < B.Size; i++)
+            {
+                if (B.Coordinate[1] != _nbc)
+                {
+                    _mat[B.Coordinate[0]+i, B.Coordinate[1]] = B;
+                }
+                else
+                {
+                    _mat[B.Coordinate[0], B.Coordinate[1]+1] = B;
+                }
+            }
         }
         public override string ToString()
         {
@@ -69,7 +97,14 @@ namespace JeuColony.GenMap
             {
                 for (int j = 0; j < _nbc; j++)
                 {
-                    chRes += " . ";
+                    if (_mat[i, j] != null)
+                    {
+                        chRes += _mat[i, j];
+                    }
+                    else
+                    {
+                        chRes += " . ";
+                    }
                 }
                 chRes += "\n";
             }

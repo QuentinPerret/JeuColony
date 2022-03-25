@@ -12,7 +12,7 @@ namespace JeuColony
         static void Main(string[] args)
         {
             BaseMap M = new BaseMap();
-            InterfaceMap Im = new InterfaceMap();
+            //InterfaceMap Im = new InterfaceMap();
             M.Print();
             Console.ReadLine();
         }

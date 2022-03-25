@@ -16,7 +16,7 @@ namespace JeuColony.GenMap
         protected Random r = new Random();
         public BaseMap()
         {
-            Console.SetWindowSize(85, 33);
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             _nbc = 30;
             _nbl = 30;
             _listBatiments = new List<Batiment>();

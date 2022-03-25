@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JeuColony.GenMap;
+
 
 
 namespace JeuColony
@@ -11,7 +13,8 @@ namespace JeuColony
     {
         static void Main(string[] args)
         {
-            GenMap.BaseMap M = new GenMap.BaseMap();
+            BaseMap M = new GenMap.BaseMap();
+            
             M.Print();
             Console.ReadLine();
         }

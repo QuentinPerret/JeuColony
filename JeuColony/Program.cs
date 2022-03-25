@@ -13,6 +13,7 @@ namespace JeuColony
         {
             GenMap.BaseMap M = new GenMap.BaseMap();
             M.Print();
+            Console.ReadLine();
         }
         
     }

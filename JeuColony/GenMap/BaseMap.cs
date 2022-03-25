@@ -83,6 +83,7 @@ namespace JeuColony.GenMap
                 if (B.Coordinate[1] != _nbc)
                 {
                     _mat[B.Coordinate[0]+i, B.Coordinate[1]] = B;
+                    //erreur index out of range possible
                 }
                 else
                 {

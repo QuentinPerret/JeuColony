@@ -23,9 +23,9 @@ namespace JeuColony.PNJ
         }
         protected abstract void GenerateAllStat();
         protected abstract void GenerateSpeed();
-        protected void DealDamage(PNJ Dealer,PNJ Traget)
+        protected void DealDamage(PNJ Dealer,PNJ Target)
         {
-
+            Target.HealthPoint -= Dealer.AttackPower;
         }
     }
 }

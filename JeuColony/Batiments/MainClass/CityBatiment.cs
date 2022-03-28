@@ -9,7 +9,7 @@ namespace JeuColony.Batiments.MainClass
     abstract class CityBatiment:InteractiveBatiment
     {
         
-        public CityBatiment(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public CityBatiment(int[] size, bool state, BaseMap M) : base(size, state, M)
         {
         }
         protected abstract int GenerateCapaMax(int level);

@@ -8,7 +8,7 @@ namespace JeuColony.Batiments.ListInteract
 {
     class Dormitory:MainClass.CityBatiment
     {
-        public Dormitory(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Dormitory(int[] size, bool state,BaseMap M) : base(size,  state, M)
         {
             HealthMax = 100;
             //GenerateBatiment(size, coordinate, state, 1);
@@ -20,11 +20,6 @@ namespace JeuColony.Batiments.ListInteract
         protected override void GenerateStat()
         {
             Health = HealthMax * 5*Level;
-        }
-        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
-        {
-            Dormitory D = new Dormitory(n, tab, b, p);
-            return D;
         }
     }
 }

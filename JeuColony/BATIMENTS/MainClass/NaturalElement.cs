@@ -8,11 +8,7 @@ namespace JeuColony.Batiments
 {
     abstract class NaturalElement:FixedBatiment
     {
-        public NaturalElement(int size, int[] coordinate, bool state) : base(size, coordinate, state)
-        {
-
-        }
-        protected abstract void Remove();
+        public NaturalElement(int[] size, bool state, BaseMap M) : base(size, state, M){  }
         protected override void GenerateStat()
         {
             Health = HealthMax * 5 * Level;

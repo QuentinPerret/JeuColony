@@ -21,6 +21,12 @@ namespace JeuColony.Batiments
         {
             Health = HealthMax * 5*Level;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " T " /*\n####"*/;
+            return chRes;
+        }
         protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
             TrainingCamp T = new TrainingCamp(n, tab, b, p);

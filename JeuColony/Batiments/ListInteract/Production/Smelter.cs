@@ -17,6 +17,12 @@ namespace JeuColony.Batiments.ListInteract.Production
         {
             return level * 4;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " Sm" /*\n####"*/;
+            return chRes;
+        }
         protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
             Smelter S = new Smelter(n, tab, b, p);

@@ -17,11 +17,16 @@ namespace JeuColony.Batiments.ListInteract.Production
         {
             return level * 6;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " S " /*\n####"*/;
+            return chRes;
+        }
         protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
             Sawmill S = new Sawmill(n, tab, b, p);
             return S;
         }
-
     }
 }

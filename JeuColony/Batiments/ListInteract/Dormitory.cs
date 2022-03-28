@@ -21,6 +21,12 @@ namespace JeuColony.Batiments.ListInteract
         {
             Health = HealthMax * 5*Level;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " D " /*\n####"*/;
+            return chRes;
+        }
         protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
             Dormitory D = new Dormitory(n, tab, b, p);

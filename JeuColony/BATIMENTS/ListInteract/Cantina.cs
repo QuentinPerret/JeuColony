@@ -21,6 +21,12 @@ namespace JeuColony.Batiments.ListInteract
         {
             Health = HealthMax *9* Level;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " C " /*\n####"*/;
+            return chRes;
+        }
         protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
             Cantina C = new Cantina(n, tab, b, p);

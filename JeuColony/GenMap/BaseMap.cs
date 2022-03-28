@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JeuColony.Batiments;
+using JeuColony.PNJ;
 
 namespace JeuColony.GenMap
 {
@@ -177,22 +178,22 @@ namespace JeuColony.GenMap
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine((i + "- " + O.ToString()));
+                        Console.WriteLine((i + "- " + O.GetType())) ;
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine(i + "- " + O.ToString());
+                        Console.WriteLine(i + "- " + O.GetType());
                     }
                 }
                 catch (ArgumentOutOfRangeException) { }
         }
         }
-        public void NavigateInterface()
+        private void NavigateInterface()
         {
             int nbPageMax = _listBatiments.Count / NB_PAGE_OBJECT;
             ConsoleKey key = Console.ReadKey().Key;
-            Console.WriteLine(key);
+            
             if(key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR+PAGE_OBJECT*NB_PAGE_OBJECT < _listBatiments.Count-1)
             {
                 POSITION_CURSOR++;
@@ -211,7 +212,43 @@ namespace JeuColony.GenMap
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
+            if(key == ConsoleKey.Enter)
+            {
+                FocusObjectInterface();
+                Console.ReadLine();
+            }
             Print();
+        }
+        private void FocusObjectInterface()
+        {
+            Object O = _listBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
+            if (O is Batiment)
+            {
+                Batiment B = (Batiment)O;
+                Console.WriteLine(B.ToString());
+            }
+            else
+            {
+                PNJ.PNJ P = (PNJ.PNJ)O;
+                Console.WriteLine(P.ToString());
+                
+            }
+            ConsoleKey key = Console.ReadKey().Key;
+            if (key == ConsoleKey.Escape)
+            {
+                PAGE_OBJECT = 0;
+                POSITION_CURSOR = 0;
+                Print();
+            }
+            while (key != ConsoleKey.Escape)
+            {
+                
+                FocusObjectInterface();
+            }
+
+
+
+
         }
     }
 }

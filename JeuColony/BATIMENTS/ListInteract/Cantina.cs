@@ -21,7 +21,7 @@ namespace JeuColony.Batiments.ListInteract
         {
             Health = HealthMax *9* Level;
         }
-        public override String AfficheBatiment()
+        public override string AfficheBatiment()
         {
             string chRes = "";
             chRes += " C " /*\n####"*/;

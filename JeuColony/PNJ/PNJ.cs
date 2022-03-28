@@ -23,7 +23,13 @@ namespace JeuColony.PNJ
         }
         protected abstract void GenerateAllStat();
         protected abstract void GenerateSpeed();
-        protected void DealDamage(PNJ Dealer,PNJ Traget)
+        public string AffichePNJ()
+        {
+            string chRes = "";
+            chRes += " * " /*\n####"*/;
+            return chRes;
+        }
+        protected void DealDamage(PNJ Dealer,PNJ Target)
         {
 
         }

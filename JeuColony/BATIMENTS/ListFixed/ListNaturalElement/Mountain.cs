@@ -26,7 +26,7 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
             Mountain M = new Mountain(n, tab, b);
             return M;
         }
-        public override String AfficheBatiment()
+        public override string AfficheBatiment()
         {
             string chRes = "";
             chRes += " M " /*\n####"*/;

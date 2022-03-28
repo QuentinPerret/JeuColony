@@ -28,11 +28,5 @@ namespace JeuColony.Batiments.ListInteract.Production
             Farm F = new Farm(n, tab, b, p);
             return F;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est une ferme, " + base.ToString() + ", elle produit " + Production + " de nourriture";
-            return chRes;
-        }
     }
 }

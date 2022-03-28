@@ -13,6 +13,7 @@ namespace JeuColony.Batiments
         private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
         protected int CapacityMax { get; }
+        protected int Occupation { get; }
         protected int HealthMax { get; set; }
         protected int Health { get; set; }
         public Batiment(int size, int[] coordinate, bool state, int level)
@@ -21,6 +22,7 @@ namespace JeuColony.Batiments
             State = state;
             Level = level;
             Size = size;
+            Occupation = 0;
             //_state = true; //by default the batiment is functional at its creation
             Level = 1;
         }
@@ -34,7 +36,7 @@ namespace JeuColony.Batiments
         public override string ToString()
         {
             string chRes = "";
-            chRes += " # " ;
+            chRes += "Type :" + this.GetType() + "\t Niveau :" + Level + "\t PV : " + Health + "/" + HealthMax + "\t Occupants :" + Occupation +"/" +CapacityMax;
             return chRes;
         }
 

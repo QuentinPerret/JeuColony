@@ -108,9 +108,10 @@ namespace JeuColony.GenMap
             {
                 for (int j = 0; j < _nbc; j++)
                 {
-                    if (_mat[i, j] != null)
+                    Batiment B = (Batiment)_mat[i, j];
+                    if (B != null)
                     {
-                        chRes += _mat[i, j];
+                        chRes += B.AfficheBatiment();
                     }
                     else
                     {

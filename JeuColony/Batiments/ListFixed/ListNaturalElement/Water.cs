@@ -37,11 +37,5 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
             chRes += " W " /*\n####"*/;
             return chRes;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est un lac, " + base.ToString();
-            return chRes;
-        }
     }
 }

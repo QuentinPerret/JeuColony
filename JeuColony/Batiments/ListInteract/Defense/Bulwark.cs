@@ -28,11 +28,5 @@ namespace JeuColony.Batiments.ListInteract.Defense
             Bulwark B = new Bulwark(n, tab, b, p);
             return B;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est un rempart, " + base.ToString() + ", il vous protège de "+Protection+ " dégâts";
-            return chRes;
-        }
     }
 }

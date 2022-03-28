@@ -32,12 +32,6 @@ namespace JeuColony.Batiments
             TrainingCamp T = new TrainingCamp(n, tab, b, p);
             return T;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est une dortoir, " + base.ToString();
-            return chRes;
-        }
     }
     
     

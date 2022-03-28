@@ -28,11 +28,5 @@ namespace JeuColony.Batiments.ListInteract.Production
             Sawmill S = new Sawmill(n, tab, b, p);
             return S;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est une scierie, " + base.ToString() + ", elle produit " + Production + " de nourriture";
-            return chRes;
-        }
     }
 }

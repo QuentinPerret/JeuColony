@@ -32,11 +32,5 @@ namespace JeuColony.Batiments.ListInteract
             Cantina C = new Cantina(n, tab, b, p);
             return C;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est une cantina, " + base.ToString();
-            return chRes;
-        }
     }
 }

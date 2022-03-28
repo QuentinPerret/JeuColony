@@ -32,11 +32,5 @@ namespace JeuColony.Batiments.ListInteract
             Dormitory D = new Dormitory(n, tab, b, p);
             return D;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est un dortoir, " + base.ToString();
-            return chRes;
-        }
     }
 }

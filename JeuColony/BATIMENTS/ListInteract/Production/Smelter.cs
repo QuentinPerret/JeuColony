@@ -28,11 +28,5 @@ namespace JeuColony.Batiments.ListInteract.Production
             Smelter S = new Smelter(n, tab, b, p);
             return S;
         }
-        public override string ToString()
-        {
-            string chRes = "";
-            chRes += " Ce batiment est une fonderie, " + base.ToString() + ", elle produit " + Production + " de nourriture";
-            return chRes;
-        }
     }
 }

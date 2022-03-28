@@ -15,7 +15,6 @@ namespace JeuColony.GenMap
         private int _nbl, _nbc;
         private object[,] _mat;
         private readonly List<Batiments.Batiment> _listBatiments;
-        private List<string> _basicBatiments;
         protected Random r = new Random();
         public BaseMap()
         {
@@ -31,19 +30,22 @@ namespace JeuColony.GenMap
         public void GenerateSquare()
         {
             _mat = new object[_nbl, _nbc];
+            
+
         }
+        
         public void GenerateBasicBatiments()
         {
             int nb;
             int nbMaxBatiments = 40;
             nb = r.Next(4, nbMaxBatiments);
-            AddABatiment(new Batiments.ListInteract.Dormitory(1, GeneratePosition(), true, 1));
-            AddABatiment(new Batiments.ListInteract.Cantina(2, GeneratePosition(), true, 1));
+            AddABatiment(new Batiments.ListInteract.Dormitory(1, GeneratePosition(1), true, 1));
+            AddABatiment(new Batiments.ListInteract.Cantina(2, GeneratePosition(2), true, 1));
             for(int i=0; i<nb/4; i++)
             {
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Forest(2, GeneratePosition(), true));
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Mountain(2, GeneratePosition(), true));
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Water(5, GeneratePosition(), true));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Forest(2, GeneratePosition(2), true));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Mountain(2, GeneratePosition(2), true));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Water(5, GeneratePosition(5), true));
             }
             
 
@@ -52,10 +54,10 @@ namespace JeuColony.GenMap
         {
             GenerateBasicBatiments();
         }
-        public int[] GeneratePosition()
+        public int[] GeneratePosition(int size)
         {
-            int posx = r.Next(0, _nbl - 1); // Génération aléatoire de la position en x
-            int posy = r.Next(0, _nbc - 1); // Génération aléatoire de la position en y
+            int posx = r.Next(0, _nbl - 1 - size); // Génération aléatoire de la position en x
+            int posy = r.Next(0, _nbc - 1-size); // Génération aléatoire de la position en y
             int[] tab = { posx, posy };
             return tab;
         }
@@ -66,22 +68,38 @@ namespace JeuColony.GenMap
                 Console.WriteLine(B);
             }
         }
+        
         public void AddABatiment(Batiments.Batiment B)
         {
             _listBatiments.Add(B);
             _mat[B.Coordinate[0], B.Coordinate[1]] = B;
-            for(int i = 0; i < B.Size; i++)
-            {
-                if (B.Coordinate[1] != _nbc)
+            int cpt = 0;
+
+                if (cpt != B.Size -1&& B.Coordinate[0] +1< _nbl&& _mat[B.Coordinate[0] + 1, B.Coordinate[1]]==null)
                 {
-                    _mat[B.Coordinate[0]+i, B.Coordinate[1]] = B;
-                    //erreur index out of range possible
+                    _mat[B.Coordinate[0] + 1, B.Coordinate[1]] = B;
+                    cpt++;
+                    if (cpt != B.Size -1&& B.Coordinate[1] -1> 0 && _mat[B.Coordinate[0] , B.Coordinate[1]-1] == null)
+                    {
+                        _mat[B.Coordinate[0], B.Coordinate[1] - 1] = B;
+                        cpt++;
+                        if (cpt != B.Size -1&& B.Coordinate[0] -1> 0 && _mat[B.Coordinate[0] - 1, B.Coordinate[1]] == null)
+                        {
+                            _mat[B.Coordinate[0] - 1, B.Coordinate[1]] = B;
+                            cpt++;
+                            if (cpt != B.Size -1&& B.Coordinate[1] +1< _nbc && _mat[B.Coordinate[0] , B.Coordinate[1]+1] == null)
+                            {
+                                _mat[B.Coordinate[0], B.Coordinate[1] + 1] = B;
+                                cpt++;
+
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    _mat[B.Coordinate[0], B.Coordinate[1]+1] = B;
-                }
-            }
+            
+            
+
+            
         }
         public void AfficheMap()
         {

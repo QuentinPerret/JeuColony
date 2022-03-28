@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JeuColony.Batiments;
 
-namespace JeuColony.GenMap
+namespace JeuColony
 {
     class BaseMap
     {

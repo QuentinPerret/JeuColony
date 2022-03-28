@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JeuColony;
 
 namespace JeuColony.Batiments
 {
@@ -16,7 +15,7 @@ namespace JeuColony.Batiments
         protected int CapacityMax { get; }
         protected int HealthMax { get; set; }
         protected int Health { get; set; }
-        public Batiment(int[] size, int[] coordinate, bool state, int level,BaseMap B)
+        public Batiment(int[] size, int[] coordinate, bool state, int level)
         {
             Coordinate = coordinate;
             State = state;
@@ -24,7 +23,6 @@ namespace JeuColony.Batiments
             Size = size;
             //_state = true; //by default the batiment is functional at its creation
             Level = 1;
-            ExtendBat(B);
         }
         private void ExtendBat(BaseMap M)
         {

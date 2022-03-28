@@ -10,7 +10,7 @@ namespace JeuColony.Batiments
     {
         private bool _activity;
         
-        public InteractiveBatiment(int size, int[] coordinate, bool state, int level) : base(size, coordinate,state,level)
+        public InteractiveBatiment(int[] size, bool state, BaseMap M) : base(size, state, 1, M)
         {
             _activity = false;
         }

@@ -8,19 +8,9 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
 {
     class Forest:NaturalElement
     {
-        public Forest(int size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public Forest(int[] size, bool state, BaseMap M) : base(size, state, M)
         {
             //GenerateBatiment(size, coordinate, state, 1);
-        }
-
-        protected override void Remove()
-        {
-           
-        }
-        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
-        {
-            Forest F = new Forest(n, tab, b);
-            return F;
         }
         public override string ToString()
         {

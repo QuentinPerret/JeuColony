@@ -8,8 +8,8 @@ namespace JeuColony.Batiments
 {
     abstract class FixedBatiment:Batiment
     {
-        
-        public FixedBatiment(int size, int[] coordinate, bool state) : base(size, coordinate, state, 1)
+
+        public FixedBatiment(int[] size, bool state, BaseMap M) : base(size, state,1, M)
         {
 
         }

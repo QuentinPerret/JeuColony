@@ -9,7 +9,7 @@ namespace JeuColony.Batiments.MainClass
     abstract class ProductionBatiment:InteractiveBatiment
     {
         protected int Production { get; set; }
-        public ProductionBatiment(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public ProductionBatiment(int[] size, bool state, BaseMap M) : base(size, state, M)
         {
             HealthMax=300; 
         }

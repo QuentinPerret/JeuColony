@@ -12,26 +12,30 @@ namespace JeuColony
         private static int POSITION_CURSOR = 0;
         private static int PAGE_OBJECT = 0;
         private static int NB_PAGE_OBJECT = 9;
-        private int _nbl, _nbc;
+        public int Nbl { get; }
+        public int Nbc { get; }
         public object[,] Mat { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
         protected Random r = new Random();
         public BaseMap()
         {
             Console.SetWindowSize(150, 40);
-            _nbc = 30;
-            _nbl = 30;
+            Nbc = 30;
+            Nbl = 30;
             _listBatiments = new List<Batiment>();
-            this.GenerateSquare();
+            this.GenerateMap();
             this.GenerateBatiments();
             //r = new Random();
             //this.ShowBatiments();
         }
-        public void GenerateSquare()
+        public static int[] GenerateTab(int x1, int x2)
         {
-            Mat = new object[_nbl, _nbc];
-            
-
+            int[] res = { x1, x2 };
+            return res;
+        }
+        public void GenerateMap()
+        {
+            Mat = new object[Nbl, Nbc];
         }
         
         public void GenerateBasicBatiments()
@@ -39,28 +43,20 @@ namespace JeuColony
             int nb;
             int nbMaxBatiments = 40;
             nb = r.Next(4, nbMaxBatiments);
-            AddABatiment(new Batiments.ListInteract.Dormitory(1, GeneratePosition(1), true, 1));
-            AddABatiment(new Batiments.ListInteract.Cantina(2, GeneratePosition(2), true, 1));
+            AddABatiment(new Batiments.ListInteract.Dormitory(GenerateTab(2,2), true, this));
+            AddABatiment(new Batiments.ListInteract.Cantina(GenerateTab(2,2), true, this));
             for(int i=0; i<nb/4; i++)
             {
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Forest(2, GeneratePosition(2), true));
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Mountain(2, GeneratePosition(2), true));
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Water(5, GeneratePosition(5), true));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Forest(GenerateTab(1,1),true,this));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Mountain(GenerateTab(3, 3), true, this));
+                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Water(GenerateTab(2, 2), true, this));
             }
-            
-
         }
         public void GenerateBatiments()
         {
             GenerateBasicBatiments();
         }
-        public int[] GeneratePosition(int size)
-        {
-            int posx = r.Next(0, _nbl - 1 - size); // Génération aléatoire de la position en x
-            int posy = r.Next(0, _nbc - 1-size); // Génération aléatoire de la position en y
-            int[] tab = { posx, posy };
-            return tab;
-        }
+        
         public void ShowBatiments()
         {
             foreach (Batiment B in _listBatiments)
@@ -76,9 +72,9 @@ namespace JeuColony
         public void AfficheMap()
         {
             String chRes = "";
-            for (int i = 0; i < _nbl; i++)
+            for (int i = 0; i < Nbl; i++)
             {
-                for (int j = 0; j < _nbc; j++)
+                for (int j = 0; j < Nbc; j++)
                 {
                     if (Mat[i, j] != null)
                     {
@@ -96,9 +92,9 @@ namespace JeuColony
         public void AfficheMap(Object O)
         {
             String chRes = "";
-            for (int i = 0; i < _nbl; i++)
+            for (int i = 0; i < Nbl; i++)
             {
-                for (int j = 0; j < _nbc; j++)
+                for (int j = 0; j < Nbc; j++)
                 {
                     if (Mat[i, j] != null)
                     {
@@ -157,7 +153,8 @@ namespace JeuColony
                     }
                 }
                 catch (ArgumentOutOfRangeException) { }
-        }
+            }
+            
         }
         public void NavigateInterface()
         {

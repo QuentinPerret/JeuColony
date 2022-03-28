@@ -72,7 +72,7 @@
     <Compile Include="Pnj\AllyFolder\Profession\Scout.cs" />
     <Compile Include="Pnj\AllyFolder\Profession\Soldier.cs" />
     <Compile Include="Pnj\EnemyFolder\Enemy.cs" />
-    <Compile Include="GenMap\BaseMap.cs" />
+    <Compile Include="BaseMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +80,5 @@
     <None Include="App.config" />
     <None Include="ClassDiagram4.cd" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

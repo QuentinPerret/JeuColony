@@ -13,7 +13,7 @@ namespace JeuColony.GenMap
         private static int PAGE_OBJECT = 0;
         private static int NB_PAGE_OBJECT = 9;
         private int _nbl, _nbc;
-        private object[,] _mat;
+        public object[,] Mat { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
         protected Random r = new Random();
         public BaseMap()
@@ -29,7 +29,7 @@ namespace JeuColony.GenMap
         }
         public void GenerateSquare()
         {
-            _mat = new object[_nbl, _nbc];
+            Mat = new object[_nbl, _nbc];
             
 
         }
@@ -72,34 +72,6 @@ namespace JeuColony.GenMap
         public void AddABatiment(Batiments.Batiment B)
         {
             _listBatiments.Add(B);
-            _mat[B.Coordinate[0], B.Coordinate[1]] = B;
-            int cpt = 0;
-
-                if (cpt != B.Size -1&& B.Coordinate[0] +1< _nbl&& _mat[B.Coordinate[0] + 1, B.Coordinate[1]]==null)
-                {
-                    _mat[B.Coordinate[0] + 1, B.Coordinate[1]] = B;
-                    cpt++;
-                    if (cpt != B.Size -1&& B.Coordinate[1] -1> 0 && _mat[B.Coordinate[0] , B.Coordinate[1]-1] == null)
-                    {
-                        _mat[B.Coordinate[0], B.Coordinate[1] - 1] = B;
-                        cpt++;
-                        if (cpt != B.Size -1&& B.Coordinate[0] -1> 0 && _mat[B.Coordinate[0] - 1, B.Coordinate[1]] == null)
-                        {
-                            _mat[B.Coordinate[0] - 1, B.Coordinate[1]] = B;
-                            cpt++;
-                            if (cpt != B.Size -1&& B.Coordinate[1] +1< _nbc && _mat[B.Coordinate[0] , B.Coordinate[1]+1] == null)
-                            {
-                                _mat[B.Coordinate[0], B.Coordinate[1] + 1] = B;
-                                cpt++;
-
-                            }
-                        }
-                    }
-                }
-            
-            
-
-            
         }
         public void AfficheMap()
         {
@@ -108,9 +80,9 @@ namespace JeuColony.GenMap
             {
                 for (int j = 0; j < _nbc; j++)
                 {
-                    if (_mat[i, j] != null)
+                    if (Mat[i, j] != null)
                     {
-                        chRes += _mat[i, j];
+                        chRes += Mat[i, j];
                     }
                     else
                     {
@@ -128,9 +100,9 @@ namespace JeuColony.GenMap
             {
                 for (int j = 0; j < _nbc; j++)
                 {
-                    if (_mat[i, j] != null)
+                    if (Mat[i, j] != null)
                     {
-                        chRes += _mat[i, j];
+                        chRes += Mat[i, j];
                     }
                     else
                     {

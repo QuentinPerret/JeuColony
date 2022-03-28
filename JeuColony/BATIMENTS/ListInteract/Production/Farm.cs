@@ -17,10 +17,22 @@ namespace JeuColony.Batiments.ListInteract.Production
         {
             return level * 2;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " F " /*\n####"*/;
+            return chRes;
+        }
         protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
             Farm F = new Farm(n, tab, b, p);
             return F;
+        }
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes += " Ce batiment est une ferme, " + base.ToString() + ", elle produit " + Production + " de nourriture";
+            return chRes;
         }
     }
 }

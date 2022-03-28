@@ -65,7 +65,7 @@ namespace JeuColony.GenMap
         {
             foreach (Batiment B in _listBatiments)
             {
-                Console.WriteLine(B);
+                B.AfficheBatiment();
             }
         }
         

@@ -31,10 +31,16 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
             Water W = new Water(n, tab, b);
             return W;
         }
-        public override string ToString()
+        public override String AfficheBatiment()
         {
             string chRes = "";
             chRes += " W " /*\n####"*/;
+            return chRes;
+        }
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes += " Ce batiment est un lac, " + base.ToString();
             return chRes;
         }
     }

@@ -17,10 +17,22 @@ namespace JeuColony.Batiments.ListInteract.Defense
         {
             return level * 5;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " B " /*\n####"*/;
+            return chRes;
+        }
         protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
         {
             Bulwark B = new Bulwark(n, tab, b, p);
             return B;
+        }
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes += " Ce batiment est un rempart, " + base.ToString() + ", il vous protège de "+Protection+ " dégâts";
+            return chRes;
         }
     }
 }

@@ -25,5 +25,17 @@ namespace JeuColony.Batiments.ListFixed.ListConstructed
             Bridge B = new Bridge(n, tab, b, p);
             return B;
         }
+        public override String AfficheBatiment()
+        {
+            string chRes = "";
+            chRes += " P " /*\n####"*/;
+            return chRes;
+        }
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes += " Ce batiment est une Pont, " + base.ToString();
+            return chRes;
+        }
     }
 }

@@ -29,16 +29,12 @@ namespace JeuColony.Batiments
 
         protected abstract Batiment GenerateBatiment(int n, int[] tab, bool b, int p);
 
-        protected virtual String AfficheStatBatiment(int n, int[] tab, bool b, int p)
-        {
-            string chRes = "";
-            chRes += " # " /*\n####"*/;
-            return chRes;
-        }
+        public abstract String AfficheBatiment();
+        
         public override string ToString()
         {
             string chRes = "";
-            chRes += " # " /*\n####"*/;
+            chRes += " # " ;
             return chRes;
         }
 

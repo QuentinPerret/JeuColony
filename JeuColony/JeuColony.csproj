@@ -51,7 +51,6 @@
     <Compile Include="BATIMENTS\ListInteract\Production\Sawmill.cs" />
     <Compile Include="BATIMENTS\ListInteract\Production\Smelter.cs" />
     <Compile Include="BATIMENTS\ListFixed\ListConstructed\Bridge.cs" />
-    <Compile Include="BATIMENTS\ListFixed\ListConstructed\Road.cs" />
     <Compile Include="BATIMENTS\ListFixed\ListNaturalElement\Forest.cs" />
     <Compile Include="BATIMENTS\ListFixed\ListNaturalElement\Water.cs" />
     <Compile Include="BATIMENTS\ListFixed\ListNaturalElement\Mountain.cs" />

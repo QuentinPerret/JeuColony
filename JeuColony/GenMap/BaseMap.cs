@@ -9,6 +9,9 @@ namespace JeuColony.GenMap
 {
     class BaseMap
     {
+        private static int POSITION_CURSOR = 0;
+        private static int PAGE_OBJECT = 0;
+        private static int NB_PAGE_OBJECT = 9;
         private int _nbl, _nbc;
         private object[,] _mat;
         private readonly List<Batiments.Batiment> _listBatiments;
@@ -16,7 +19,7 @@ namespace JeuColony.GenMap
         protected Random r = new Random();
         public BaseMap()
         {
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.SetWindowSize(150, 40);
             _nbc = 30;
             _nbl = 30;
             _listBatiments = new List<Batiment>();
@@ -28,16 +31,6 @@ namespace JeuColony.GenMap
         public void GenerateSquare()
         {
             _mat = new object[_nbl, _nbc];
-            
-
-        }
-        public List<string> BatimentsList()
-        {
-            _basicBatiments = new List<string>();
-            _basicBatiments.Add("Dormitory");
-            _basicBatiments.Add("Forest");
-            _basicBatiments.Add("Water");
-            return _basicBatiments;
         }
         public void GenerateBasicBatiments()
         {
@@ -58,7 +51,6 @@ namespace JeuColony.GenMap
         public void GenerateBatiments()
         {
             GenerateBasicBatiments();
-
         }
         public int[] GeneratePosition()
         {
@@ -91,7 +83,7 @@ namespace JeuColony.GenMap
                 }
             }
         }
-        public override string ToString()
+        public void AfficheMap()
         {
             String chRes = "";
             for (int i = 0; i < _nbl; i++)
@@ -109,11 +101,98 @@ namespace JeuColony.GenMap
                 }
                 chRes += "\n";
             }
-            return chRes;
+            Console.WriteLine(chRes);
+        }
+        public void AfficheMap(Object O)
+        {
+            String chRes = "";
+            for (int i = 0; i < _nbl; i++)
+            {
+                for (int j = 0; j < _nbc; j++)
+                {
+                    if (_mat[i, j] != null)
+                    {
+                        chRes += _mat[i, j];
+                    }
+                    else
+                    {
+                        chRes += " . ";
+                    }
+                }
+                chRes += "\n";
+            }
+            Console.WriteLine(chRes);
         }
         public void Print()
         {
-            Console.WriteLine(this);
+            Console.Clear();
+            AfficheMap();
+            AfficheListe(POSITION_CURSOR);
+            NavigateInterface();
+        }
+        public void AfficheListe()
+        {
+            for (int i = 0; i < _listBatiments.Count && i < NB_PAGE_OBJECT+1; i++) 
+            {
+                Object O = _listBatiments[i];
+                if(O == null)
+                {
+                    Console.WriteLine(i + "- ");
+                }
+                else
+                {
+                    Console.WriteLine(i + "- " + O.ToString());
+                }
+            }
+        }
+        public void AfficheListe(int place)
+        {
+            Console.WriteLine("LIST OBJECT");
+            for (int i = 0; i < _listBatiments.Count && i < NB_PAGE_OBJECT + 1; i++)
+            {
+                try
+                {
+                    Object O = _listBatiments[i + PAGE_OBJECT * NB_PAGE_OBJECT];
+
+                    if (i == place)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine((i + "- " + O.ToString()));
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine(i + "- " + O.ToString());
+                    }
+                }
+                catch (ArgumentOutOfRangeException) { }
+        }
+        }
+        public void NavigateInterface()
+        {
+            int nbPageMax = _listBatiments.Count / NB_PAGE_OBJECT;
+            ConsoleKey key = Console.ReadKey().Key;
+            Console.WriteLine(key);
+            if(key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR+PAGE_OBJECT*NB_PAGE_OBJECT < _listBatiments.Count-1)
+            {
+                POSITION_CURSOR++;
+            }
+            else if(key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            {
+                POSITION_CURSOR--;
+            }
+            if(key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            {
+                PAGE_OBJECT++;
+                POSITION_CURSOR = 0;
+            }
+            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            {
+                PAGE_OBJECT--;
+                POSITION_CURSOR = 0;
+            }
+            Print();
         }
     }
 }

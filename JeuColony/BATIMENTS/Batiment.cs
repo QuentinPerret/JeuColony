@@ -8,8 +8,8 @@ namespace JeuColony.Batiments
 {
     abstract class Batiment
     {
-        public int[] Size { get; } // size in a tab, Size[0] is the height, Size[1] is the width
-        public int[] Coordinate { get; } //coordinate x and y
+        public int[] Size { get; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
+        public int[] Coordinate { get; } = new int[] { -1, -1 };//coordinate x and y
         private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
         protected int CapacityMax { get; }

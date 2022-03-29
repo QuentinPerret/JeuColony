@@ -11,6 +11,7 @@ namespace JeuColony
         static void Main(string[] args)
         {
             BaseMap M = new BaseMap();
+            M.GenerateBatiments();
             //InterfaceMap Im = new InterfaceMap();
             M.Print();
             Console.ReadLine();

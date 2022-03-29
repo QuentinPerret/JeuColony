@@ -189,15 +189,20 @@ namespace JeuColony
         }
         private void FocusObjectInterface()
         {
+            
             Object O = _listBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             if (O is Batiment)
             {
                 Batiment B = (Batiment)O;
+                Console.Clear();
+                AfficheMap();
                 Console.WriteLine(B.ToString());
             }
             else
             {
                 PNJ.PNJ P = (PNJ.PNJ)O;
+                Console.Clear();
+                AfficheMap();
                 Console.WriteLine(P.ToString());
                 
             }

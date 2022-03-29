@@ -25,7 +25,7 @@ namespace JeuColony.Batiments.ListFixed.ListConstructed
             Bridge B = new Bridge(n, tab, b, p);
             return B;
         }
-        public override String AfficheBatiment()
+        public override string AfficheBatiment()
         {
             string chRes = "";
             chRes += " P " /*\n####"*/;

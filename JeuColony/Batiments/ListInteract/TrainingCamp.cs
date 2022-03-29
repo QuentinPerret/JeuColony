@@ -21,7 +21,7 @@ namespace JeuColony.Batiments
         {
             Health = HealthMax * 5*Level;
         }
-        public override String AfficheBatiment()
+        public override string AfficheBatiment()
         {
             string chRes = "";
             chRes += " T " /*\n####"*/;

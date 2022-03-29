@@ -28,11 +28,14 @@ namespace JeuColony.Batiments
         private void GeneratePosition(BaseMap M)
         {
             Random R = new Random();
+            Coordinate[0] = R.Next(0, M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
+            Coordinate[1] = R.Next(0, M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
             while (!PositionClear(M) && Coordinate == new int[] { -1, -1})
             {
                 Coordinate[0] = R.Next(0, M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
                 Coordinate[1] = R.Next(0, M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
             }
+            M.Mat[Coordinate[0], Coordinate[1]] = this;
             ExtendBat(M);
         }
         
@@ -42,7 +45,7 @@ namespace JeuColony.Batiments
             {
                 for (int j = 0; j < this.Size[1]; j++)
                 {
-                    if(M.Mat[i,j] != null && M.Mat[i,j] is Batiment)
+                    if(M.Mat[Coordinate[0]+i,Coordinate[1]+j] != null && M.Mat[i,j] is Batiment)
                     {
                         return false;
                     }
@@ -52,11 +55,12 @@ namespace JeuColony.Batiments
         }
         private void ExtendBat(BaseMap M)
         {
-            for (int i = 0; i < this.Size[0]; i++) 
+            for (int i = 0; i < Size[0]; i++) 
             {
-                for (int j = 0; j < this.Size[1]; j++)
+                for (int j = 0; j < Size[1]; j++)
                 {
-                    M.Mat[this.Coordinate[0] + i, this.Coordinate[1] + j] = this;
+                    Console.WriteLine("position");
+                    M.Mat[Coordinate[0] + i, Coordinate[1] + j] = this;
                 }
             }
         }

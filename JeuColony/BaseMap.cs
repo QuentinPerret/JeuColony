@@ -15,7 +15,7 @@ namespace JeuColony
         private static int NB_PAGE_OBJECT = 9;
         public int Nbl { get; }
         public int Nbc { get; }
-        public object[,] Mat { get; private set; }
+        public Object[,] Mat { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
         protected Random r = new Random();
         public BaseMap()
@@ -36,7 +36,7 @@ namespace JeuColony
         }
         public void GenerateMap()
         {
-            Mat = new object[Nbl, Nbc];
+            Mat = new Object[Nbl, Nbc];
         }
         
         public void GenerateBasicBatiments()

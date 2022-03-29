@@ -19,6 +19,7 @@ namespace JeuColony
         private static int x;
         private static int y;
         public object[,] Mat { get; private set; }
+        public object[,] Preview { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
         protected Random r = new Random();
         public BaseMap()
@@ -42,6 +43,7 @@ namespace JeuColony
         public void GenerateMap()
         {
             Mat = new object[Nbl, Nbc];
+            
         }
         
         public void GenerateBasicBatiments()
@@ -118,12 +120,14 @@ namespace JeuColony
         public void PreviewBatimentCreation(Batiment B,int x, int y)
         {
             String chRes = "";
-            Mat[x,y] = B;
-            for (int i = 0; i < Nbl; i++)
+            Preview = new object[Nbl, Nbc];
+            //AfficheMap(B);
+            Preview[x,y] = B;
+            for (int i = 0; i < Nbl-B.Size[0]; i++)
             {
-                for (int j = 0; j < Nbc; j++)
+                for (int j = 0; j < Nbc-B.Size[1]; j++)
                 {
-                    if(Mat[i, j] == Mat[x, y])
+                    if (Preview[i, j] == Preview[x, y] || Preview[i + B.Size[0], j + B.Size[1]] == Preview[x, y]|| Preview[i , j + B.Size[1]] == Preview[x, y]|| Preview[i + B.Size[0], j] == Preview[x, y])
                     {
                         chRes+="Red";
                         
@@ -220,7 +224,7 @@ namespace JeuColony
             }
             if(key == ConsoleKey.B)
             {
-                Batiment B = new Batiments.ListInteract.Dormitory(GenerateTab(2,2), true, this);
+                Batiment B = new Batiments.ListInteract.Dormitory(GenerateTab(5,2), true, this);
                 NavigateMap(B);
                 Console.ReadLine();
             }
@@ -262,30 +266,30 @@ namespace JeuColony
         {
             
             ConsoleKey key = Console.ReadKey().Key;
-
-            if (key == ConsoleKey.DownArrow)
+            
+            if (key == ConsoleKey.DownArrow && x<=Nbl - B.Size[1] - 2)
             {
                 x++;
             }
-            else if (key == ConsoleKey.UpArrow)
+            else if (key == ConsoleKey.UpArrow && x>= B.Size[0]+1)
             {
                 x--;
             }
-            if (key == ConsoleKey.RightArrow)
+            if (key == ConsoleKey.RightArrow && y<=Nbc-B.Size[1]-2)
             {
                 y++;
             }
-            else if (key == ConsoleKey.LeftArrow)
+            else if (key == ConsoleKey.LeftArrow && y>=B.Size[1]+1)
             {
                 y--;
             }
 
-            /*if (key == ConsoleKey.Escape)
+            if (key == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
                 Print();
-            }*/
+            }
 
             Print(B, x, y);
 

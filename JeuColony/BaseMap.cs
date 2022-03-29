@@ -72,14 +72,14 @@ namespace JeuColony
         }
         public void AfficheMap()
         {
-            String chRes = "";
+            string chRes = "";
             for (int i = 0; i < Nbl; i++)
             {
                 for (int j = 0; j < Nbc; j++)
                 {
                     if (Mat[i, j] != null)
                     {
-                        chRes += Mat[i, j];
+                        chRes += Mat[i, j].ToString();
                     }
                     else
                     {
@@ -100,6 +100,7 @@ namespace JeuColony
                     if (Mat[i, j] != null)
                     {
                         chRes += Mat[i, j];
+                        Console.WriteLine(Mat[i, j]);
                     }
                     else
                     {
@@ -117,21 +118,6 @@ namespace JeuColony
             AfficheListe(POSITION_CURSOR);
             NavigateInterface();
         }
-        public void AfficheListe()
-        {
-            for (int i = 0; i < _listBatiments.Count && i < NB_PAGE_OBJECT+1; i++) 
-            {
-                Object O = _listBatiments[i];
-                if(O == null)
-                {
-                    Console.WriteLine(i + "- ");
-                }
-                else
-                {
-                    Console.WriteLine(i + "- " + O.ToString());
-                }
-            }
-        }
         public void AfficheListe(int place)
         {
             Console.WriteLine("LIST OBJECT");
@@ -145,12 +131,12 @@ namespace JeuColony
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine((i + "- " + O.GetType())) ;
+                        Console.WriteLine((i + "- " + O)) ;
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine(i + "- " + O.GetType());
+                        Console.WriteLine(i + "- " + O);
                     }
                 }
                 catch (ArgumentOutOfRangeException) { }
@@ -196,7 +182,7 @@ namespace JeuColony
                 Batiment B = (Batiment)O;
                 Console.Clear();
                 AfficheMap();
-                Console.WriteLine(B.ToString());
+                Console.WriteLine(B);
             }
             else
             {

@@ -28,7 +28,7 @@ namespace JeuColony.Batiments
         private void GeneratePosition(BaseMap M)
         {
             Random R = new Random();
-            while(PositionClear(M))
+            while (!PositionClear(M) && Coordinate == new int[] { -1, -1})
             {
                 Coordinate[0] = R.Next(0, M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
                 Coordinate[1] = R.Next(0, M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
@@ -44,11 +44,11 @@ namespace JeuColony.Batiments
                 {
                     if(M.Mat[i,j] != null && M.Mat[i,j] is Batiment)
                     {
-                        return true;
+                        return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
         private void ExtendBat(BaseMap M)
         {

@@ -11,7 +11,7 @@ namespace JeuColony.Batiments.ListInteract.Production
         
         public Farm(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
         {
-            GenerateBatiment(size, coordinate, state, 1);
+            //GenerateBatiment(size, coordinate, state, 1);
         }
         protected override int GenerateProduction(int level)
         {

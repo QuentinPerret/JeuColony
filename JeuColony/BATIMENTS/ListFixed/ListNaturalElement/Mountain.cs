@@ -10,7 +10,7 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
     {
         public Mountain(int size, int[] coordinate, bool state) : base(size, coordinate, state)
         {
-            GenerateBatiment(size, coordinate, state, 1);
+            //GenerateBatiment(size, coordinate, state, 1);
         }
         protected override void GenerateStat()
         {
@@ -25,6 +25,12 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
         {
             Mountain M = new Mountain(n, tab, b);
             return M;
+        }
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes += " M " /*\n####"*/;
+            return chRes;
         }
     }
 }

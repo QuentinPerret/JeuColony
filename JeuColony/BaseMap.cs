@@ -13,8 +13,11 @@ namespace JeuColony
         private static int POSITION_CURSOR = 0;
         private static int PAGE_OBJECT = 0;
         private static int NB_PAGE_OBJECT = 9;
+        
         public int Nbl { get; }
         public int Nbc { get; }
+        private static int x;
+        private static int y;
         public object[,] Mat { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
         protected Random r = new Random();
@@ -23,6 +26,8 @@ namespace JeuColony
             Console.SetWindowSize(150, 40);
             Nbc = 30;
             Nbl = 30;
+            x = Nbl / 2;
+            y = Nbc / 2;
             _listBatiments = new List<Batiment>();
             this.GenerateMap();
             this.GenerateBatiments();
@@ -120,11 +125,8 @@ namespace JeuColony
                 {
                     if(Mat[i, j] == Mat[x, y])
                     {
-                        Console.WriteLine(" ");
-                    }
-                    if (Mat[i, j] != null)
-                    {
-                        chRes += Mat[i, j];
+                        chRes+="Red";
+                        
                     }
                     else
                     {
@@ -146,8 +148,7 @@ namespace JeuColony
         {
             Console.Clear();
             PreviewBatimentCreation(B,x,y);
-            AfficheListe(POSITION_CURSOR);
-            NavigateInterface();
+            NavigateMap(B);
         }
         public void AfficheListe()
         {
@@ -259,19 +260,18 @@ namespace JeuColony
         }
         private void NavigateMap(Batiment B)
         {
-            int x=Nbl/2;
-            int y=Nbc/2;
-            ConsoleKey key = Console.ReadKey().Key;
             
-            if(key == ConsoleKey.DownArrow)
+            ConsoleKey key = Console.ReadKey().Key;
+
+            if (key == ConsoleKey.DownArrow)
             {
                 x++;
             }
-            else if(key == ConsoleKey.UpArrow)
+            else if (key == ConsoleKey.UpArrow)
             {
                 x--;
             }
-            if(key == ConsoleKey.RightArrow )
+            if (key == ConsoleKey.RightArrow)
             {
                 y++;
             }
@@ -279,16 +279,17 @@ namespace JeuColony
             {
                 y--;
             }
-            Print(B,x,y);
 
-
-
-
-            while (key != ConsoleKey.Escape)
+            /*if (key == ConsoleKey.Escape)
             {
-                NavigateMap(B);
-            }
-        }
+                PAGE_OBJECT = 0;
+                POSITION_CURSOR = 0;
+                Print();
+            }*/
 
-    }
+            Print(B, x, y);
+
+
+        }
+        }
 }

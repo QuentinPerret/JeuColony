@@ -43,26 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Batiments\ListInteract\Cantina.cs" />
-    <Compile Include="Batiments\ListInteract\Defense\ArcherTower.cs" />
-    <Compile Include="Batiments\ListInteract\Defense\Bulwark.cs" />
-    <Compile Include="Batiments\ListInteract\Dormitory.cs" />
-    <Compile Include="Batiments\ListInteract\Production\Farm.cs" />
-    <Compile Include="Batiments\ListInteract\Production\Sawmill.cs" />
-    <Compile Include="Batiments\ListInteract\Production\Smelter.cs" />
-    <Compile Include="Batiments\ListFixed\ListConstructed\Bridge.cs" />
-    <Compile Include="Batiments\ListFixed\ListNaturalElement\Forest.cs" />
-    <Compile Include="Batiments\ListFixed\ListNaturalElement\Water.cs" />
-    <Compile Include="Batiments\ListFixed\ListNaturalElement\Mountain.cs" />
+    <Compile Include="Batiments\Cantina.cs" />
+    <Compile Include="Batiments\Dormitory.cs" />
+    <Compile Include="Batiments\Forest.cs" />
+    <Compile Include="Batiments\Water.cs" />
+    <Compile Include="Batiments\Mountain.cs" />
     <Compile Include="Batiments\Batiment.cs" />
-    <Compile Include="Batiments\MainClass\CityBatiment.cs" />
-    <Compile Include="Batiments\MainClass\ConstructedBatiment.cs" />
-    <Compile Include="Batiments\MainClass\FixedBatiment.cs" />
-    <Compile Include="Batiments\MainClass\NaturalElement.cs" />
-    <Compile Include="Batiments\ListInteract\TrainingCamp.cs" />
-    <Compile Include="Batiments\MainClass\InteractiveBatiment.cs" />
-    <Compile Include="Batiments\MainClass\DefenseBatiment.cs" />
-    <Compile Include="Batiments\MainClass\ProductionBatiment.cs" />
+    <Compile Include="Batiments\NaturalElement.cs" />
+    <Compile Include="Batiments\TrainingCamp.cs" />
     <Compile Include="PNJ\PNJ.cs" />
     <Compile Include="Pnj\AllyFolder\Ally.cs" />
     <Compile Include="Pnj\AllyFolder\Profession\Builder.cs" />

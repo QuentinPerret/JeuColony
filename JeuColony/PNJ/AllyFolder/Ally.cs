@@ -26,7 +26,6 @@ namespace JeuColony.PNJ.AllyFolder
             GenerateHealthPoint();
             GenerateLoggingPower();
             GenerateSpeed();
-            GenerateVisionRange();
         }
         protected virtual void GenerateHealthPointMax()
         {
@@ -50,10 +49,6 @@ namespace JeuColony.PNJ.AllyFolder
         }
         protected virtual void GenerateBuildingPower(){
             BuildingPower =0;
-        }
-        protected virtual void GenerateVisionRange()
-        {
-            VisionRange = 1;
         }
         protected override void GenerateSpeed()
         {

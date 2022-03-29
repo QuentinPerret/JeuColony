@@ -31,7 +31,7 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
             Water W = new Water(n, tab, b);
             return W;
         }
-        public override String AfficheBatiment()
+        public override string AfficheBatiment()
         {
             string chRes = "";
             chRes += " W " /*\n####"*/;

@@ -17,7 +17,7 @@ namespace JeuColony.Batiments.ListInteract.Production
         {
             return level * 2;
         }
-        public override String AfficheBatiment()
+        public override string AfficheBatiment()
         {
             string chRes = "";
             chRes += " F " /*\n####"*/;

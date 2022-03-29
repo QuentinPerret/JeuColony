@@ -62,7 +62,7 @@ namespace JeuColony
         {
             foreach (Batiment B in _listBatiments)
             {
-                B.AfficheBatiment();
+                B.ToString();
             }
         }
         

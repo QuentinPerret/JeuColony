@@ -21,10 +21,6 @@ namespace JeuColony.PNJ.AllyFolder
         {
             BuildingPower = 1;
         }
-        protected override void GenerateVisionRange()
-        {
-            VisionRange = 2;
-        }
         
     }
 }

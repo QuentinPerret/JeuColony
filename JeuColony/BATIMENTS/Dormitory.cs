@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace JeuColony.Batiments
 {
-    class TrainingCamp : MainClass.CityBatiment
+    class Dormitory:Batiment
     {
-        public TrainingCamp(int[] size, bool state, BaseMap M) : base(size, state, M)
+        public Dormitory(int[] size, bool state,BaseMap M) : base(size,  state, M)
         {
-            HealthMax = 200;
+            HealthMax = 100;
             //GenerateBatiment(size, coordinate, state, 1);
         }
-        protected override int GenerateCapaMax(int level)
+        public Dormitory(int[] size, int[] coordinate, bool state, BaseMap Map) : base(size,coordinate, state, Map) { }
+        protected int GenerateCapaMax(int level)
         {
             return level * 3;
         }
@@ -21,7 +22,9 @@ namespace JeuColony.Batiments
         {
             Health = HealthMax * 5*Level;
         }
+        public override string ToString()
+        {
+            return " D ";
+        }
     }
-    
-    
 }

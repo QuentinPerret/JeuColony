@@ -16,6 +16,11 @@ namespace JeuColony.Batiments
         protected int HealthMax { get; set; }
         protected int Health { get; set; }
         private readonly BaseMap M;
+        private static Random random = new Random();
+        public static int GetSomeRandomNumber(int max)
+        {
+            return random.Next(max);
+        }
         public Batiment(int[] size, bool state, BaseMap Map)
         {
             Size = size;
@@ -23,7 +28,7 @@ namespace JeuColony.Batiments
             State = state;
             Level = 1;
             //_state = true; //by default the batiment is functional at its creation
-            GeneratePosition();
+            GeneratePositionAlea();
         }
         public Batiment(int[] size, int[]coordinate , bool state, BaseMap Map) 
         {
@@ -34,13 +39,12 @@ namespace JeuColony.Batiments
             //_state = true; //by default the batiment is functional at its creation
             GeneratePosition(coordinate);
         }
-            private void GeneratePosition()
+        private void GeneratePositionAlea()
         {
-            Random R = new Random();
-            while (!PositionClear(M) || Coordinate == new int[] { -1, -1})
+            while (!PositionClear(M) || Coordinate == new int[] { -1, -1 })
             {
-                Coordinate[0] = R.Next(0, M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
-                Coordinate[1] = R.Next(0, M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
+                Coordinate[0] = GetSomeRandomNumber( M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
+                Coordinate[1] = GetSomeRandomNumber( M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
             }
             ExtendBat(M);
         }
@@ -51,7 +55,7 @@ namespace JeuColony.Batiments
             {
                 ExtendBat(M);
             }
-            else { GeneratePosition(); }
+            else { GeneratePositionAlea(); }
         }
         private bool PositionClear(BaseMap M)
         {
@@ -61,7 +65,7 @@ namespace JeuColony.Batiments
                 {
                     try
                     {
-                        if (M.Mat[Coordinate[0] + i, Coordinate[1] + j] != null && M.Mat[i, j] is Batiment)
+                        if (M.Mat[Coordinate[0] + i, Coordinate[1] + j] is Batiment)
                         {
                             return false;
                         }

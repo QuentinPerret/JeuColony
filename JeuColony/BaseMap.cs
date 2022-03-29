@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using JeuColony.Batiments;
 using JeuColony.PNJ;
@@ -13,12 +14,13 @@ namespace JeuColony
     {
         private static int POSITION_CURSOR = 0;
         private static int PAGE_OBJECT = 0;
-        private static int NB_PAGE_OBJECT = 9;
+        private static int NB_PAGE_OBJECT = 8; 
+        
         public int Nbl { get; }
         public int Nbc { get; }
         public Object[,] Mat { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
-        protected Random r = new Random();
+        protected Random random = new Random();
         public BaseMap()
         {
             Console.SetWindowSize(150, 40);
@@ -37,19 +39,17 @@ namespace JeuColony
         }
         public void GenerateBatiments()
         {
-            Random R = new Random();
             AddABatiment(new Dormitory(new int[] { 2, 2 }, true, this));
-
             for (int i = 0; i < 32; i++)
             {
-                int alea = R.Next(3);
+                int alea = random.Next(3);
                 switch (alea)
                 {
                     case 0:
-                        AddABatiment(new Forest(new int[] { 1,1}, true, this)) ;
+                        AddABatiment(new Forest(new int[] { 2,2}, true, this)) ;
                         break;
                     case 1:
-                        AddABatiment(new Mountain(new int[] { 1, 1 }, true, this));
+                        AddABatiment(new Mountain(new int[] { 2, 4 }, true, this));
                         break;
                     case 2:
                         AddABatiment(new Water(new int[] { 1, 1 }, true, this));
@@ -130,25 +130,21 @@ namespace JeuColony
             {
                 try
                 {
-                    Object O;
-                    if (PAGE_OBJECT != 0)
-                    {
-                        O = _listBatiments[i + PAGE_OBJECT * NB_PAGE_OBJECT + 1];
-                    }
-                    else
-                    {
-                        O = _listBatiments[i + PAGE_OBJECT * NB_PAGE_OBJECT];
-                    }
+                    Object O = _listBatiments[i + PAGE_OBJECT * NB_PAGE_OBJECT];
+
+                    Batiment B = (Batiment)O;
                     if (i == place)
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine((i + "- " + O)) ;
+                        //Console.WriteLine((i + "- " + O)) ;
+                        Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine(i + "- " + O);
+                        //Console.WriteLine(i + "- " + O);
+                        Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
                     }
                 }
                 catch (ArgumentOutOfRangeException) { }
@@ -217,4 +213,5 @@ namespace JeuColony
             }
         }
     }
+
 }

@@ -9,24 +9,13 @@ namespace JeuColony.Batiments.ListInteract.Production
     class Smelter : MainClass.ProductionBatiment
     {
 
-        public Smelter(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public Smelter(int[] size, bool state, int level, BaseMap M) : base(size, state, M)
         {
             //GenerateBatiment(size, coordinate, state, 1);
         }
         protected override int GenerateProduction(int level)
         {
             return level * 4;
-        }
-        public override string AfficheBatiment()
-        {
-            string chRes = "";
-            chRes += " Sm" /*\n####"*/;
-            return chRes;
-        }
-        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
-        {
-            Smelter S = new Smelter(n, tab, b, p);
-            return S;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace JeuColony.Batiments.MainClass
 {
     abstract class DefenseBatiment:InteractiveBatiment
     {
-        public DefenseBatiment(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state, level)
+        public DefenseBatiment(int[] size, bool state, BaseMap M) : base(size, state, M)
         {
             HealthMax=1000;
         }

@@ -8,7 +8,7 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
 {
     class Mountain:NaturalElement
     {
-        public Mountain(int size, int[] coordinate, bool state) : base(size, coordinate, state)
+        public Mountain(int[] size, bool state, BaseMap M) : base(size, state, M)
         {
             //GenerateBatiment(size, coordinate, state, 1);
         }
@@ -16,17 +16,7 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
         {
             Health = HealthMax * 5 * Level;
         }
-        protected override void Remove()
-        {
-
-        }
-
-        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
-        {
-            Mountain M = new Mountain(n, tab, b);
-            return M;
-        }
-        public override string AfficheBatiment()
+        public override string ToString()
         {
             string chRes = "";
             chRes += " M " /*\n####"*/;

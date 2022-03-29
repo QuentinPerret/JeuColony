@@ -8,7 +8,7 @@ namespace JeuColony.Batiments.ListFixed.ListConstructed
 {
     class Bridge:ConstructedBatiment
     {
-        public Bridge(int size, int[] coordinate, bool state, int level) : base(size, coordinate, state)
+        public Bridge(int[] size, bool state, BaseMap M) : base(size, state, M)
         {
             //GenerateBatiment(size, coordinate, state, 1);
         }

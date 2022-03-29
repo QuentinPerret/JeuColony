@@ -20,16 +20,5 @@ namespace JeuColony.Batiments.ListFixed.ListConstructed
         {
 
         }
-        protected override Batiment GenerateBatiment(int n, int[] tab, bool b, int p)
-        {
-            Bridge B = new Bridge(n, tab, b, p);
-            return B;
-        }
-        public override string AfficheBatiment()
-        {
-            string chRes = "";
-            chRes += " P " /*\n####"*/;
-            return chRes;
-        }
     }
 }

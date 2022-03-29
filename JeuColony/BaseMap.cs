@@ -110,10 +110,42 @@ namespace JeuColony
             }
             Console.WriteLine(chRes);
         }
+        public void PreviewBatimentCreation(Batiment B,int x, int y)
+        {
+            String chRes = "";
+            Mat[x,y] = B;
+            for (int i = 0; i < Nbl; i++)
+            {
+                for (int j = 0; j < Nbc; j++)
+                {
+                    if(Mat[i, j] == Mat[x, y])
+                    {
+                        Console.WriteLine(" ");
+                    }
+                    if (Mat[i, j] != null)
+                    {
+                        chRes += Mat[i, j];
+                    }
+                    else
+                    {
+                        chRes += " . ";
+                    }
+                }
+                chRes += "\n";
+            }
+            Console.WriteLine(chRes);
+        }
         public void Print()
         {
             Console.Clear();
             AfficheMap();
+            AfficheListe(POSITION_CURSOR);
+            NavigateInterface();
+        }
+        public void Print(Batiment B,int x, int y)
+        {
+            Console.Clear();
+            PreviewBatimentCreation(B,x,y);
             AfficheListe(POSITION_CURSOR);
             NavigateInterface();
         }
@@ -185,6 +217,12 @@ namespace JeuColony
                 FocusObjectInterface();
                 Console.ReadLine();
             }
+            if(key == ConsoleKey.B)
+            {
+                Batiment B = new Batiments.ListInteract.Dormitory(GenerateTab(2,2), true, this);
+                NavigateMap(B);
+                Console.ReadLine();
+            }
             Print();
         }
         private void FocusObjectInterface()
@@ -218,10 +256,39 @@ namespace JeuColony
                 
                 FocusObjectInterface();
             }
-
-
-
-
         }
+        private void NavigateMap(Batiment B)
+        {
+            int x=Nbl/2;
+            int y=Nbc/2;
+            ConsoleKey key = Console.ReadKey().Key;
+            
+            if(key == ConsoleKey.DownArrow)
+            {
+                x++;
+            }
+            else if(key == ConsoleKey.UpArrow)
+            {
+                x--;
+            }
+            if(key == ConsoleKey.RightArrow )
+            {
+                y++;
+            }
+            else if (key == ConsoleKey.LeftArrow)
+            {
+                y--;
+            }
+            Print(B,x,y);
+
+
+
+
+            while (key != ConsoleKey.Escape)
+            {
+                NavigateMap(B);
+            }
+        }
+
     }
 }

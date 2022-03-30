@@ -17,6 +17,12 @@ namespace JeuColony.Batiments
         protected int Health { get; set; }
         private readonly BaseMap M;
         private static Random random = new Random();
+        public void ReverseSize()
+        {
+            int a = Size[1];
+            Size[1] = Size[0];
+            Size[0] = a;
+        }
         public static int GetSomeRandomNumber(int max)
         {
             return random.Next(max);
@@ -41,6 +47,10 @@ namespace JeuColony.Batiments
         }
         private void GeneratePositionAlea()
         {
+            if (GetSomeRandomNumber(2) == 0)
+            {
+                ReverseSize();
+            }
             while (!PositionClear(M) || Coordinate == new int[] { -1, -1 })
             {
                 Coordinate[0] = GetSomeRandomNumber( M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x

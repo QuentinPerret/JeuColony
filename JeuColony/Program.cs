@@ -12,6 +12,9 @@ namespace JeuColony
     {
         static void Main(string[] args)
         {
+            /*Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);*/
             BaseMap M = new BaseMap();
             M.Print();
             Console.ReadLine();

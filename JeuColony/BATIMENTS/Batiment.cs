@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JeuColony.Batiments
 {
@@ -15,19 +11,17 @@ namespace JeuColony.Batiments
         protected int CapacityMax { get; }
         protected int HealthMax { get; set; }
         protected int Health { get; set; }
-        private readonly BaseMap M;
-        private static Random random = new Random();
+        private readonly GameSimulation M;
+        private static readonly Random random = new Random();
         public void ReverseSize()
         {
-            int a = Size[1];
-            Size[1] = Size[0];
-            Size[0] = a;
+            (Size[0], Size[1]) = (Size[1], Size[0]);
         }
         public static int GetSomeRandomNumber(int max)
         {
             return random.Next(max);
         }
-        public Batiment(int[] size, bool state, BaseMap Map)
+        public Batiment(int[] size, bool state, GameSimulation Map)
         {
             Size = size;
             M = Map;
@@ -36,7 +30,7 @@ namespace JeuColony.Batiments
             //_state = true; //by default the batiment is functional at its creation
             GeneratePositionAlea();
         }
-        public Batiment(int[] size, int[]coordinate , bool state, BaseMap Map) 
+        public Batiment(int[] size, int[] coordinate, bool state, GameSimulation Map)
         {
             Size = size;
             M = Map;
@@ -53,12 +47,12 @@ namespace JeuColony.Batiments
             }
             while (!PositionClear(M) || Coordinate == new int[] { -1, -1 })
             {
-                Coordinate[0] = GetSomeRandomNumber( M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
-                Coordinate[1] = GetSomeRandomNumber( M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
+                Coordinate[0] = GetSomeRandomNumber(M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
+                Coordinate[1] = GetSomeRandomNumber(M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
             }
             ExtendBat(M);
         }
-        private void GeneratePosition(int[]coordinate)
+        private void GeneratePosition(int[] coordinate)
         {
             Coordinate = coordinate;
             if (PositionClear(M))
@@ -67,7 +61,7 @@ namespace JeuColony.Batiments
             }
             else { GeneratePositionAlea(); }
         }
-        private bool PositionClear(BaseMap M)
+        private bool PositionClear(GameSimulation M)
         {
             for (int i = 0; i < this.Size[0]; i++)
             {
@@ -80,14 +74,14 @@ namespace JeuColony.Batiments
                             return false;
                         }
                     }
-                    catch(IndexOutOfRangeException) { return false; }
+                    catch (IndexOutOfRangeException) { return false; }
                 }
             }
             return true;
         }
-        private void ExtendBat(BaseMap M)
+        private void ExtendBat(GameSimulation M)
         {
-            for (int i = 0; i < Size[0]; i++) 
+            for (int i = 0; i < Size[0]; i++)
             {
                 for (int j = 0; j < Size[1]; j++)
                 {

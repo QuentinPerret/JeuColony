@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JeuColony.PNJ.AllyFolder
+﻿using JeuColony.Batiments;
+namespace JeuColony.PNJFolder
 {
     class Builder : Ally
     {
-        public Builder(string name,int level) : base(name, level) { }
+        public Builder(string name, Dormitory D) : base(name, D) { }
         protected override void GenerateBuildingPower()
         {
             BuildingPower = 2;
@@ -21,7 +16,7 @@ namespace JeuColony.PNJ.AllyFolder
         {
             AttackPower = 2 * Level + 1;
         }
-        
+
 
     }
 }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JeuColony.PNJ.AllyFolder
+﻿using JeuColony.Batiments;
+namespace JeuColony.PNJFolder
 {
     class Digger : Ally
     {
-        public Digger(string name,int level) : base(name, level) { }
+        public Digger(string name,Dormitory D) : base(name,D) { }
         protected override void GenerateDiggingPower()
         {
             DiggingPower = 2;

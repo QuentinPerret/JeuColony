@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JeuColony.PNJ
+﻿namespace JeuColony.PNJFolder
 {
     abstract class PNJ
     {
@@ -15,7 +9,8 @@ namespace JeuColony.PNJ
         protected int Speed { get; set; }
         protected int Level { get; set; }
         public int[] Coordinate { get; set; }
-        public PNJ(string name,int level)
+        public PNJ(string name) : this(name, 1) { }
+        public PNJ(string name, int level)
         {
             Name = name;
             Level = level;
@@ -28,7 +23,7 @@ namespace JeuColony.PNJ
             chRes += " * " /*\n####"*/;
             return chRes;
         }
-        protected void DealDamage(PNJ Dealer,PNJ Target)
+        protected void DealDamage(PNJ Dealer, PNJ Target)
         {
 
         }

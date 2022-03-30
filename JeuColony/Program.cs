@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JeuColony.Batiments;
 
 
 namespace JeuColony
@@ -15,8 +10,8 @@ namespace JeuColony
             /*Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);*/
-            BaseMap M = new BaseMap();
-            M.Print();
+            GameSimulation M = new GameSimulation();
+            M.PrintFirstPage();
             Console.ReadLine();
         }
     }

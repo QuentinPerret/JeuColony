@@ -10,5 +10,9 @@
             chRes += " F " /*\n####"*/;
             return chRes;
         }
+        public override string PageBat()
+        {
+            return "Batiment Type : Forest \n" + base.PageBat();
+        }
     }
 }

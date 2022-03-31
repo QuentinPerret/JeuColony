@@ -20,5 +20,9 @@
         {
             return " C ";
         }
+        public override string PageBat()
+        {
+            return "Batiment Type : Cantina \n" + base.PageBat();
+        }
     }
 }

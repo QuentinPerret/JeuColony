@@ -16,5 +16,9 @@ namespace JeuColony.PNJFolder
         {
             AttackPower = 2 * Level + 1;
         }
+        public override string PagePNJ()
+        {
+            return base.PagePNJ() + "Profession : Forester";
+        }
     }
 }

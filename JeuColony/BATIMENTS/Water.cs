@@ -14,5 +14,10 @@
             chRes += " W ";
             return chRes;
         }
+        
+        public override string PageBat()
+        {
+            return "Batiment Type : Water \n" + base.PageBat();
+        }
     }
 }

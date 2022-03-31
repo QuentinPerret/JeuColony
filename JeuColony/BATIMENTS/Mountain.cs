@@ -14,5 +14,9 @@
             chRes += " M " /*\n####"*/;
             return chRes;
         }
+        public override string PageBat()
+        {
+            return "Batiment Type : Mountain \n" + base.PageBat();
+        }
     }
 }

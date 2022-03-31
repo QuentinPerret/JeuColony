@@ -20,5 +20,9 @@
         {
             return " D ";
         }
+        public override string PageBat()
+        {
+            return "Batiment Type : Dormitory \n" + base.PageBat();
+        }
     }
 }

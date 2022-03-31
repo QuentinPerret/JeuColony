@@ -97,5 +97,12 @@ namespace JeuColony.Batiments
             chRes += " # " /*\n####"*/;
             return chRes;
         }
+        public virtual string PageBat()
+        {
+            string chres ="";
+            chres += "Level : " + Level + "\n";
+            chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
+            chres += "Position : " + Coordinate[0] + " , " +Coordinate[1] + "\n";
+        }
     }
 }

@@ -118,6 +118,8 @@ namespace JeuColony
         {
             Console.Clear();
             AfficheMap();
+            POSITION_CURSOR =0;
+            PAGE_OBJECT =0;
             ProposeList(POSITION_CURSOR);
             NavigateInterfaceList(1);
         }
@@ -264,6 +266,7 @@ namespace JeuColony
             {
                 FocusPNJInterface();
             }
+            PrintListPNJ(POSITION_CURSOR);
         }
         private void NavigateInterfaceList(int nbPageMax)
         {
@@ -299,6 +302,7 @@ namespace JeuColony
                     PrintListBat();
                 }
             }
+            PrintFirstPage(POSITION_CURSOR);
         }
         private void FocusBatInterface()
         {
@@ -306,7 +310,7 @@ namespace JeuColony
             Batiment B = _listBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             Console.Clear();
             AfficheMap(B);
-            Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
+            Console.WriteLine(B.PageBat());
             
             ConsoleKey key = Console.ReadKey().Key;
             if (key == ConsoleKey.Escape)
@@ -326,13 +330,13 @@ namespace JeuColony
             PNJ P = _listPNJ[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             Console.Clear();
             AfficheMap(P);
-            Console.WriteLine(P + "position :" + P.Coordinate[0] + " , " + P.Coordinate[1]);
+            Console.WriteLine(P.PagePNJ());
             ConsoleKey key = Console.ReadKey().Key;
             if (key == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
-                PrintListBat();
+                PrintListPNJ();
             }
             while (key != ConsoleKey.Escape)
             {

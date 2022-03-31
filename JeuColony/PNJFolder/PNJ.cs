@@ -17,7 +17,7 @@
         }
         protected abstract void GenerateAllStat();
         protected abstract void GenerateSpeed();
-        public string AffichePNJ()
+        public override string ToString()
         {
             string chRes = "";
             chRes += " * " /*\n####"*/;
@@ -26,6 +26,14 @@
         protected void DealDamage(PNJ Dealer, PNJ Target)
         {
 
+        }
+        public virtual string PagePNJ()
+        {
+            string chres = "";
+            chres += "Name : " + Name + "\n";
+            chres += "Level : " + Level + "\n";
+            chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
+            chres += "Position : " + Coordinate[0] + " , " +Coordinate[1] + "\n";
         }
     }
 }

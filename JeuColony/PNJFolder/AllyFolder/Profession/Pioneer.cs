@@ -16,6 +16,9 @@ namespace JeuColony.PNJFolder
         {
             BuildingPower = 1;
         }
-
+        public override string PagePNJ()
+        {
+            return base.PagePNJ() + "Profession : Pioneer";
+        }
     }
 }

@@ -7,11 +7,11 @@ namespace JeuColony.PNJFolder
         protected int DiggingPower { get; set; }
         protected int BuildingPower { get; set; }
         protected int LoggingPower { get; set; }
-        protected bool TaskOccupied { get; set; }
+        protected Batiment BatimentOccupied { get; set; }
+        public string Profession { get; set; }
         public Ally(string name , Batiment B) : base(name)
         {
             GenerateAllStat();
-            TaskOccupied = false;
             Spawn(B);
         }
         protected override void GenerateAllStat()
@@ -58,6 +58,12 @@ namespace JeuColony.PNJFolder
         protected void Spawn(Batiment B)
         {
             Coordinate = B.Coordinate;
+            BatimentOccupied = B;
+            B.AddPNJ(this);
+        }
+        public override string PagePNJ()
+        {
+            return base.PagePNJ() + "Profession : " + Profession;
         }
     }
 }

@@ -3,7 +3,7 @@ namespace JeuColony.PNJFolder
 {
     class Pioneer : Ally
     {
-        public Pioneer(string name, Dormitory D) : base(name,D) { }
+        public Pioneer(string name, Dormitory D) : base(name,D) { Profession = "Pioneer"; }
         protected override void GenerateLoggingPower()
         {
             LoggingPower = 1;
@@ -15,10 +15,6 @@ namespace JeuColony.PNJFolder
         protected override void GenerateBuildingPower()
         {
             BuildingPower = 1;
-        }
-        public override string PagePNJ()
-        {
-            return base.PagePNJ() + "Profession : Pioneer";
         }
     }
 }

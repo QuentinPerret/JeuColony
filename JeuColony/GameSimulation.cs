@@ -59,6 +59,8 @@ namespace JeuColony
                 i++;
             }
             AddPNJ(new Pioneer("Damien", (Dormitory)_listBatiments[i]));
+            Random R = new Random();
+            _listPNJ[0].MoveTo(new int[] { R.Next(Nbl), R.Next(Nbl) }, this);
         }
         public void AddBatiment(Batiment B)
         {
@@ -199,7 +201,14 @@ namespace JeuColony
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                         //Console.WriteLine((i + "- " + O)) ;
-                        Console.WriteLine(P + "position :" + P.Coordinate[0] + " , " + P.Coordinate[1]);
+                        if(P is Ally A)
+                        {
+                            Console.WriteLine(" - " + A.Name + " , " + A.Profession);
+                        }
+                        else
+                        {
+                            Console.WriteLine(" - " + P.Name + " , ");
+                        }
                         Console.ResetColor();
                     }
                     else

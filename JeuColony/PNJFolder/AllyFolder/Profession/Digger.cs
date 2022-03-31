@@ -3,7 +3,7 @@ namespace JeuColony.PNJFolder
 {
     class Digger : Ally
     {
-        public Digger(string name,Dormitory D) : base(name,D) { }
+        public Digger(string name,Dormitory D) : base(name,D) { Profession = "Digger"; }
         protected override void GenerateDiggingPower()
         {
             DiggingPower = 2;
@@ -15,10 +15,6 @@ namespace JeuColony.PNJFolder
         protected override void GenerateAttackPower()
         {
             AttackPower = 2 * Level + 1;
-        }
-        public override string PagePNJ()
-        {
-            return base.PagePNJ() + "Profession : Digger";
         }
     }
 }

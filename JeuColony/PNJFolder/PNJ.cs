@@ -20,7 +20,7 @@
         public override string ToString()
         {
             string chRes = "";
-            chRes += " * " /*\n####"*/;
+            chRes += " O " /*\n####"*/;
             return chRes;
         }
         protected void DealDamage(PNJ Dealer, PNJ Target)
@@ -35,6 +35,14 @@
             chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
             chres += "Position : " + Coordinate[0] + " , " +Coordinate[1] + "\n";
             return chres;
+        }
+        public void MoveTo(int[] coordinate, GameSimulation G)
+        {
+            Coordinate = coordinate;
+            if (G.Mat[coordinate[0], coordinate[1]] == null)
+            {
+                G.Mat[coordinate[0], coordinate[1]] = this;
+            }
         }
     }
 }

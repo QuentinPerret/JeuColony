@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using JeuColony.PNJFolder;
 
 namespace JeuColony.Batiments
 {
@@ -11,12 +13,9 @@ namespace JeuColony.Batiments
         protected int CapacityMax { get; }
         protected int HealthPointMax { get; set; }
         protected int HealthPoint { get; set; }
+        public List<PNJ> _listPNJ;
         private readonly GameSimulation M;
         private static readonly Random random = new Random();
-        public void ReverseSize()
-        {
-            (Size[0], Size[1]) = (Size[1], Size[0]);
-        }
         public static int GetSomeRandomNumber(int max)
         {
             return random.Next(max);
@@ -27,6 +26,7 @@ namespace JeuColony.Batiments
             M = Map;
             State = state;
             Level = 1;
+            _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
             GeneratePositionAlea();
         }
@@ -36,8 +36,21 @@ namespace JeuColony.Batiments
             M = Map;
             State = state;
             Level = 1;
+            _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
             GeneratePosition(coordinate);
+        }
+        public void AddPNJ(PNJ P)
+        {
+            _listPNJ.Add(P);
+        }
+        public void RemovePNJ(PNJ P)
+        {
+            _listPNJ.Remove(P);
+        }
+        public void ReverseSize()
+        {
+            (Size[0], Size[1]) = (Size[1], Size[0]);
         }
         private void GeneratePositionAlea()
         {

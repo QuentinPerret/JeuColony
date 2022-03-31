@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.Batiments.ListFixed.ListNaturalElement
+namespace JeuColony.Batiments
 {
-    class Mountain:NaturalElement
+    class Water:NaturalElement
     {
-        public Mountain(int[] size, bool state, BaseMap M) : base(size, state, M)
-        {
-            //GenerateBatiment(size, coordinate, state, 1);
-        }
+        public Water(int[] size, int[] coordinate, bool state, BaseMap Map) : base(size, coordinate, state, Map) { }
+        public Water(int[] size, bool state, BaseMap M) : base(size, state, M){ }
         protected override void GenerateStat()
         {
             Health = HealthMax * 5 * Level;
@@ -19,7 +17,7 @@ namespace JeuColony.Batiments.ListFixed.ListNaturalElement
         public override string ToString()
         {
             string chRes = "";
-            chRes += " M " /*\n####"*/;
+            chRes += " W " ;
             return chRes;
         }
     }

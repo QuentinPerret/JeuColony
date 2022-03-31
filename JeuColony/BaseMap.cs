@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using JeuColony.Batiments;
 using JeuColony.PNJ;
+
 
 namespace JeuColony
 {
@@ -12,7 +14,7 @@ namespace JeuColony
     {
         private static int POSITION_CURSOR = 0;
         private static int PAGE_OBJECT = 0;
-        private static int NB_PAGE_OBJECT = 9;
+        private static int NB_PAGE_OBJECT = 8; 
         
         public int Nbl { get; }
         public int Nbc { get; }
@@ -20,8 +22,9 @@ namespace JeuColony
         private static int y;
         public object[,] Mat { get; private set; }
         public object[,] Preview { get; private set; }
+        public Object[,] Mat { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
-        protected Random r = new Random();
+        protected Random random = new Random();
         public BaseMap()
         {
             Console.SetWindowSize(150, 40);
@@ -30,7 +33,7 @@ namespace JeuColony
             x = Nbl / 2;
             y = Nbc / 2;
             _listBatiments = new List<Batiment>();
-            this.GenerateMap();
+            Mat = new Object[Nbl,Nbc];
             this.GenerateBatiments();
             //r = new Random();
             //this.ShowBatiments();
@@ -40,53 +43,40 @@ namespace JeuColony
             int[] res = { x1, x2 };
             return res;
         }
-        public void GenerateMap()
-        {
-            Mat = new object[Nbl, Nbc];
-            
-        }
-        
-        public void GenerateBasicBatiments()
-        {
-            int nb;
-            int nbMaxBatiments = 40;
-            nb = r.Next(4, nbMaxBatiments);
-            AddABatiment(new Batiments.ListInteract.Dormitory(GenerateTab(2,2), true, this));
-            AddABatiment(new Batiments.ListInteract.Cantina(GenerateTab(2,2), true, this));
-            for(int i=0; i<nb/4; i++)
-            {
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Forest(GenerateTab(1,1),true,this));
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Mountain(GenerateTab(3, 3), true, this));
-                AddABatiment(new Batiments.ListFixed.ListNaturalElement.Water(GenerateTab(2, 2), true, this));
-            }
-        }
         public void GenerateBatiments()
         {
-            GenerateBasicBatiments();
-        }
-        
-        public void ShowBatiments()
-        {
-            foreach (Batiment B in _listBatiments)
+            AddABatiment(new Dormitory(new int[] { 2, 2 }, true, this));
+            for (int i = 0; i < 32; i++)
             {
-                B.ToString();
+                int alea = random.Next(3);
+                switch (alea)
+                {
+                    case 0:
+                        AddABatiment(new Forest(new int[] { 2,2}, true, this)) ;
+                        break;
+                    case 1:
+                        AddABatiment(new Mountain(new int[] { 2, 4 }, true, this));
+                        break;
+                    case 2:
+                        AddABatiment(new Water(new int[] { 1, 1 }, true, this));
+                        break;
+                }
             }
         }
-        
         public void AddABatiment(Batiments.Batiment B)
         {
             _listBatiments.Add(B);
         }
         public void AfficheMap()
         {
-            String chRes = "";
+            string chRes = "";
             for (int i = 0; i < Nbl; i++)
             {
                 for (int j = 0; j < Nbc; j++)
                 {
                     if (Mat[i, j] != null)
                     {
-                        chRes += Mat[i, j];
+                        chRes += Mat[i, j].ToString();
                     }
                     else
                     {
@@ -99,23 +89,30 @@ namespace JeuColony
         }
         public void AfficheMap(Object O)
         {
-            String chRes = "";
             for (int i = 0; i < Nbl; i++)
             {
                 for (int j = 0; j < Nbc; j++)
                 {
                     if (Mat[i, j] != null)
                     {
-                        chRes += Mat[i, j];
+                        if (Mat[i,j]== O)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(Mat[i, j]);
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(Mat[i, j]);
+                        }
                     }
                     else
                     {
-                        chRes += " . ";
+                        Console.Write(" . ");
                     }
                 }
-                chRes += "\n";
+                Console.WriteLine();
             }
-            Console.WriteLine(chRes);
         }
         public void PreviewBatimentCreation(Batiment B,int x, int y)
         {
@@ -144,30 +141,17 @@ namespace JeuColony
         public void Print()
         {
             Console.Clear();
-            AfficheMap();
+            Object O = _listBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
+            if(O == null)
+            {
+                AfficheMap();
+            }
+            else
+            {
+                AfficheMap(O);
+            }
             AfficheListe(POSITION_CURSOR);
             NavigateInterface();
-        }
-        public void Print(Batiment B,int x, int y)
-        {
-            Console.Clear();
-            PreviewBatimentCreation(B,x,y);
-            NavigateMap(B);
-        }
-        public void AfficheListe()
-        {
-            for (int i = 0; i < _listBatiments.Count && i < NB_PAGE_OBJECT+1; i++) 
-            {
-                Object O = _listBatiments[i];
-                if(O == null)
-                {
-                    Console.WriteLine(i + "- ");
-                }
-                else
-                {
-                    Console.WriteLine(i + "- " + O.ToString());
-                }
-            }
         }
         public void AfficheListe(int place)
         {
@@ -178,16 +162,19 @@ namespace JeuColony
                 {
                     Object O = _listBatiments[i + PAGE_OBJECT * NB_PAGE_OBJECT];
 
+                    Batiment B = (Batiment)O;
                     if (i == place)
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine((i + "- " + O.GetType())) ;
+                        //Console.WriteLine((i + "- " + O)) ;
+                        Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine(i + "- " + O.GetType());
+                        //Console.WriteLine(i + "- " + O);
+                        Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
                     }
                 }
                 catch (ArgumentOutOfRangeException) { }
@@ -238,14 +225,14 @@ namespace JeuColony
             {
                 Batiment B = (Batiment)O;
                 Console.Clear();
-                AfficheMap();
-                Console.WriteLine(B.ToString());
+                AfficheMap(O);
+                Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
             }
             else
             {
                 PNJ.PNJ P = (PNJ.PNJ)O;
                 Console.Clear();
-                AfficheMap();
+                AfficheMap(O);
                 Console.WriteLine(P.ToString());
                 
             }
@@ -258,7 +245,6 @@ namespace JeuColony
             }
             while (key != ConsoleKey.Escape)
             {
-                
                 FocusObjectInterface();
             }
         }
@@ -295,5 +281,6 @@ namespace JeuColony
 
 
         }
-        }
+    }
+
 }

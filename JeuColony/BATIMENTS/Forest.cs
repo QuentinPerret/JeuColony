@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JeuColony.Batiments.ListFixed.ListNaturalElement
+namespace JeuColony.Batiments
 {
     class Forest:NaturalElement
     {
-        public Forest(int[] size, bool state, BaseMap M) : base(size, state, M)
-        {
-            //GenerateBatiment(size, coordinate, state, 1);
-        }
+        public Forest(int[] size, int[] coordinate, bool state, BaseMap Map) : base(size, coordinate, state, Map) { }
+        public Forest(int[] size, bool state, BaseMap M) : base(size, state, M) { }
         public override string ToString()
         {
             string chRes = "";

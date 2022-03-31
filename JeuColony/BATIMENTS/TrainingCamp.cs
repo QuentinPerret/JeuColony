@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace JeuColony.Batiments
 {
-    class TrainingCamp : MainClass.CityBatiment
+    class TrainingCamp : Batiment
     {
+        public TrainingCamp(int[] size, int[] coordinate, bool state, BaseMap Map) : base(size, coordinate, state, Map) { }
         public TrainingCamp(int[] size, bool state, BaseMap M) : base(size, state, M)
         {
             HealthMax = 200;
-            //GenerateBatiment(size, coordinate, state, 1);
         }
-        protected override int GenerateCapaMax(int level)
+        protected int GenerateCapaMax(int level)
         {
             return level * 3;
         }

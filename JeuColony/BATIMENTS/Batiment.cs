@@ -9,60 +9,85 @@ namespace JeuColony.Batiments
     abstract class Batiment
     {
         public int[] Size { get; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
-        public int[] Coordinate { get; } = new int[] { -1, -1 };//coordinate x and y
+        public int[] Coordinate { get; protected set; } = new int[] { -1, -1 };//coordinate x and y
         private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
         protected int CapacityMax { get; }
         protected int HealthMax { get; set; }
         protected int Health { get; set; }
-        BaseMap M;
-        public Batiment(int[] size, bool state, int level, BaseMap M)
+        private readonly BaseMap M;
+        private static Random random = new Random();
+        public static int GetSomeRandomNumber(int max)
         {
-            GeneratePosition(M);
-            State = state;
-            Level = level;
-            Size = size;
-            //_state = true; //by default the batiment is functional at its creation
-            Level = 1;
+            return random.Next(max);
         }
-        private void GeneratePosition(BaseMap M)
+        public Batiment(int[] size, bool state, BaseMap Map)
         {
-            Random R = new Random();
-            while(PositionClear(M))
+            Size = size;
+            M = Map;
+            State = state;
+            Level = 1;
+            //_state = true; //by default the batiment is functional at its creation
+            GeneratePositionAlea();
+        }
+        public Batiment(int[] size, int[]coordinate , bool state, BaseMap Map) 
+        {
+            Size = size;
+            M = Map;
+            State = state;
+            Level = 1;
+            //_state = true; //by default the batiment is functional at its creation
+            GeneratePosition(coordinate);
+        }
+        private void GeneratePositionAlea()
+        {
+            while (!PositionClear(M) || Coordinate == new int[] { -1, -1 })
             {
-                Coordinate[0] = R.Next(0, M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
-                Coordinate[1] = R.Next(0, M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
+                Coordinate[0] = GetSomeRandomNumber( M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
+                Coordinate[1] = GetSomeRandomNumber( M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
             }
             ExtendBat(M);
         }
-        
+        private void GeneratePosition(int[]coordinate)
+        {
+            Coordinate = coordinate;
+            if (PositionClear(M))
+            {
+                ExtendBat(M);
+            }
+            else { GeneratePositionAlea(); }
+        }
         private bool PositionClear(BaseMap M)
         {
             for (int i = 0; i < this.Size[0]; i++)
             {
                 for (int j = 0; j < this.Size[1]; j++)
                 {
-                    if(M.Mat[i,j] != null && M.Mat[i,j] is Batiment)
+                    try
                     {
-                        return true;
+                        if (M.Mat[Coordinate[0] + i, Coordinate[1] + j] is Batiment)
+                        {
+                            return false;
+                        }
                     }
+                    catch(IndexOutOfRangeException) { return false; }
                 }
             }
-            return false;
+            return true;
         }
         private void ExtendBat(BaseMap M)
         {
-            for (int i = 0; i < this.Size[0]; i++) 
+            for (int i = 0; i < Size[0]; i++) 
             {
-                for (int j = 0; j < this.Size[1]; j++)
+                for (int j = 0; j < Size[1]; j++)
                 {
-                    M.Mat[this.Coordinate[0] + i, this.Coordinate[1] + j] = this;
+                    M.Mat[Coordinate[0] + i, Coordinate[1] + j] = this;
                 }
             }
         }
         protected abstract void GenerateStat();
 
-        protected virtual String AfficheStatBatiment(int n, int[] tab, bool b, int p)
+        protected virtual string AfficheStatBatiment(int n, int[] tab, bool b, int p)
         {
             string chRes = "";
             chRes += " # " /*\n####"*/;

@@ -12,7 +12,6 @@ namespace JeuColony.PNJ
         protected int HealthPointMax { get; set; }
         protected int HealthPoint { get; set; }
         protected int AttackPower { get; set; }
-        protected int VisionRange { get; set; }
         protected int Speed { get; set; }
         protected int Level { get; set; }
         public int[] Coordinate { get; set; }

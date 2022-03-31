@@ -173,13 +173,13 @@ namespace JeuColony
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                         //Console.WriteLine((i + "- " + O)) ;
-                        Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
+                        Console.WriteLine(" - " + B.BatimentType);
                         Console.ResetColor();
                     }
                     else
                     {
                         //Console.WriteLine(i + "- " + O);
-                        Console.WriteLine(B + "position :" + B.Coordinate[0] + " , " + B.Coordinate[1]);
+                        Console.WriteLine(" - " + B.BatimentType);
                     }
                 }
                 catch (ArgumentOutOfRangeException) { }
@@ -203,7 +203,7 @@ namespace JeuColony
                         //Console.WriteLine((i + "- " + O)) ;
                         if(P is Ally A)
                         {
-                            Console.WriteLine(" - " + A.Name + " , " + A.Profession);
+                            Console.WriteLine(" - " + A.Name + ", " + A.Profession);
                         }
                         else
                         {

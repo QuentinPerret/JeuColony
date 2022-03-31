@@ -2,17 +2,12 @@
 {
     class Forest : NaturalElement
     {
-        public Forest(int[] size, int[] coordinate, bool state, GameSimulation Map) : base(size, coordinate, state, Map) { }
-        public Forest(int[] size, bool state, GameSimulation M) : base(size, state, M) { }
+        public Forest(int[] size, bool state, GameSimulation M) : base(size, state, M) { BatimentType = "Forest"; }
         public override string ToString()
         {
             string chRes = "";
             chRes += " F " /*\n####"*/;
             return chRes;
-        }
-        public override string PageBat()
-        {
-            return "Batiment Type : Forest \n" + base.PageBat();
         }
     }
 }

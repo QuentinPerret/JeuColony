@@ -2,8 +2,7 @@
 {
     class Water : NaturalElement
     {
-        public Water(int[] size, int[] coordinate, bool state, GameSimulation Map) : base(size, coordinate, state, Map) { }
-        public Water(int[] size, bool state, GameSimulation M) : base(size, state, M) { }
+        public Water(int[] size, bool state, GameSimulation M) : base(size, state, M) { BatimentType = "Water"; }
         protected override void GenerateStat()
         {
             HealthPoint = HealthPointMax * 5 * Level;
@@ -13,11 +12,6 @@
             string chRes = "";
             chRes += " W ";
             return chRes;
-        }
-        
-        public override string PageBat()
-        {
-            return "Batiment Type : Water \n" + base.PageBat();
         }
     }
 }

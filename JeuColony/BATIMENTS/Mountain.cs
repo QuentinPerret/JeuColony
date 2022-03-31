@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JeuColony.Batiments
+﻿namespace JeuColony.Batiments
 {
-    class Mountain:NaturalElement
+    class Mountain : NaturalElement
     {
-        public Mountain(int[] size, int[] coordinate, bool state, BaseMap Map) : base(size, coordinate, state, Map) { }
-        public Mountain(int[] size, bool state, BaseMap M) : base(size, state, M){ }
+        public Mountain(int[] size, bool state, GameSimulation M) : base(size, state, M) { BatimentType = "Mountain"; }
         protected override void GenerateStat()
         {
-            Health = HealthMax * 5 * Level;
+            HealthPoint = HealthPointMax * 5 * Level;
         }
         public override string ToString()
         {

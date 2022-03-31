@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JeuColony.PNJFolder;
 
 namespace JeuColony.Batiments
 {
@@ -10,45 +8,62 @@ namespace JeuColony.Batiments
     {
         public int[] Size { get; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
         public int[] Coordinate { get; protected set; } = new int[] { -1, -1 };//coordinate x and y
-        private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
         protected int CapacityMax { get; }
-        protected int HealthMax { get; set; }
-        protected int Health { get; set; }
-        private readonly BaseMap M;
-        private static Random random = new Random();
+        protected int HealthPointMax { get; set; }
+        protected int HealthPoint { get; set; }
+        public string BatimentType { get; set; }
+        public List<PNJ> _listPNJ;
+        private readonly GameSimulation M;
+        private static readonly Random random = new Random();
         public static int GetSomeRandomNumber(int max)
         {
             return random.Next(max);
         }
-        public Batiment(int[] size, bool state, BaseMap Map)
+        public Batiment(int[] size, GameSimulation Map)
         {
             Size = size;
             M = Map;
-            State = state;
             Level = 1;
+            _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
             GeneratePositionAlea();
         }
-        public Batiment(int[] size, int[]coordinate , bool state, BaseMap Map) 
+        public Batiment(int[] size, int[] coordinate, bool state, GameSimulation Map)
         {
             Size = size;
             M = Map;
-            State = state;
             Level = 1;
+            _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
             GeneratePosition(coordinate);
         }
+        public void AddPNJ(PNJ P)
+        {
+            _listPNJ.Add(P);
+        }
+        public void RemovePNJ(PNJ P)
+        {
+            _listPNJ.Remove(P);
+        }
+        public void ReverseSize()
+        {
+            (Size[0], Size[1]) = (Size[1], Size[0]);
+        }
         private void GeneratePositionAlea()
         {
+            if (GetSomeRandomNumber(2) == 0)
+            {
+                ReverseSize();
+            }
             while (!PositionClear(M) || Coordinate == new int[] { -1, -1 })
             {
-                Coordinate[0] = GetSomeRandomNumber( M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
-                Coordinate[1] = GetSomeRandomNumber( M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
+                Coordinate[0] = GetSomeRandomNumber(M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
+                Coordinate[1] = GetSomeRandomNumber(M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
             }
             ExtendBat(M);
         }
-        private void GeneratePosition(int[]coordinate)
+        private void GeneratePosition(int[] coordinate)
         {
             Coordinate = coordinate;
             if (PositionClear(M))
@@ -57,7 +72,7 @@ namespace JeuColony.Batiments
             }
             else { GeneratePositionAlea(); }
         }
-        private bool PositionClear(BaseMap M)
+        private bool PositionClear(GameSimulation M)
         {
             for (int i = 0; i < this.Size[0]; i++)
             {
@@ -70,14 +85,14 @@ namespace JeuColony.Batiments
                             return false;
                         }
                     }
-                    catch(IndexOutOfRangeException) { return false; }
+                    catch (IndexOutOfRangeException) { return false; }
                 }
             }
             return true;
         }
-        private void ExtendBat(BaseMap M)
+        private void ExtendBat(GameSimulation M)
         {
-            for (int i = 0; i < Size[0]; i++) 
+            for (int i = 0; i < Size[0]; i++)
             {
                 for (int j = 0; j < Size[1]; j++)
                 {
@@ -92,6 +107,15 @@ namespace JeuColony.Batiments
             string chRes = "";
             chRes += " # " /*\n####"*/;
             return chRes;
+        }
+        public virtual string PageBat()
+        {
+            string chres ="";
+            chres += "Batiment Type : " + BatimentType + "\n";
+            chres += "Level : " + Level + "\n";
+            chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
+            chres += "Position : " + Coordinate[0] + " , " + Coordinate[1] + "\n";
+            return chres;
         }
     }
 }

@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JeuColony.Batiments
+﻿namespace JeuColony.Batiments
 {
-    class Water:NaturalElement
+    class Water : NaturalElement
     {
-        public Water(int[] size, int[] coordinate, bool state, BaseMap Map) : base(size, coordinate, state, Map) { }
-        public Water(int[] size, bool state, BaseMap M) : base(size, state, M){ }
+        public Water(int[] size, bool state, GameSimulation M) : base(size, state, M) { BatimentType = "Water"; }
         protected override void GenerateStat()
         {
-            Health = HealthMax * 5 * Level;
+            HealthPoint = HealthPointMax * 5 * Level;
         }
         public override string ToString()
         {
             string chRes = "";
-            chRes += " W " ;
+            chRes += " W ";
             return chRes;
         }
     }

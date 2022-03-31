@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JeuColony.PNJ.AllyFolder
+﻿using JeuColony.Batiments;
+namespace JeuColony.PNJFolder
 {
-    class Pioneer : Ally 
+    class Pioneer : Ally
     {
-        public Pioneer(string name,int level) : base(name, level) { }
+        public Pioneer(string name, Dormitory D) : base(name,D) { Profession = "Pioneer"; }
         protected override void GenerateLoggingPower()
         {
             LoggingPower = 1;
@@ -21,6 +16,5 @@ namespace JeuColony.PNJ.AllyFolder
         {
             BuildingPower = 1;
         }
-        
     }
 }

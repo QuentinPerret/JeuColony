@@ -51,16 +51,16 @@
     <Compile Include="Batiments\Batiment.cs" />
     <Compile Include="Batiments\NaturalElement.cs" />
     <Compile Include="Batiments\TrainingCamp.cs" />
-    <Compile Include="PNJ\PNJ.cs" />
-    <Compile Include="Pnj\AllyFolder\Ally.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Builder.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Digger.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Forester.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Pioneer.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Scout.cs" />
-    <Compile Include="Pnj\AllyFolder\Profession\Soldier.cs" />
-    <Compile Include="Pnj\EnemyFolder\Enemy.cs" />
-    <Compile Include="BaseMap.cs" />
+    <Compile Include="PlayerInventory.cs" />
+    <Compile Include="PNJFolder\PNJ.cs" />
+    <Compile Include="PNJFolder\AllyFolder\Ally.cs" />
+    <Compile Include="PNJFolder\AllyFolder\Profession\Builder.cs" />
+    <Compile Include="PNJFolder\AllyFolder\Profession\Digger.cs" />
+    <Compile Include="PNJFolder\AllyFolder\Profession\Forester.cs" />
+    <Compile Include="PNJFolder\AllyFolder\Profession\Pioneer.cs" />
+    <Compile Include="PNJFolder\AllyFolder\Profession\Soldier.cs" />
+    <Compile Include="PNJFolder\EnemyFolder\Enemy.cs" />
+    <Compile Include="GameSimulation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

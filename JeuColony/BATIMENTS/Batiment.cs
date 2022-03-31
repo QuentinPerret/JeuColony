@@ -9,8 +9,8 @@ namespace JeuColony.Batiments
         private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
         protected int CapacityMax { get; }
-        protected int HealthMax { get; set; }
-        protected int Health { get; set; }
+        protected int HealthPointMax { get; set; }
+        protected int HealthPoint { get; set; }
         private readonly GameSimulation M;
         private static readonly Random random = new Random();
         public void ReverseSize()
@@ -103,6 +103,7 @@ namespace JeuColony.Batiments
             chres += "Level : " + Level + "\n";
             chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
             chres += "Position : " + Coordinate[0] + " , " +Coordinate[1] + "\n";
+            return chres;
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public Dormitory(int[] size, bool state, GameSimulation M) : base(size, state, M)
         {
-            HealthMax = 100;
+            HealthPointMax = 100;
             //GenerateBatiment(size, coordinate, state, 1);
         }
         public Dormitory(int[] size, int[] coordinate, bool state, GameSimulation Map) : base(size, coordinate, state, Map) { }
@@ -14,7 +14,7 @@
         }
         protected override void GenerateStat()
         {
-            Health = HealthMax * 5 * Level;
+            HealthPoint = HealthPointMax * 5 * Level;
         }
         public override string ToString()
         {

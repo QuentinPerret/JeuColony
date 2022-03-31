@@ -34,6 +34,7 @@
             chres += "Level : " + Level + "\n";
             chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
             chres += "Position : " + Coordinate[0] + " , " +Coordinate[1] + "\n";
+            return chres;
         }
     }
 }

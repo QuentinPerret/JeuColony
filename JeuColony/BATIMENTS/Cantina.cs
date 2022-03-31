@@ -4,7 +4,7 @@
     {
         public Cantina(int[] size, bool state, GameSimulation M) : base(size, state, M)
         {
-            HealthMax = 500;
+            HealthPointMax = 500;
             //GenerateBatiment(size, coordinate, state, 1);
         }
         public Cantina(int[] size, int[] coordinate, bool state, GameSimulation Map) : base(size, coordinate, state, Map) { }
@@ -14,7 +14,7 @@
         }
         protected override void GenerateStat()
         {
-            Health = HealthMax * 9 * Level;
+            HealthPoint = HealthPointMax * 9 * Level;
         }
         public override string ToString()
         {

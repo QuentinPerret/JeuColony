@@ -27,7 +27,8 @@ namespace JeuColony
             _listBatiments = new List<Batiment>();
             _listPNJ = new List<PNJ>();
             Mat = new Object[Nbl, Nbc];
-            this.GenerateInitialBatiments();
+            GenerateInitialBatiments();
+            GenerateFirstColon();
         }
         public void GenerateInitialBatiments()
         {
@@ -118,8 +119,6 @@ namespace JeuColony
         {
             Console.Clear();
             AfficheMap();
-            POSITION_CURSOR =0;
-            PAGE_OBJECT =0;
             ProposeList(POSITION_CURSOR);
             NavigateInterfaceList(1);
         }
@@ -188,11 +187,11 @@ namespace JeuColony
         public void AfficheListePNJ(int place)
         {
             Console.WriteLine("LIST PNJ");
-            for (int i = 0; i < _listBatiments.Count && i < NB_PAGE_OBJECT + 1; i++)
+            for (int i = 0; i < _listPNJ.Count && i < NB_PAGE_OBJECT + 1; i++)
             {
                 try
                 {
-                    Object O = _listBatiments[i + PAGE_OBJECT * NB_PAGE_OBJECT];
+                    Object O = _listPNJ[i + PAGE_OBJECT * NB_PAGE_OBJECT];
 
                     PNJ P = (PNJ)O;
                     if (i == place)
@@ -239,6 +238,12 @@ namespace JeuColony
             {
                 FocusBatInterface();
             }
+            if (key == ConsoleKey.Escape)
+            {
+                PAGE_OBJECT = 0;
+                POSITION_CURSOR = 0;
+                PrintFirstPage();
+            }
         }
         private void NavigateInterfacePNJ(int nbPageMax)
         {
@@ -266,7 +271,13 @@ namespace JeuColony
             {
                 FocusPNJInterface();
             }
-            PrintListPNJ(POSITION_CURSOR);
+            if (key == ConsoleKey.Escape)
+            {
+                PAGE_OBJECT = 0;
+                POSITION_CURSOR = 0;
+                PrintFirstPage();
+            }
+            PrintListPNJ();
         }
         private void NavigateInterfaceList(int nbPageMax)
         {
@@ -280,16 +291,6 @@ namespace JeuColony
             {
                 POSITION_CURSOR--;
             }
-            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
-            {
-                PAGE_OBJECT++;
-                POSITION_CURSOR = 0;
-            }
-            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
-            {
-                PAGE_OBJECT--;
-                POSITION_CURSOR = 0;
-            }
             if (key == ConsoleKey.Enter)
             {
                 if (POSITION_CURSOR == 0)
@@ -302,7 +303,7 @@ namespace JeuColony
                     PrintListBat();
                 }
             }
-            PrintFirstPage(POSITION_CURSOR);
+            PrintFirstPage();
         }
         private void FocusBatInterface()
         {
@@ -319,7 +320,7 @@ namespace JeuColony
                 POSITION_CURSOR = 0;
                 PrintListBat();
             }
-            while (key != ConsoleKey.Escape)
+            while(key != ConsoleKey.Escape)
             {
                 FocusBatInterface();
             }

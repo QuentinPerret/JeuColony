@@ -5,7 +5,7 @@
         public TrainingCamp(int[] size, int[] coordinate, bool state, GameSimulation Map) : base(size, coordinate, state, Map) { }
         public TrainingCamp(int[] size, bool state, GameSimulation M) : base(size, state, M)
         {
-            HealthMax = 200;
+            HealthPointMax = 200;
         }
         protected int GenerateCapaMax(int level)
         {
@@ -13,7 +13,7 @@
         }
         protected override void GenerateStat()
         {
-            Health = HealthMax * 5 * Level;
+            HealthPoint = HealthPointMax * 5 * Level;
         }
         public override string PageBat()
         {

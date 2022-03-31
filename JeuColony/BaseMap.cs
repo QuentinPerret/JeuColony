@@ -22,8 +22,9 @@ namespace JeuColony
         private static int y;
         public object[,] Mat { get; private set; }
         public object[,] Preview { get; private set; }
-        public Object[,] Mat { get; private set; }
+        public Object[,] Mat2 { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
+        private readonly List<Batiment> _basicBatiments;
         protected Random random = new Random();
         public BaseMap()
         {
@@ -33,8 +34,10 @@ namespace JeuColony
             x = Nbl / 2;
             y = Nbc / 2;
             _listBatiments = new List<Batiment>();
+            _basicBatiments = new List<Batiment>();
             Mat = new Object[Nbl,Nbc];
             this.GenerateBatiments();
+            GenerateBatimentsBasic();
             //r = new Random();
             //this.ShowBatiments();
         }
@@ -63,9 +66,21 @@ namespace JeuColony
                 }
             }
         }
+        /*public void GenerateBatiments(Batiment B,int[] coord)
+        {
+            Type T= typeof(Batiment);
+            AddABatiment(new T(coord, true, this));
+        }*/
         public void AddABatiment(Batiments.Batiment B)
         {
             _listBatiments.Add(B);
+        }
+       
+        public void GenerateBatimentsBasic()
+        {
+            _basicBatiments.Add(new Cantina(new int[] { 0, 0 }, true, this));
+            
+            _basicBatiments.Add(new TrainingCamp(new int[] { 0, 0 }, true, this));
         }
         public void AfficheMap()
         {
@@ -116,7 +131,7 @@ namespace JeuColony
         }
         public void PreviewBatimentCreation(Batiment B,int x, int y)
         {
-            String chRes = "";
+            
             Preview = new object[Nbl, Nbc];
             //AfficheMap(B);
             Preview[x,y] = B;
@@ -126,17 +141,18 @@ namespace JeuColony
                 {
                     if (Preview[i, j] == Preview[x, y] || Preview[i + B.Size[0], j + B.Size[1]] == Preview[x, y]|| Preview[i , j + B.Size[1]] == Preview[x, y]|| Preview[i + B.Size[0], j] == Preview[x, y])
                     {
-                        chRes+="Red";
-                        
+                        Console.BackgroundColor=ConsoleColor.Red;
+                        Console.Write("   ");
+                        Console.BackgroundColor = ConsoleColor.Black;
                     }
                     else
                     {
-                        chRes += " . ";
+                        Console.Write(" . ");
                     }
                 }
-                chRes += "\n";
+                Console.Write("\n");
             }
-            Console.WriteLine(chRes);
+            
         }
         public void Print()
         {
@@ -152,6 +168,13 @@ namespace JeuColony
             }
             AfficheListe(POSITION_CURSOR);
             NavigateInterface();
+        }
+        public void Print(Batiment B, int x, int y)
+        {
+            Console.Clear();
+            PreviewBatimentCreation(B, x, y);
+            AfficheTousBatiments(POSITION_CURSOR);
+            NavigateMap(B);
         }
         public void AfficheListe(int place)
         {
@@ -180,6 +203,36 @@ namespace JeuColony
                 catch (ArgumentOutOfRangeException) { }
             }
             
+        }
+        public void AfficheTousBatiments(int place)
+        {
+            Console.WriteLine("LIST OBJECT");
+            for (int i = 0; i < _basicBatiments.Count ; i++)
+            {
+                try
+                {
+                    Object O = _basicBatiments[i];
+
+                    Batiment B = (Batiment)O;
+                    if (i == place)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        //Console.WriteLine((i + "- " + O)) ;
+                        Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place]);
+                        Console.ResetColor();
+                        ConsoleKey key = Console.ReadKey().Key;
+                        if (key == ConsoleKey.Enter)
+                        {
+                            AddABatiment(_basicBatiments[place]);
+                            
+                        }
+                    }
+                    
+                }
+                catch (ArgumentOutOfRangeException) { Console.WriteLine("Erreur "); }
+            }
+
         }
         private void NavigateInterface()
         {
@@ -211,8 +264,9 @@ namespace JeuColony
             }
             if(key == ConsoleKey.B)
             {
-                Batiment B = new Batiments.ListInteract.Dormitory(GenerateTab(5,2), true, this);
+                Batiment B = new Dormitory(GenerateTab(5,2), true, this);
                 NavigateMap(B);
+                
                 Console.ReadLine();
             }
             Print();
@@ -253,6 +307,7 @@ namespace JeuColony
             
             ConsoleKey key = Console.ReadKey().Key;
             
+            
             if (key == ConsoleKey.DownArrow && x<=Nbl - B.Size[1] - 2)
             {
                 x++;
@@ -277,6 +332,7 @@ namespace JeuColony
                 Print();
             }
 
+           
             Print(B, x, y);
 
 

@@ -2,8 +2,8 @@
 {
     class Forest : NaturalElement
     {
-        public Forest(int[] size, int[] coordinate, GameSimulation Map) : base(size, coordinate, Map) { }
-        public Forest(int[] size, GameSimulation M) : base(size, M) { }
+        public Forest(int[] size, int[] coordinate, MapGame Map) : base(size, coordinate, Map) { }
+        public Forest(int[] size, MapGame Map) : base(size, Map) { }
         public override string ToString()
         {
             string chRes = "";

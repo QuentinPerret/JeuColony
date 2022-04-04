@@ -14,13 +14,13 @@ namespace JeuColony.Batiments
         protected int HealthPoint { get; set; }
         public string BatimentType { get; set; }
         public List<PNJ> _listPNJ;
-        private readonly GameSimulation M;
+        private readonly MapGame M;
         private static readonly Random random = new Random();
         public static int GetSomeRandomNumber(int max)
         {
             return random.Next(max);
         }
-        public Batiment(int[] size, GameSimulation Map)
+        public Batiment(int[] size, MapGame Map)
         {
             Size = size;
             M = Map;
@@ -29,7 +29,7 @@ namespace JeuColony.Batiments
             //_state = true; //by default the batiment is functional at its creation
             GeneratePositionAlea();
         }
-        public Batiment(int[] size, int[] coordinate, GameSimulation Map)
+        public Batiment(int[] size, int[] coordinate, MapGame Map)
         {
             Size = size;
             M = Map;
@@ -72,7 +72,7 @@ namespace JeuColony.Batiments
             }
             else { GeneratePositionAlea(); }
         }
-        private bool PositionClear(GameSimulation M)
+        private bool PositionClear(MapGame M)
         {
             for (int i = 0; i < this.Size[0]; i++)
             {
@@ -90,7 +90,7 @@ namespace JeuColony.Batiments
             }
             return true;
         }
-        private void ExtendBat(GameSimulation M)
+        private void ExtendBat(MapGame M)
         {
             for (int i = 0; i < Size[0]; i++)
             {

@@ -51,7 +51,9 @@
     <Compile Include="Batiments\Batiment.cs" />
     <Compile Include="Batiments\NaturalElement.cs" />
     <Compile Include="Batiments\TrainingCamp.cs" />
-    <Compile Include="PlayerInventory.cs" />
+    <Compile Include="Gaming\InterfaceUser.cs" />
+    <Compile Include="Gaming\MapGame.cs" />
+    <Compile Include="Gaming\PlayerInventory.cs" />
     <Compile Include="PNJFolder\PNJ.cs" />
     <Compile Include="PNJFolder\AllyFolder\Ally.cs" />
     <Compile Include="PNJFolder\AllyFolder\Profession\Builder.cs" />
@@ -60,7 +62,7 @@
     <Compile Include="PNJFolder\AllyFolder\Profession\Pioneer.cs" />
     <Compile Include="PNJFolder\AllyFolder\Profession\Soldier.cs" />
     <Compile Include="PNJFolder\EnemyFolder\Enemy.cs" />
-    <Compile Include="GameSimulation.cs" />
+    <Compile Include="Gaming\GameSimulation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

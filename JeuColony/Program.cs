@@ -10,9 +10,8 @@ namespace JeuColony
             /*Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);*/
-            GameSimulation M = new GameSimulation();
-            
-            M.PrintFirstPage();
+            GameSimulation G = new GameSimulation();
+            G.PlayOneTurn();
             Console.ReadLine();
         }
     }

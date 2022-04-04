@@ -23,9 +23,9 @@
             chRes += " O " /*\n####"*/;
             return chRes;
         }
-        protected void DealDamage(PNJ Dealer, PNJ Target)
+        public void DealDamage(PNJ Dealer, PNJ Target)
         {
-
+            Target.HealthPoint -= Dealer.AttackPower;
         }
         public virtual string PagePNJ()
         {

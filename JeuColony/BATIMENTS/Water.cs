@@ -2,8 +2,8 @@
 {
     class Water : NaturalElement
     {
-        public Water(int[] size, int[] coordinate, GameSimulation Map) : base(size, coordinate, Map) { }
-        public Water(int[] size, GameSimulation M) : base(size, M) { }
+        public Water(int[] size, int[] coordinate, MapGame Map) : base(size, coordinate, Map) { }
+        public Water(int[] size, MapGame Map) : base(size, Map) { }
         public override string ToString()
         {
             string chRes = "";

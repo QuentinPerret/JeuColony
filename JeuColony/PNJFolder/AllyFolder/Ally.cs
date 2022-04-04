@@ -51,10 +51,6 @@ namespace JeuColony.PNJFolder
         {
             Speed = 1;
         }
-        protected void MoveTo(int[] Coord)
-        {
-            Coordinate = Coord;
-        }
         protected void Spawn(Batiment B)
         {
             Coordinate = B.Coordinate;

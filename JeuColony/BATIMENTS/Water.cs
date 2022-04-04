@@ -2,7 +2,8 @@
 {
     class Water : NaturalElement
     {
-        public Water(int[] size, bool state, GameSimulation M) : base(size, state, M) { BatimentType = "Water"; }
+        public Water(int[] size, int[] coordinate, GameSimulation Map) : base(size, coordinate, Map) { }
+        public Water(int[] size, GameSimulation M) : base(size, M) { }
         protected override void GenerateStat()
         {
             HealthPoint = HealthPointMax * 5 * Level;

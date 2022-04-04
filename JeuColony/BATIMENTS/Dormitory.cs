@@ -2,11 +2,12 @@
 {
     class Dormitory : Batiment
     {
-        public Dormitory(int[] size, bool state, GameSimulation M) : base(size, M)
+        public Dormitory(int[] size, GameSimulation M) : base(size, M)
         {
             HealthPointMax = 100;
-            BatimentType = "Dormitory";
+            //GenerateBatiment(size, coordinate, state, 1);
         }
+        public Dormitory(int[] size, int[] coordinate, GameSimulation Map) : base(size, coordinate, Map) { }
         protected int GenerateCapaMax(int level)
         {
             return level * 3;

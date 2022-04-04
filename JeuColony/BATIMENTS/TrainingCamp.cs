@@ -2,10 +2,10 @@
 {
     class TrainingCamp : Batiment
     {
-        public TrainingCamp(int[] size, bool state, GameSimulation M) : base(size, M)
+        public TrainingCamp(int[] size, int[] coordinate,  GameSimulation Map) : base(size, coordinate, Map) { }
+        public TrainingCamp(int[] size, GameSimulation M) : base(size, M)
         {
             HealthPointMax = 200;
-            BatimentType = "Training Camp";
         }
         protected int GenerateCapaMax(int level)
         {

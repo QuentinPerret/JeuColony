@@ -32,7 +32,7 @@ namespace JeuColony
         }
         public void GenerateInitialBatiments()
         {
-            AddBatiment(new Dormitory(new int[] { 2, 2 }, true, this));
+            AddBatiment(new Dormitory(new int[] { 2, 2 }, this));
             int nbNaturalElement = 32;
             for (int i = 0; i < nbNaturalElement; i++)
             {
@@ -40,13 +40,13 @@ namespace JeuColony
                 switch (alea)
                 {
                     case 0:
-                        AddBatiment(new Forest(new int[] { 2, 2 }, true, this));
+                        AddBatiment(new Forest(new int[] { 2, 2 }, this));
                         break;
                     case 1:
-                        AddBatiment(new Mountain(new int[] { 2, 4 }, true, this));
+                        AddBatiment(new Mountain(new int[] { 2, 4 }, this));
                         break;
                     case 2:
-                        AddBatiment(new Water(new int[] { 1, 1 }, true, this));
+                        AddBatiment(new Water(new int[] { 1, 1 }, this));
                         break;
                 }
             }
@@ -122,7 +122,7 @@ namespace JeuColony
             Console.Clear();
             AfficheMap();
             ProposeList(POSITION_CURSOR);
-            NavigateInterfaceList(1);
+            NavigateInterfaceList();
         }
         public void PrintListBat()
         {
@@ -257,8 +257,7 @@ namespace JeuColony
         private void NavigateInterfacePNJ(int nbPageMax)
         {
             ConsoleKey key = Console.ReadKey().Key;
-
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < _listBatiments.Count - 1)
+            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < _listPNJ.Count - 1)
             {
                 POSITION_CURSOR++;
             }
@@ -288,7 +287,7 @@ namespace JeuColony
             }
             PrintListPNJ();
         }
-        private void NavigateInterfaceList(int nbPageMax)
+        private void NavigateInterfaceList()
         {
             ConsoleKey key = Console.ReadKey().Key;
 
@@ -316,7 +315,6 @@ namespace JeuColony
         }
         private void FocusBatInterface()
         {
-
             Batiment B = _listBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             Console.Clear();
             AfficheMap(B);
@@ -336,7 +334,6 @@ namespace JeuColony
         }
         private void FocusPNJInterface()
         {
-
             PNJ P = _listPNJ[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             Console.Clear();
             AfficheMap(P);

@@ -29,7 +29,7 @@ namespace JeuColony.Batiments
             //_state = true; //by default the batiment is functional at its creation
             GeneratePositionAlea();
         }
-        public Batiment(int[] size, int[] coordinate, bool state, GameSimulation Map)
+        public Batiment(int[] size, int[] coordinate, GameSimulation Map)
         {
             Size = size;
             M = Map;

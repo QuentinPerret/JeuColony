@@ -14,7 +14,7 @@ namespace JeuColony
 
         public int Nbl { get; }
         public int Nbc { get; }
-        public Object[,] Mat { get; private set; }
+        public Object[,] Map { get; private set; }
         private readonly List<Batiment> _listBatiments;
         private readonly List<PNJ> _listPNJ;
         protected Random random = new Random();
@@ -26,7 +26,7 @@ namespace JeuColony
             Nbl = 30;
             _listBatiments = new List<Batiment>();
             _listPNJ = new List<PNJ>();
-            Mat = new Object[Nbl, Nbc];
+            Map = new Object[Nbl, Nbc];
             GenerateInitialBatiments();
             GenerateFirstColon();
         }
@@ -59,8 +59,8 @@ namespace JeuColony
                 i++;
             }
             AddPNJ(new Pioneer("Damien", (Dormitory)_listBatiments[i]));
-            Random R = new Random();
-            _listPNJ[0].MoveTo(new int[] { R.Next(Nbl), R.Next(Nbl) }, this);
+            /*Random R = new Random();
+            _listPNJ[0].MoveTo(new int[] { R.Next(Nbl), R.Next(Nbl) }, this);*/
         }
         public void AddBatiment(Batiment B)
         {
@@ -77,9 +77,9 @@ namespace JeuColony
             {
                 for (int j = 0; j < Nbc; j++)
                 {
-                    if (Mat[i, j] != null)
+                    if (Map[i, j] != null)
                     {
-                        chRes += Mat[i, j].ToString();
+                        chRes += Map[i, j].ToString();
                     }
                     else
                     {
@@ -92,21 +92,25 @@ namespace JeuColony
         }
         public void AfficheMap(Object O)
         {
+            if(O is PNJ P)
+            {
+                O = Map[P.Coordinate[0], P.Coordinate[1]];
+            }
             for (int i = 0; i < Nbl; i++)
             {
                 for (int j = 0; j < Nbc; j++)
                 {
-                    if (Mat[i, j] != null)
+                    if (Map[i, j] != null)
                     {
-                        if (Mat[i, j] == O)
+                        if (Map[i, j] == O)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write(Mat[i, j]);
+                            Console.Write(Map[i, j]);
                             Console.ResetColor();
                         }
                         else
                         {
-                            Console.Write(Mat[i, j]);
+                            Console.Write(Map[i, j]);
                         }
                     }
                     else

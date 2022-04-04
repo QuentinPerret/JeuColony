@@ -12,10 +12,6 @@
         {
             return level * 3;
         }
-        protected override void GenerateStat()
-        {
-            HealthPoint = HealthPointMax * 5 * Level;
-        }
         public override string ToString()
         {
             return " D ";

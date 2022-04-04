@@ -36,12 +36,27 @@
             chres += "Position : " + Coordinate[0] + " , " +Coordinate[1] + "\n";
             return chres;
         }
-        public void MoveTo(int[] coordinate, GameSimulation G)
+        public void MoveTo(int[] coordinate)
         {
-            Coordinate = coordinate;
-            if (G.Mat[coordinate[0], coordinate[1]] == null)
+            int moveLeft = Speed;
+            for(int i = 0; i < moveLeft; i++)
             {
-                G.Mat[coordinate[0], coordinate[1]] = this;
+                if(Coordinate[0] < coordinate[0])
+                {
+                    Coordinate[0]++;
+                }
+                else if(Coordinate[0] > coordinate[0])
+                {
+                    coordinate[0]--;
+                }
+                if(Coordinate[1] < coordinate[1])
+                {
+                    Coordinate[1]++;
+                }
+                else if(coordinate[1] > coordinate[1])
+                {
+                    Coordinate[1]--;
+                }
             }
         }
     }

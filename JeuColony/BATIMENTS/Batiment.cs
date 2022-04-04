@@ -80,7 +80,7 @@ namespace JeuColony.Batiments
                 {
                     try
                     {
-                        if (M.Mat[Coordinate[0] + i, Coordinate[1] + j] is Batiment)
+                        if (M.Map[Coordinate[0] + i, Coordinate[1] + j] is Batiment)
                         {
                             return false;
                         }
@@ -96,11 +96,14 @@ namespace JeuColony.Batiments
             {
                 for (int j = 0; j < Size[1]; j++)
                 {
-                    M.Mat[Coordinate[0] + i, Coordinate[1] + j] = this;
+                    M.Map[Coordinate[0] + i, Coordinate[1] + j] = this;
                 }
             }
         }
-        protected abstract void GenerateStat();
+        protected void GenerateStat()
+        {
+            HealthPoint = HealthPointMax;
+        }
 
         protected virtual string AfficheStatBatiment(int n, int[] tab, bool b, int p)
         {

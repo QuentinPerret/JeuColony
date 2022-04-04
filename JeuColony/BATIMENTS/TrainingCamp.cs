@@ -15,5 +15,9 @@
         {
             HealthPoint = HealthPointMax * 5 * Level;
         }
+        public override string PageBat()
+        {
+            return "Batiment Type : Training Camp \n" + base.PageBat();
+        }
     }
 }

@@ -10,10 +10,11 @@ namespace JeuColony
     {
         public InterfaceUser InterfaceUser { get; set; }
         public MapGame MapGame { get; set; }
+        public PlayerInventory PlayerInventory { get; set; }
         public GameSimulation()
         {
-            PlayerInventory PlayerInv = new PlayerInventory();
             Console.SetWindowSize(150, 40);
+            PlayerInventory = new PlayerInventory();
             MapGame = new MapGame(this);
             InterfaceUser = new InterfaceUser(this,MapGame);
             

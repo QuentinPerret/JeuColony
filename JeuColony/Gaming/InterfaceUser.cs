@@ -25,7 +25,8 @@ namespace JeuColony
             Console.Clear();
             MapGame.AfficheMap();
             ProposeList(POSITION_CURSOR);
-            NavigateInterfaceList();
+            NavigateInterface(0,null);
+            PrintFirstPage();
         }
         public void PrintListBat()
         {
@@ -41,7 +42,7 @@ namespace JeuColony
             }
             AfficheListeBatiment(POSITION_CURSOR);
             int nbPageMax = MapGame.ListBatiments.Count / NB_PAGE_OBJECT;
-            NavigateInterfaceBat(nbPageMax);
+            NavigateInterface(nbPageMax, MapGame.ListBatiments[0]);
             PrintListBat();
         }
         public void PrintListPNJ()
@@ -58,7 +59,7 @@ namespace JeuColony
             }
             AfficheListePNJ(POSITION_CURSOR);
             int nbPageMax = MapGame.ListPNJ.Count / NB_PAGE_OBJECT;
-            NavigateInterfacePNJ(nbPageMax);
+            NavigateInterface(nbPageMax, MapGame.ListPNJ[0]);
             PrintListPNJ();
         }
         public void AfficheListeBatiment(int place)
@@ -124,15 +125,56 @@ namespace JeuColony
             }
 
         }
-        private void NavigateInterfaceBat(int nbPageMax)
+        private void NavigateInterface(int nbPageMax,Object ObjectList)
         {
+            
             ConsoleKey key = Console.ReadKey().Key;
 
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
+            if (ObjectList is PNJ)
             {
-                POSITION_CURSOR++;
+                if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListPNJ.Count - 1)
+                {
+                    POSITION_CURSOR++;
+                }
+
+                if (key == ConsoleKey.Enter)
+                {
+                    FocusPNJInterface();
+                }
             }
-            else if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            else if (ObjectList is Batiment)
+            {
+                if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
+                {
+                    POSITION_CURSOR++;
+                }
+
+                if (key == ConsoleKey.Enter)
+                {
+                    FocusBatInterface();
+                }
+            }
+            else if (ObjectList == null)
+            {
+                if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT)
+                {
+                    POSITION_CURSOR++;
+                }
+                if (key == ConsoleKey.Enter)
+                {
+                    if (POSITION_CURSOR == 0)
+                    {
+                        PrintListPNJ();
+                    }
+                    else
+                    {
+                        POSITION_CURSOR = 0;
+                        PrintListBat();
+                    }
+                }
+            }
+
+            if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
             }
@@ -146,75 +188,12 @@ namespace JeuColony
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (key == ConsoleKey.Enter)
-            {
-                FocusBatInterface();
-            }
             if (key == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
                 PrintFirstPage();
             }
-        }
-        private void NavigateInterfacePNJ(int nbPageMax)
-        {
-            ConsoleKey key = Console.ReadKey().Key;
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListPNJ.Count - 1)
-            {
-                POSITION_CURSOR++;
-            }
-            else if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
-            {
-                POSITION_CURSOR--;
-            }
-            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
-            {
-                PAGE_OBJECT++;
-                POSITION_CURSOR = 0;
-            }
-            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
-            {
-                PAGE_OBJECT--;
-                POSITION_CURSOR = 0;
-            }
-            if (key == ConsoleKey.Enter)
-            {
-                FocusPNJInterface();
-            }
-            if (key == ConsoleKey.Escape)
-            {
-                PAGE_OBJECT = 0;
-                POSITION_CURSOR = 0;
-                PrintFirstPage();
-            }
-            PrintListPNJ();
-        }
-        private void NavigateInterfaceList()
-        {
-            ConsoleKey key = Console.ReadKey().Key;
-
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
-            {
-                POSITION_CURSOR++;
-            }
-            else if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
-            {
-                POSITION_CURSOR--;
-            }
-            if (key == ConsoleKey.Enter)
-            {
-                if (POSITION_CURSOR == 0)
-                {
-                    PrintListPNJ();
-                }
-                else
-                {
-                    POSITION_CURSOR = 0;
-                    PrintListBat();
-                }
-            }
-            PrintFirstPage();
         }
         private void FocusBatInterface()
         {

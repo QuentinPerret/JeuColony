@@ -8,7 +8,6 @@ namespace JeuColony.Batiments
     {
         public int[] Size { get; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
         public int[] Coordinate { get; protected set; } = new int[] { -1, -1 };//coordinate x and y
-        private bool State { get; set; } //bat is impossible to use because of a degradation
         protected int Level { get; set; }
         protected int CapacityMax { get; }
         protected int HealthPointMax { get; set; }
@@ -20,21 +19,19 @@ namespace JeuColony.Batiments
         {
             return random.Next(max);
         }
-        public Batiment(int[] size, bool state, GameSimulation Map)
+        public Batiment(int[] size, GameSimulation Map)
         {
             Size = size;
             M = Map;
-            State = state;
             Level = 1;
             _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
             GeneratePositionAlea();
         }
-        public Batiment(int[] size, int[] coordinate, bool state, GameSimulation Map)
+        public Batiment(int[] size, int[] coordinate, GameSimulation Map)
         {
             Size = size;
             M = Map;
-            State = state;
             Level = 1;
             _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation

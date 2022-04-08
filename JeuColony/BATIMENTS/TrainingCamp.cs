@@ -21,6 +21,10 @@ namespace JeuColony.Batiments
         {
             Health = HealthMax * 5*Level;
         }
+        public override string ToString()
+        {
+            return " T ";
+        }
     }
     
     

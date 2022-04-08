@@ -24,7 +24,7 @@ namespace JeuColony
         public object[,] Preview { get; private set; }
         public Object[,] Mat2 { get; private set; }
         private readonly List<Batiments.Batiment> _listBatiments;
-        private readonly List<Batiment> _basicBatiments;
+        private readonly List<Batiments.Batiment> _basicBatiments;
         protected Random random = new Random();
         public BaseMap()
         {
@@ -64,6 +64,7 @@ namespace JeuColony
                         AddABatiment(new Water(new int[] { 1, 1 }, true, this));
                         break;
                 }
+
             }
         }
         /*public void GenerateBatiments(Batiment B,int[] coord)
@@ -173,7 +174,6 @@ namespace JeuColony
         {
             Console.Clear();
             PreviewBatimentCreation(B, x, y);
-            AfficheTousBatiments(POSITION_CURSOR);
             NavigateMap(B);
         }
         public void AfficheListe(int place)
@@ -204,35 +204,84 @@ namespace JeuColony
             }
             
         }
-        public void AfficheTousBatiments(int place)
+        public void AfficheTousBatiments(int place,Batiment Bat)
         {
-            Console.WriteLine("LIST OBJECT");
-            for (int i = 0; i < _basicBatiments.Count ; i++)
-            {
-                try
-                {
-                    Object O = _basicBatiments[i];
+            int nbPageMax = _basicBatiments.Count;
+            ConsoleKey key = Console.ReadKey().Key;
 
-                    Batiment B = (Batiment)O;
-                    if (i == place)
-                    {
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        //Console.WriteLine((i + "- " + O)) ;
-                        Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place]);
-                        Console.ResetColor();
-                        ConsoleKey key = Console.ReadKey().Key;
-                        if (key == ConsoleKey.Enter)
-                        {
-                            AddABatiment(_basicBatiments[place]);
-                            
-                        }
-                    }
-                    
-                }
-                catch (ArgumentOutOfRangeException) { Console.WriteLine("Erreur "); }
+            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < _listBatiments.Count - 1)
+            {
+                POSITION_CURSOR++;
+            }
+            else if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            {
+                POSITION_CURSOR--;
+            }
+            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            {
+                PAGE_OBJECT++;
+                POSITION_CURSOR = 0;
+            }
+            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            {
+                PAGE_OBJECT--;
+                POSITION_CURSOR = 0;
+            }
+            
+            Object O = _basicBatiments[nbPageMax-1];
+            Batiment B = (Batiment)O;
+            Console.Clear();
+            PreviewBatimentCreation(Bat, x, y);
+            try { Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place]); }
+            catch (ArgumentOutOfRangeException) {  Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place - 1]); POSITION_CURSOR = 0; }
+            if (key == ConsoleKey.Enter)
+            {
+                AddABatiment(new TrainingCamp(new int[] { 2, 2 }, new int[] { x, y-1 }, true, this));
+                Print();
             }
 
+            if (key == ConsoleKey.Escape)
+            {
+                PAGE_OBJECT = 0;
+                POSITION_CURSOR = 0;
+                Print();
+            }
+            while (key != ConsoleKey.Escape)
+            {
+                AfficheTousBatiments(POSITION_CURSOR,Bat);
+            }
+            /*ConsoleKey key = Console.ReadKey().Key;
+            do
+            {
+                key = Console.ReadKey().Key;
+                Console.WriteLine("LIST BATIMENTS");
+                for (int i = 0; i <= _basicBatiments.Count; i++)
+                {
+                    try
+                    {
+                        Object O = _basicBatiments[i];
+                        Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place]);
+                        Batiment B = (Batiment)O;
+                        if (i == place)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            //Console.WriteLine((i + "- " + O)) ;
+                            Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place]);
+                            Console.ResetColor();
+                            if (key == ConsoleKey.Enter)
+                            {
+                                AddABatiment(_basicBatiments[place]);
+
+                            }
+                        }
+
+                    }
+                    catch (ArgumentOutOfRangeException) { Console.WriteLine("Erreur "); }
+                }
+            
+            } while (key != ConsoleKey.Enter);
+            */
         }
         private void NavigateInterface()
         {
@@ -264,7 +313,7 @@ namespace JeuColony
             }
             if(key == ConsoleKey.B)
             {
-                Batiment B = new Dormitory(GenerateTab(5,2), true, this);
+                Batiment B = new TrainingCamp(GenerateTab(1,1), true, this);
                 NavigateMap(B);
                 
                 Console.ReadLine();
@@ -324,7 +373,10 @@ namespace JeuColony
             {
                 y--;
             }
-
+            if (key == ConsoleKey.Spacebar)
+            {
+                AfficheTousBatiments(0,B);
+            }
             if (key == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;

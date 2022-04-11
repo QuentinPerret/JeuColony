@@ -206,34 +206,9 @@ namespace JeuColony
         }
         public void AfficheTousBatiments(int place,Batiment Bat)
         {
-            int nbPageMax = _basicBatiments.Count;
             ConsoleKey key = Console.ReadKey().Key;
-
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < _listBatiments.Count - 1)
-            {
-                POSITION_CURSOR++;
-            }
-            else if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
-            {
-                POSITION_CURSOR--;
-            }
-            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
-            {
-                PAGE_OBJECT++;
-                POSITION_CURSOR = 0;
-            }
-            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
-            {
-                PAGE_OBJECT--;
-                POSITION_CURSOR = 0;
-            }
-            
-            Object O = _basicBatiments[nbPageMax-1];
-            Batiment B = (Batiment)O;
             Console.Clear();
             PreviewBatimentCreation(Bat, x, y);
-            try { Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place]); }
-            catch (ArgumentOutOfRangeException) {  Console.WriteLine("Voulez-vous installer : " + _basicBatiments[place - 1]); POSITION_CURSOR = 0; }
             if (key == ConsoleKey.Enter)
             {
                 AddABatiment(new TrainingCamp(new int[] { 2, 2 }, new int[] { x, y-1 }, true, this));

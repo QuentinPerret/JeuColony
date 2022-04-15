@@ -152,12 +152,20 @@ namespace JeuColony
                     else if (Mat[i, j] != null)
                     {
                         Console.Write(Mat[i,j].ToString());
-                        problem = true;
+                        
                     }
                         else
                         {
                             Console.Write(" . ");
                         }
+                    if(Mat[x-1, y-1] != null || Mat[x + B.Size[0]-1, y + B.Size[1] - 1]  != null || Mat[x - 1, y + B.Size[1] - 1] != null || Mat[x + B.Size[0] - 1, y - 1] != null)
+                    {
+                        problem = true;
+                    }
+                    else
+                    {
+                        problem=false;
+                    }
                 }
                 Console.Write("\n");
             }
@@ -211,12 +219,8 @@ namespace JeuColony
             }
             
         }
-        public object GetInstance(string strNamesapace)
-        {
-            Type t = Type.GetType(strNamesapace);
-            return Activator.CreateInstance(t);
-        }
-        public void AfficheTousBatiments(int place,Batiment Bat)
+        
+        public void InstallBatiment(int place,Batiment Bat)
         {
             
             Console.Clear();
@@ -232,7 +236,7 @@ namespace JeuColony
                 Type type = Type.GetType(Bat.GetType().Name); //target type
                 object o = Activator.CreateInstance(type); // an instance of target type
                 Batiment your = (Batiment)o;*/
-                AddABatiment(new TrainingCamp(new int[] { 2, 2 }, new int[] { x, y-1 }, true, this));
+                AddABatiment(new TrainingCamp(new int[] { 2, 2 }, new int[] { x-1, y-1 }, true, this));
                 Print();
             }else if (problem)
             {
@@ -252,7 +256,7 @@ namespace JeuColony
             }
             while (key != ConsoleKey.Escape)
             {
-                AfficheTousBatiments(POSITION_CURSOR,Bat);
+                InstallBatiment(POSITION_CURSOR,Bat);
             }
             
         }
@@ -286,7 +290,7 @@ namespace JeuColony
             }
             if(key == ConsoleKey.B)
             {
-                Batiment B = new TrainingCamp(GenerateTab(1,1), true, this);
+                Batiment B = new TrainingCamp(GenerateTab(1,1), new int[] { -1, -1 },  true, this);
                 NavigateMap(B);
                 Console.ReadLine();
             }
@@ -377,9 +381,8 @@ namespace JeuColony
         }
         private void NavigateMap(Batiment B)
         {
-            
             Console.BackgroundColor = ConsoleColor.Green;
-            Console.Write("Appuyez sur espace pour placer un batiment");
+            Console.WriteLine("\n Appuyez sur les flèches pour placer un batiment puis sur espace pour le placer");
             Console.BackgroundColor = ConsoleColor.Black;
             ConsoleKey key = Console.ReadKey().Key;
             if (key == ConsoleKey.DownArrow && x<=Nbl - B.Size[1] - 2)
@@ -398,15 +401,17 @@ namespace JeuColony
             {
                 y--;
             }
+            
             if (key == ConsoleKey.Spacebar)
             {
-                AfficheTousBatiments(0, B);
+                InstallBatiment(0, B);
             }
             if (key == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
                 Print();
+                
             }
             Print(B, x, y);
         }

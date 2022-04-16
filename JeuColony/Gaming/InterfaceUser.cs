@@ -117,13 +117,18 @@ namespace JeuColony
                     }
                     else
                     {
-                        //Console.WriteLine(i + "- " + O);
-                        Console.WriteLine(P + "position :" + P.Coordinate[0] + " , " + P.Coordinate[1]);
+                        if (P is Ally A)
+                        {
+                            Console.WriteLine(" - " + A.Name + " , " + A.Profession);
+                        }
+                        else
+                        {
+                            Console.WriteLine(" - " + P.Name + " , ");
+                        }
                     }
                 }
                 catch (ArgumentOutOfRangeException) { }
             }
-
         }
         private void NavigateInterface(int nbPageMax,Object ObjectList)
         {
@@ -194,6 +199,24 @@ namespace JeuColony
                 POSITION_CURSOR = 0;
                 PrintFirstPage();
             }
+            if (key == ConsoleKey.P)
+            {
+
+                PAGE_OBJECT = 0;
+                POSITION_CURSOR = 0;
+                CreatePnj();
+            }
+        }
+        public void CreatePnj()
+        {
+            int i = 0;
+            Batiment B = MapGame.ListBatiments[i];
+            while (!(B is Dormitory) && i < MapGame.ListBatiments.Count)
+            {
+                i++;
+            }
+            Dormitory D = (Dormitory)B;
+            MapGame.AddPNJ(new Pioneer("Mat", D));
         }
         private void FocusBatInterface()
         {

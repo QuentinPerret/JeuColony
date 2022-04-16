@@ -13,6 +13,7 @@ namespace JeuColony
         private static int POSITION_CURSOR = 0;
         private static int PAGE_OBJECT = 0;
         private static readonly int NB_PAGE_OBJECT = 8;
+        private static readonly string[] LIST_PROFESSION = new string[] { " - PIONEER", " - BUILDER", " - DIGGER", " - FORESTER", " - SOLDIER" };
         public GameSimulation Simulation { get; set; }
         public MapGame MapGame { get; set; }
         public InterfaceUser(GameSimulation G, MapGame M)
@@ -61,6 +62,15 @@ namespace JeuColony
             int nbPageMax = MapGame.ListPNJ.Count / NB_PAGE_OBJECT;
             NavigateInterface(nbPageMax, MapGame.ListPNJ[0]);
             PrintListPNJ();
+        }
+        void PrintListProfession()
+        {
+            Console.Clear();
+            MapGame.AfficheMap();
+            ProposeListProfession(POSITION_CURSOR);
+            int nbPageMax = LIST_PROFESSION.Length / NB_PAGE_OBJECT;
+            NavigateInterface(nbPageMax, "P");
+            PrintListProfession();
         }
         public void AfficheListeBatiment(int place)
         {
@@ -132,7 +142,6 @@ namespace JeuColony
         }
         private void NavigateInterface(int nbPageMax,Object ObjectList)
         {
-            
             ConsoleKey key = Console.ReadKey().Key;
 
             if (ObjectList is PNJ)
@@ -178,6 +187,19 @@ namespace JeuColony
                     }
                 }
             }
+            else if (ObjectList == (Object)"P")
+            {
+                if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
+                {
+                    POSITION_CURSOR++;
+                }                                                                                                                                                                                                  
+                if (key == ConsoleKey.Enter)
+                {
+                    CreatePnj(POSITION_CURSOR);
+                    POSITION_CURSOR = 0;
+                    PrintFirstPage();
+                }
+            }
 
             if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
@@ -204,19 +226,38 @@ namespace JeuColony
 
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
-                CreatePnj();
+                PrintListProfession();
             }
         }
-        public void CreatePnj()
+        public void CreatePnj(int position)
         {
             int i = 0;
             Batiment B = MapGame.ListBatiments[i];
+            Dormitory D = (Dormitory)B;
+            PNJ Pnj;
             while (!(B is Dormitory) && i < MapGame.ListBatiments.Count)
             {
                 i++;
             }
-            Dormitory D = (Dormitory)B;
-            MapGame.AddPNJ(new Pioneer("Mat", D));
+            switch (position)
+            {
+                case 1:
+                    Pnj = new Builder(D);
+                    break;
+                case 2:
+                    Pnj = new Digger(D);
+                    break;
+                case 3:
+                    Pnj = new Forester(D);
+                    break;
+                case 4:
+                    Pnj = new Soldier(D);
+                    break;
+                default:
+                    Pnj = new Pioneer(D);
+                    break;
+            }
+            MapGame.AddPNJ(Pnj);
         }
         private void FocusBatInterface()
         {
@@ -273,6 +314,26 @@ namespace JeuColony
                 {
                     //Console.WriteLine(i + "- " + O);
                     Console.WriteLine(list[i]);
+                }
+            }
+        }
+        private void ProposeListProfession(int place)
+        {
+            Console.WriteLine("LIST PROFFESSION");
+            for (int i = 0; i < LIST_PROFESSION.Length; i++)
+            {
+                if (i == place)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    //Console.WriteLine((i + "- " + O)) ;
+                    Console.WriteLine(LIST_PROFESSION[i]);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    //Console.WriteLine(i + "- " + O);
+                    Console.WriteLine(LIST_PROFESSION[i]);
                 }
             }
         }

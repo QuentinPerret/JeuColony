@@ -57,7 +57,7 @@ namespace JeuColony
             {
                 i++;
             }
-            AddPNJ(new Pioneer("Damien", (Dormitory)ListBatiments[i]));
+            AddPNJ(new Pioneer((Dormitory)ListBatiments[i]));
             /*Random R = new Random();
             _listPNJ[0].MoveTo(new int[] { R.Next(Nbl), R.Next(Nbl) }, this);*/
         }

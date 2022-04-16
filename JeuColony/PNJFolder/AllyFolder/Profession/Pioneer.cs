@@ -3,7 +3,7 @@ namespace JeuColony.PNJFolder
 {
     class Pioneer : Ally
     {
-        public Pioneer(string name, Dormitory D) : base(name,D) { Profession = "Pioneer"; }
+        public Pioneer(Dormitory D) : base(D) { Profession = "Pioneer"; }
         protected override void GenerateLoggingPower()
         {
             LoggingPower = 1;

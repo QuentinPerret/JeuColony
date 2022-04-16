@@ -3,7 +3,7 @@ namespace JeuColony.PNJFolder
 {
     class Forester : Ally
     {
-        public Forester(string name , Dormitory D) : base(name,D) { Profession = "Forester"; }
+        public Forester (Dormitory D) : base(D) { Profession = "Forester"; }
         protected override void GenerateLoggingPower()
         {
             LoggingPower = 2;

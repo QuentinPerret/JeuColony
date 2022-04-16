@@ -3,7 +3,7 @@ namespace JeuColony.PNJFolder
 {
     class Builder : Ally
     {
-        public Builder(string name, Dormitory D) : base(name, D) { Profession = "Builder"; }
+        public Builder(Dormitory D) : base(D) { Profession = "Builder"; }
         protected override void GenerateBuildingPower()
         {
             BuildingPower = 2;

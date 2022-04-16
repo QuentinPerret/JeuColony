@@ -70,5 +70,8 @@
     <None Include="App.config" />
     <None Include="ClassDiagram4.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Gaming\ListPrenom.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

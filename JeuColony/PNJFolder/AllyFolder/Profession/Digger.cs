@@ -3,7 +3,7 @@ namespace JeuColony.PNJFolder
 {
     class Digger : Ally
     {
-        public Digger(string name,Dormitory D) : base(name,D) { Profession = "Digger"; }
+        public Digger(Dormitory D) : base(D) { Profession = "Digger"; }
         protected override void GenerateDiggingPower()
         {
             DiggingPower = 2;

@@ -1,4 +1,7 @@
-﻿using JeuColony.Batiments;
+﻿using System;
+using System.IO;
+using System.Text;
+using JeuColony.Batiments;
 
 namespace JeuColony.PNJFolder
 {
@@ -9,10 +12,20 @@ namespace JeuColony.PNJFolder
         protected int LoggingPower { get; set; }
         protected Batiment BatimentOccupied { get; set; }
         public string Profession { get; set; }
-        public Ally(string name , Batiment B) : base(name)
+
+        static protected Random random = new Random();
+        public Ally(Batiment B) : base(GenerateName())
         {
             GenerateAllStat();
             Spawn(B);
+        }
+        static protected string GenerateName()
+        {
+            var Fpath = @"..\..\Gaming\ListPrenom.txt";
+            //C:\Users\Utilisateur\source\repos\JeuColony\JeuColony\Gaming\ListPrenom.txt
+            //C:\Users\Utilisateur\source\repos\JeuColony\JeuColony\PNJFolder\AllyFolder\Ally.cs
+            string[] content = File.ReadAllLines (Fpath, Encoding.UTF8);
+            return content[random.Next(content.Length)];
         }
         protected override void GenerateAllStat()
         {

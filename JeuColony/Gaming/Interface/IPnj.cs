@@ -33,7 +33,7 @@ namespace JeuColony
 
         private void NavigateInterface(int nbPageMax)
         {
-            ConsoleKey key = Console.ReadKey().Key;
+            key = Console.ReadKey().Key;
             if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
@@ -68,21 +68,19 @@ namespace JeuColony
             {
                 FocusPNJInterface();
             }
-            if (Simulation.PLAY_TURN)
+            if (key == ConsoleKey.Spacebar)
             {
-                if (key == ConsoleKey.Spacebar)
-                {
-                    Simulation.EndTurn();
-                }
-                else
-                {
+                Simulation.EndTurn();
+            }
+            else 
+            {
+                if (key != ConsoleKey.P)
                     PrintListPNJ();
-                }
             }
         }
         private void NavigateInterfaceCreationPnj(int nbPageMax)
         {
-            ConsoleKey key = Console.ReadKey().Key;
+            key = Console.ReadKey().Key;
             if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
@@ -111,7 +109,7 @@ namespace JeuColony
             {
                 Simulation.EndTurn();
             }
-            else
+            else if(key != ConsoleKey.Enter)
             {
                 PrintListProfession();
             }
@@ -163,6 +161,8 @@ namespace JeuColony
             ProposeListProfession(POSITION_CURSOR);
             int nbPageMax = LIST_PROFESSION.Length / NB_PAGE_OBJECT;
             NavigateInterfaceCreationPnj(nbPageMax);
+            PAGE_OBJECT = 0;
+            POSITION_CURSOR = 0;
         }
         public void CreatePnj(int position)
         {

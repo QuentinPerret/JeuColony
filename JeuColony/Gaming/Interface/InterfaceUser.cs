@@ -13,6 +13,7 @@ namespace JeuColony
         protected int POSITION_CURSOR = 0;
         protected int PAGE_OBJECT = 0;
         protected readonly int NB_PAGE_OBJECT = 8;
+        protected ConsoleKey key { get; set; }
         public GameSimulation Simulation { get; set; }
         public MapGame MapGame { get; set; }
         public InterfaceUser(GameSimulation G, MapGame M)

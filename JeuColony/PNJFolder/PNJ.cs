@@ -78,7 +78,7 @@ namespace JeuColony.PNJFolder
                 }
                 else if (Coordinate[0] > coordinate[0])
                 {
-                    coordinate[0]--;
+                    Coordinate[0]--;
                 }
                 if (Coordinate[1] < coordinate[1])
                 {

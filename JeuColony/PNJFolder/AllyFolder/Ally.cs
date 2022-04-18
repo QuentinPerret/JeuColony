@@ -1,20 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using JeuColony.Batiments;
 
 namespace JeuColony.PNJFolder
 {
-    class Ally : PNJ
+     abstract class Ally : PNJ
     {
-        protected int DiggingPower { get; set; }
+        public int DiggingPower { get; set; }
         protected int BuildingPower { get; set; }
-        protected int LoggingPower { get; set; }
+        public int LoggingPower { get; set; }
         protected Batiment BatimentOccupied { get; set; }
         public string Profession { get; set; }
 
         static protected Random random = new Random();
-        public Ally(Batiment B) : base(GenerateName())
+        public Ally(Batiment B, MapGame M) : base(GenerateName(), M)
         {
             GenerateAllStat();
             Spawn(B);
@@ -74,5 +75,6 @@ namespace JeuColony.PNJFolder
         {
             return base.PagePNJ() + "Profession : " + Profession;
         }
+
     }
 }

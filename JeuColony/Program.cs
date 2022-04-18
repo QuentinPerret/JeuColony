@@ -11,7 +11,7 @@ namespace JeuColony
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);*/
             GameSimulation G = new GameSimulation();
-            G.PlayOneTurn();
+            G.Start();
             Console.ReadLine();
         }
     }

@@ -11,12 +11,14 @@ namespace JeuColony
 {
     class GameSimulation
     {
+        public int nbRoundPlay{get;set;}
         public InterfaceUser InterfaceUser { get; set; }
         public MapGame MapGame { get; set; }
         public PlayerInventory PlayerInventory { get; set; }
         public bool PLAY_TURN = true;
         public GameSimulation()
         {
+            nbRoundPlay = 0;
             Console.SetWindowSize(150, 40);
             PlayerInventory = new PlayerInventory();
             MapGame = new MapGame(this);
@@ -27,17 +29,18 @@ namespace JeuColony
         {
             while (PLAY_TURN)
             {
-                InterfaceUser.StartPrinting();
                 foreach (PNJ P in MapGame.ListPNJ)
                 {
                     P.PlayOneTurn();
                 }
+                InterfaceUser.StartPrinting();
             }
             PLAY_TURN = true ;
+            nbRoundPlay ++;
         }
         public void Start()
         {
-            for(int i  =0; i < 5; i++)
+            while(true)
             {
                 PlayOneTurn();
             }

@@ -51,10 +51,10 @@
     <Compile Include="Batiments\Batiment.cs" />
     <Compile Include="Batiments\NaturalElement.cs" />
     <Compile Include="Batiments\TrainingCamp.cs" />
-    <Compile Include="Gaming\IBatiment.cs" />
-    <Compile Include="Gaming\IFirstPage.cs" />
-    <Compile Include="Gaming\InterfaceUser.cs" />
-    <Compile Include="Gaming\IPnj.cs" />
+    <Compile Include="Gaming\Interface\IBatiment.cs" />
+    <Compile Include="Gaming\Interface\IFirstPage.cs" />
+    <Compile Include="Gaming\Interface\InterfaceUser.cs" />
+    <Compile Include="Gaming\Interface\IPnj.cs" />
     <Compile Include="Gaming\MapGame.cs" />
     <Compile Include="Gaming\PlayerInventory.cs" />
     <Compile Include="PNJFolder\PNJ.cs" />

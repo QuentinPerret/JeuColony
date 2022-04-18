@@ -25,11 +25,11 @@ namespace JeuColony
                 Console.Clear();
                 MapGame.AfficheMap();
                 ProposeList(POSITION_CURSOR);
-                NavigateInterface(0, null);
+                NavigateInterface(0);
             }
             //PrintFirstPage();
         }
-        private void NavigateInterface(int nbPageMax, Object ObjectList)
+        private void NavigateInterface(int nbPageMax)
         {
             ConsoleKey key = Console.ReadKey().Key;
 
@@ -71,7 +71,7 @@ namespace JeuColony
         }
         private void ProposeList(int place)
         {
-            Console.WriteLine("LIST OBJECT");
+            Console.WriteLine("LIST OBJECT, Round Played : " + Simulation.nbRoundPlay);
             string[] list = new string[] { " - LIST PNJ", " - LIST BATIMENT" };
             for (int i = 0; i < list.Length; i++)
             {

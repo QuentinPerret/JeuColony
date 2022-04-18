@@ -27,7 +27,7 @@ namespace JeuColony
             }
             AfficheListeBatiment(POSITION_CURSOR);
             int nbPageMax = MapGame.ListBatiments.Count / NB_PAGE_OBJECT;
-            NavigateInterface(nbPageMax, MapGame.ListBatiments[0]);
+            NavigateInterface(nbPageMax);
         }
         public void AfficheListeBatiment(int place)
         {
@@ -71,12 +71,16 @@ namespace JeuColony
                 POSITION_CURSOR = 0;
                 PrintListBat();
             }
-            while (key != ConsoleKey.Escape)
+            if(key == ConsoleKey.Spacebar)
+            {
+                Simulation.EndTurn();
+            }
+            else 
             {
                 FocusBatInterface();
             }
         }
-        private void NavigateInterface(int nbPageMax,Object ObjectList)
+        private void NavigateInterface(int nbPageMax)
         {
             ConsoleKey key = Console.ReadKey().Key;
             if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
@@ -107,7 +111,17 @@ namespace JeuColony
                 POSITION_CURSOR = 0;
                 _firstPage.PrintFirstPage();
             }
-                PrintListBat();
+            if (Simulation.PLAY_TURN)
+            {
+                if (key == ConsoleKey.Spacebar)
+                {
+                    Simulation.EndTurn();
+                }
+                else
+                {
+                    PrintListBat();
+                }
+            }
         }
     }
 }

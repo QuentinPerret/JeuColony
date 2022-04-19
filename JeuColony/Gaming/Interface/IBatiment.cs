@@ -12,9 +12,13 @@ namespace JeuColony
     internal class IBatiment : InterfaceUser
     {
          readonly IFirstPage _firstPage;
+        private static int x;
+        private static int y;
+        private static bool problem = false;
+        public object[,] Preview { get; private set; }
         private ConsoleKey KeyCreationBat { get; set; }
         private static readonly string[] LIST_BATIMENT = new string[] { "- DORMITORY", "- TRAININGCAMP", "-CANTINA" };
-        public IBatiment(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; }
+        public IBatiment(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; y = MapGame.Nbc / 2; x = MapGame.Nbl / 2; }
         public void PrintListBat()
         {
             Console.Clear();
@@ -69,6 +73,50 @@ namespace JeuColony
             PAGE_OBJECT = 0;
             POSITION_CURSOR = 0;
         }
+        public void PrintPreview(Batiment B)
+        {
+            Console.Clear();
+            PreviewBatimentCreation(B, x, y);
+            NavigateMap(B);
+        }
+        public void PreviewBatimentCreation(Batiment B, int x, int y)
+        {
+
+            Preview = new object[MapGame.Nbl, MapGame.Nbc];
+            //AfficheMap(B);
+            problem = false;
+            Preview[x, y] = B;
+            for (int i = 0; i < MapGame.Nbl - B.Size[0]; i++)
+            {
+                for (int j = 0; j < MapGame.Nbc - B.Size[1]; j++)
+                {
+                    if (Preview[i, j] == Preview[x, y] || Preview[i + B.Size[0], j + B.Size[1]] == Preview[x, y] || Preview[i, j + B.Size[1]] == Preview[x, y] || Preview[i + B.Size[0], j] == Preview[x, y])
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write("   ");
+                        Console.BackgroundColor = ConsoleColor.Black;
+                    }
+                    else if (MapGame.Map[i, j] != null)
+                    {
+                        Console.Write(MapGame.Map[i, j].ToString());
+
+                    }
+                    else
+                    {
+                        Console.Write(" . ");
+                    }
+                    if (MapGame.Map[x, y] != null || MapGame.Map[x + B.Size[0], y + B.Size[1]] != null || MapGame.Map[x, y + B.Size[1]] != null || MapGame.Map[x + B.Size[0], y] != null)
+                    {
+                        problem = true;
+                    }
+                    else
+                    {
+                        problem = false;
+                    }
+                }
+                Console.Write("\n");
+            }
+        }
         protected void ProposeListTypeBat(int place)
         {
             Console.WriteLine("LIST TYPE BATIMENT");
@@ -89,7 +137,7 @@ namespace JeuColony
                 }
             }
         }
-        public void CreateBat(int position)
+        public Batiment CreateBat(int position)
         {
             Batiment Bat;
             switch (position)
@@ -105,7 +153,82 @@ namespace JeuColony
                     Bat = new Dormitory(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
                     break;
             }
+            Bat.Coordinate[0]=x;
+            Bat.Coordinate[0] = y;
             MapGame.AddBatiment(Bat);
+            return Bat;
+        }
+        public void InstallBatiment(Batiment Bat)
+        {
+
+            Console.Clear();
+            PreviewBatimentCreation(Bat, x, y);
+            //NavigateInterfaceBatimentCreation();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.Write("Etes-vous sûr de vouloir placer ce batiment ici? (appuyer sur entrée si oui ou sur echap sinon)");
+            Console.BackgroundColor = ConsoleColor.Black;
+            ConsoleKey key = Console.ReadKey().Key;
+            if (key == ConsoleKey.Enter && !problem)
+            {
+                MapGame.AddBatiment(Bat);
+                PrintListBat();
+            }
+            else if (problem)
+            {
+                Console.Clear();
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.Write("Impossible de placer ce batiment à cet endroit veuillez réessayer (appuyez sur une touche)");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ReadKey();
+                NavigateMap(Bat);
+            }
+
+            if (key == ConsoleKey.Escape)
+            {
+                
+            }
+            while (key != ConsoleKey.Escape)
+            {
+                InstallBatiment(Bat);
+            }
+
+        }
+        private void NavigateMap(Batiment B)
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.WriteLine("\n Appuyez sur les flèches pour placer un batiment puis sur espace pour le placer");
+            Console.BackgroundColor = ConsoleColor.Black;
+            ConsoleKey key = Console.ReadKey().Key;
+            if (key == ConsoleKey.DownArrow && x <= MapGame.Nbl - B.Size[1] - 2)
+            {
+                x++;
+            }
+            else if (key == ConsoleKey.UpArrow && x >= B.Size[0] + 1)
+            {
+                x--;
+            }
+            if (key == ConsoleKey.RightArrow && y <= MapGame.Nbc - B.Size[1] - 2)
+            {
+                y++;
+            }
+            else if (key == ConsoleKey.LeftArrow && y >= B.Size[1] + 1)
+            {
+                y--;
+            }
+
+            if (key == ConsoleKey.Spacebar)
+            {
+                InstallBatiment( B);
+            }
+            if (key == ConsoleKey.Escape)
+            {
+                
+
+            }
+            Console.Clear();
+            PreviewBatimentCreation(B, x, y);
+            NavigateMap(B);
+            //NavigateInterface(nbPageMax);
         }
         private void NavigateInterfaceCreationBat(int nbPageMax)
         {
@@ -130,9 +253,9 @@ namespace JeuColony
             }
             if (KeyCreationBat == ConsoleKey.Enter)
             {
-                CreateBat(POSITION_CURSOR);
+                Batiment Bat = CreateBat(POSITION_CURSOR);
                 POSITION_CURSOR = 0;
-                PrintListBat();
+                PrintPreview(Bat);
             }
             if (KeyCreationBat == ConsoleKey.Escape)
             {

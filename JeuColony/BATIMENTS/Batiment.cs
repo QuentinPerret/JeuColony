@@ -7,7 +7,7 @@ namespace JeuColony.Batiments
     abstract class Batiment
     {
         public int[] Size { get; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
-        public int[] Coordinate { get; protected set; } = new int[] { -1, -1 };//coordinate x and y
+        public int[] Coordinate { get;  set; } = new int[] { -1, -1 };//coordinate x and y
         protected int Level { get; set; }
         protected int CapacityMax { get; }
         protected int HealthPointMax { get; set; }

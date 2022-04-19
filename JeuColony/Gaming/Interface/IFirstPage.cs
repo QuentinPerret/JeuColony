@@ -31,28 +31,26 @@ namespace JeuColony
         }
         private void NavigateInterface(int nbPageMax)
         {
-            key = Console.ReadKey().Key;
-
-
-            if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            Key = Console.ReadKey().Key;
+            if (Key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
             }
-            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            if (Key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
             {
                 PAGE_OBJECT++;
                 POSITION_CURSOR = 0;
             }
-            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            else if (Key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < 1)
+            if (Key == ConsoleKey.DownArrow && POSITION_CURSOR < 1)
             {
                 POSITION_CURSOR++;
             }
-            if (key == ConsoleKey.Enter)
+            if (Key == ConsoleKey.Enter)
             {
                 if (POSITION_CURSOR == 0)
                 {
@@ -64,7 +62,7 @@ namespace JeuColony
                     _batPage.PrintListBat();
                 }
             }
-            if (key == ConsoleKey.Spacebar)
+            if (Key == ConsoleKey.Spacebar)
             {
                 Simulation.EndTurn();
             }

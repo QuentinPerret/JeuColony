@@ -82,28 +82,25 @@ namespace JeuColony
                     }
                     else
                     {
-                        chRes += " . ";
+                        chRes += "   ";
                     }
                 }
                 chRes += "\n";
             }
             Console.WriteLine(chRes);
         }
-        public void AfficheMap(Object O)
+        public void AfficheMapBat(Batiment B)
         {
-            if (O is PNJ P)
-            {
-                O = Map[P.Coordinate[0], P.Coordinate[1]];
-            }
             for (int i = 0; i < Nbl; i++)
             {
                 for (int j = 0; j < Nbc; j++)
                 {
                     if (Map[i, j] != null)
                     {
-                        if (Map[i, j] == O)
+                        if (Map[i, j] == B)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.Write(Map[i, j]);
                             Console.ResetColor();
                         }
@@ -114,10 +111,36 @@ namespace JeuColony
                     }
                     else
                     {
-                        Console.Write(" . ");
+                        Console.Write("   ");
                     }
                 }
                 Console.WriteLine();
+            }
+        }
+        public void AfficheMapPnj(PNJ P) //ajout l'affichage de tous les pnj de la liste 
+        {
+            for (int i = 0; i < Nbl; i++)
+            {
+                for (int j = 0; j < Nbc; j++)
+                {
+                    int[] position = new int[] { i, j };
+                    if (i == P.Coordinate[0] && j ==P.Coordinate[1])
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(" . ");
+                    }
+                    else if ( Map[i, j] != null)
+                    {
+                        Console.Write(Map[i, j]);
+                    }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+                    Console.ResetColor();
+                } 
+            Console.WriteLine();
             }
         }
     }

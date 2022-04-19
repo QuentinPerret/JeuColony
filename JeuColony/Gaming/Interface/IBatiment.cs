@@ -16,14 +16,14 @@ namespace JeuColony
         public void PrintListBat()
         {
             Console.Clear();
-            Object O = MapGame.ListBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
-            if (O == null)
+            Batiment B = MapGame.ListBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
+            if (B == null)
             {
                 MapGame.AfficheMap();
             }
             else
             {
-                MapGame.AfficheMap(O);
+                MapGame.AfficheMapBat(B);
             }
             AfficheListeBatiment(POSITION_CURSOR);
             int nbPageMax = MapGame.ListBatiments.Count / NB_PAGE_OBJECT;
@@ -61,7 +61,7 @@ namespace JeuColony
         {
             Batiment B = MapGame.ListBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             Console.Clear();
-            MapGame.AfficheMap(B);
+            MapGame.AfficheMapBat(B);
             Console.WriteLine(B.PageBat());
 
             ConsoleKey key = Console.ReadKey().Key;
@@ -82,30 +82,30 @@ namespace JeuColony
         }
         private void NavigateInterface(int nbPageMax)
         {
-            key = Console.ReadKey().Key;
-            if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            Key = Console.ReadKey().Key;
+            if (Key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
             }
-            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            if (Key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
             {
                 PAGE_OBJECT++;
                 POSITION_CURSOR = 0;
             }
-            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            else if (Key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
+            if (Key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
             {
                 POSITION_CURSOR++;
             }
-            if (key == ConsoleKey.Enter)
+            if (Key == ConsoleKey.Enter)
             {
                 FocusBatInterface();
             }
-            if (key == ConsoleKey.Escape)
+            if (Key == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
@@ -113,7 +113,7 @@ namespace JeuColony
             }
             if (Simulation.PLAY_TURN)
             {
-                if (key == ConsoleKey.Spacebar)
+                if (Key == ConsoleKey.Spacebar)
                 {
                     Simulation.EndTurn();
                 }

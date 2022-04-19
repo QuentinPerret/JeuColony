@@ -12,19 +12,21 @@ namespace JeuColony
     internal class IPnj : InterfaceUser
     {
         private static readonly string[] LIST_PROFESSION = new string[] { " - PIONEER", " - BUILDER", " - DIGGER", " - FORESTER", " - SOLDIER" };
+        private ConsoleKey KeyPnj { get; set; }
+        private ConsoleKey KeyCreationPnj { get; set; }
         readonly IFirstPage _firstPage;
         public IPnj(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; }
         public void PrintListPNJ()
         {
             Console.Clear();
-            Object O = MapGame.ListPNJ[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
-            if (O == null)
+            PNJ P = MapGame.ListPNJ[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
+            if (P == null)
             {
                 MapGame.AfficheMap();
             }
             else
             {
-                MapGame.AfficheMap(O);
+                MapGame.AfficheMapPnj(P);
             }
             AfficheListePNJ(POSITION_CURSOR);
             int nbPageMax = MapGame.ListPNJ.Count / NB_PAGE_OBJECT;
@@ -33,83 +35,88 @@ namespace JeuColony
 
         private void NavigateInterface(int nbPageMax)
         {
-            key = Console.ReadKey().Key;
-            if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            KeyPnj = Console.ReadKey().Key;
+            if (KeyPnj == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
             }
-            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            if (KeyPnj == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
             {
                 PAGE_OBJECT++;
                 POSITION_CURSOR = 0;
             }
-            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            else if (KeyPnj == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (key == ConsoleKey.P)
+            if (KeyPnj == ConsoleKey.P)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
                 PrintListProfession();
             }
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListPNJ.Count - 1)
+            if (KeyPnj == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListPNJ.Count - 1)
             {
                 POSITION_CURSOR++;
             }
-            if(key == ConsoleKey.Escape)
+            if(KeyPnj == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
                 _firstPage.PrintFirstPage();
             }
-            if (key == ConsoleKey.Enter)
+            if (KeyPnj == ConsoleKey.Enter)
             {
                 FocusPNJInterface();
             }
-            if (key == ConsoleKey.Spacebar)
+            if (KeyPnj == ConsoleKey.Spacebar)
             {
                 Simulation.EndTurn();
             }
-            else 
+            else if (Simulation.PLAY_TURN)
             {
-                if (key != ConsoleKey.P)
-                    PrintListPNJ();
+                PrintListPNJ();
             }
         }
         private void NavigateInterfaceCreationPnj(int nbPageMax)
         {
-            key = Console.ReadKey().Key;
-            if (key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            KeyCreationPnj = Console.ReadKey().Key;
+            if (KeyCreationPnj == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
             }
-            if (key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            if (KeyCreationPnj == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
             {
                 PAGE_OBJECT++;
                 POSITION_CURSOR = 0;
             }
-            else if (key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            else if (KeyCreationPnj == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < LIST_PROFESSION.Length - 1)
+            if (KeyCreationPnj == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < LIST_PROFESSION.Length - 1)
             {
                 POSITION_CURSOR++;
             }
-            if (key == ConsoleKey.Enter)
+            if (KeyCreationPnj == ConsoleKey.Enter)
             {
                 CreatePnj(POSITION_CURSOR);
                 POSITION_CURSOR = 0;
                 PrintListPNJ();
             }
-            if (key == ConsoleKey.Spacebar)
+            if(KeyCreationPnj == ConsoleKey.Escape)
             {
+                POSITION_CURSOR = 0;
+                PrintListPNJ();
+            }
+            if (KeyCreationPnj == ConsoleKey.Spacebar)
+            {
+                KeyPnj = ConsoleKey.Spacebar;
                 Simulation.EndTurn();
             }
-            else if(key != ConsoleKey.Enter)
+            else if(Simulation.PLAY_TURN)
             {
                 PrintListProfession();
             }
@@ -218,7 +225,7 @@ namespace JeuColony
         {
             PNJ P = MapGame.ListPNJ[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             Console.Clear();
-            MapGame.AfficheMap(P);
+            MapGame.AfficheMapPnj(P);
             Console.WriteLine(P.PagePNJ());
             ConsoleKey key = Console.ReadKey().Key;
             if (key == ConsoleKey.Escape)
@@ -231,7 +238,7 @@ namespace JeuColony
             {
                 Simulation.EndTurn();
             }
-            else
+            else if (Simulation.PLAY_TURN)
             {
                 FocusPNJInterface();
             }

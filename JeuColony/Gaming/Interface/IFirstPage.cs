@@ -11,7 +11,7 @@ namespace JeuColony
 {
     internal class IFirstPage : InterfaceUser
     {
-        readonly IPnj _pnjPage;
+        readonly IBat _pnjPage;
         readonly IBatiment _batPage;
         public IFirstPage(GameSimulation G, MapGame M) : base(G, M)
         {

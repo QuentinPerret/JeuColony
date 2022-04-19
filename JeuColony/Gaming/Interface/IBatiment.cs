@@ -12,6 +12,8 @@ namespace JeuColony
     internal class IBatiment : InterfaceUser
     {
          readonly IFirstPage _firstPage;
+        private ConsoleKey KeyCreationBat { get; set; }
+        private static readonly string[] LIST_BATIMENT = new string[] { "- DORMITORY", "- TRAININGCAMP", "-CANTINA" };
         public IBatiment(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; }
         public void PrintListBat()
         {
@@ -56,6 +58,96 @@ namespace JeuColony
                 catch (ArgumentOutOfRangeException) { }
             }
 
+        }
+        public void PrintListBat()
+        {
+            Console.Clear();
+            MapGame.AfficheMap();
+            ProposeListProfession(POSITION_CURSOR);
+            int nbPageMax = LIST_BATIMENT.Length / NB_PAGE_OBJECT;
+            NavigateInterfaceCreationBat(nbPageMax);
+            PAGE_OBJECT = 0;
+            POSITION_CURSOR = 0;
+        }
+        protected void ProposeListProfession(int place)
+        {
+            Console.WriteLine("LIST PROFFESSION");
+            for (int i = 0; i < LIST_BATIMENT.Length; i++)
+            {
+                if (i == place)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    //Console.WriteLine((i + "- " + O)) ;
+                    Console.WriteLine(LIST_BATIMENT[i]);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    //Console.WriteLine(i + "- " + O);
+                    Console.WriteLine(LIST_BATIMENT[i]);
+                }
+            }
+        }
+        public void CreateBat(int position)
+        {
+            Batiment Bat;
+            switch (position)
+            {
+                case 1:
+                    Bat = new TrainingCamp(D, MapGame);
+                    break;
+                case 2:
+                    Bat = new Cantina(D, MapGame);
+                    break;
+                
+                default:
+                    Bat = new Dormitory(D, MapGame);
+                    break;
+            }
+            MapGame.AddPNJ(Pnj);
+        }
+        private void NavigateInterfaceCreationBat(int nbPageMax)
+        {
+            KeyCreationBat = Console.ReadKey().Key;
+            if (KeyCreationBat == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            {
+                POSITION_CURSOR--;
+            }
+            if (KeyCreationBat == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            {
+                PAGE_OBJECT++;
+                POSITION_CURSOR = 0;
+            }
+            else if (KeyCreationBat == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            {
+                PAGE_OBJECT--;
+                POSITION_CURSOR = 0;
+            }
+            if (KeyCreationBat == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < LIST_PROFESSION.Length - 1)
+            {
+                POSITION_CURSOR++;
+            }
+            if (KeyCreationBat == ConsoleKey.Enter)
+            {
+                CreateBat(POSITION_CURSOR);
+                POSITION_CURSOR = 0;
+                PrintListPNJ();
+            }
+            if (KeyCreationBat == ConsoleKey.Escape)
+            {
+                POSITION_CURSOR = 0;
+                PrintListPNJ();
+            }
+            if (KeyCreationBat == ConsoleKey.Spacebar)
+            {
+                KeyPnj = ConsoleKey.Spacebar;
+                Simulation.EndTurn();
+            }
+            else if (Simulation.PLAY_TURN)
+            {
+                PrintListProfession();
+            }
         }
         protected void FocusBatInterface()
         {

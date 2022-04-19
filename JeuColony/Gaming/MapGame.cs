@@ -117,20 +117,27 @@ namespace JeuColony
                 Console.WriteLine();
             }
         }
-        public void AfficheMapPnj(PNJ P) //ajout l'affichage de tous les pnj de la liste 
+        public void AfficheMapPnj(PNJ P) //ajout l'affichage de tous les pnj de la liste + affichage 
         {
             for (int i = 0; i < Nbl; i++)
             {
                 for (int j = 0; j < Nbc; j++)
                 {
                     int[] position = new int[] { i, j };
-                    if (i == P.Coordinate[0] && j ==P.Coordinate[1])
+                    if (i == P.Coordinate[0] && j == P.Coordinate[1])
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write(" . ");
+                        if (Map[i, j] == null) 
+                        {
+                            Console.Write(" . ");
+                        }
+                        else 
+                        {
+                            Console.WriteLine(Map[i, j]);
+                        } 
                     }
-                    else if ( Map[i, j] != null)
+                    else if (Map[i, j] != null)
                     {
                         Console.Write(Map[i, j]);
                     }

@@ -9,13 +9,13 @@ using JeuColony.PNJFolder;
 
 namespace JeuColony
 {
-    internal class IBat : InterfaceUser
+    internal class IPnj : InterfaceUser
     {
         private static readonly string[] LIST_PROFESSION = new string[] { " - PIONEER", " - BUILDER", " - DIGGER", " - FORESTER", " - SOLDIER" };
         private ConsoleKey KeyPnj { get; set; }
         private ConsoleKey KeyCreationPnj { get; set; }
         readonly IFirstPage _firstPage;
-        public IBat(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; }
+        public IPnj(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; }
         public void PrintListPNJ()
         {
             Console.Clear();

@@ -59,19 +59,19 @@ namespace JeuColony
             }
 
         }
-        public void PrintListBat()
+        public void PrintListTypeBat()
         {
             Console.Clear();
             MapGame.AfficheMap();
-            ProposeListProfession(POSITION_CURSOR);
+            ProposeListTypeBat(POSITION_CURSOR);
             int nbPageMax = LIST_BATIMENT.Length / NB_PAGE_OBJECT;
             NavigateInterfaceCreationBat(nbPageMax);
             PAGE_OBJECT = 0;
             POSITION_CURSOR = 0;
         }
-        protected void ProposeListProfession(int place)
+        protected void ProposeListTypeBat(int place)
         {
-            Console.WriteLine("LIST PROFFESSION");
+            Console.WriteLine("LIST TYPE BATIMENT");
             for (int i = 0; i < LIST_BATIMENT.Length; i++)
             {
                 if (i == place)
@@ -95,17 +95,17 @@ namespace JeuColony
             switch (position)
             {
                 case 1:
-                    Bat = new TrainingCamp(D, MapGame);
+                    Bat = new TrainingCamp(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
                     break;
                 case 2:
-                    Bat = new Cantina(D, MapGame);
+                    Bat = new Cantina(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
                     break;
                 
                 default:
-                    Bat = new Dormitory(D, MapGame);
+                    Bat = new Dormitory(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
                     break;
             }
-            MapGame.AddPNJ(Pnj);
+            MapGame.AddBatiment(Bat);
         }
         private void NavigateInterfaceCreationBat(int nbPageMax)
         {
@@ -124,7 +124,7 @@ namespace JeuColony
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (KeyCreationBat == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < LIST_PROFESSION.Length - 1)
+            if (KeyCreationBat == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < LIST_BATIMENT.Length - 1)
             {
                 POSITION_CURSOR++;
             }
@@ -132,21 +132,21 @@ namespace JeuColony
             {
                 CreateBat(POSITION_CURSOR);
                 POSITION_CURSOR = 0;
-                PrintListPNJ();
+                PrintListBat();
             }
             if (KeyCreationBat == ConsoleKey.Escape)
             {
                 POSITION_CURSOR = 0;
-                PrintListPNJ();
+                PrintListBat();
             }
             if (KeyCreationBat == ConsoleKey.Spacebar)
             {
-                KeyPnj = ConsoleKey.Spacebar;
+                KeyBat = ConsoleKey.Spacebar;
                 Simulation.EndTurn();
             }
             else if (Simulation.PLAY_TURN)
             {
-                PrintListProfession();
+                PrintListTypeBat();
             }
         }
         protected void FocusBatInterface()
@@ -174,30 +174,36 @@ namespace JeuColony
         }
         private void NavigateInterface(int nbPageMax)
         {
-            Key = Console.ReadKey().Key;
-            if (Key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            KeyBat = Console.ReadKey().Key;
+            if (KeyBat == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
             }
-            if (Key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            if (KeyBat == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
             {
                 PAGE_OBJECT++;
                 POSITION_CURSOR = 0;
             }
-            else if (Key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            else if (KeyBat == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (Key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
+            if (KeyBat == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
             {
                 POSITION_CURSOR++;
             }
-            if (Key == ConsoleKey.Enter)
+            if (KeyBat == ConsoleKey.B)
+            {
+                PAGE_OBJECT = 0;
+                POSITION_CURSOR = 0;
+                PrintListTypeBat();
+            }
+            if (KeyBat == ConsoleKey.Enter)
             {
                 FocusBatInterface();
             }
-            if (Key == ConsoleKey.Escape)
+            if (KeyBat == ConsoleKey.Escape)
             {
                 PAGE_OBJECT = 0;
                 POSITION_CURSOR = 0;
@@ -205,7 +211,7 @@ namespace JeuColony
             }
             if (Simulation.PLAY_TURN)
             {
-                if (Key == ConsoleKey.Spacebar)
+                if (KeyBat == ConsoleKey.Spacebar)
                 {
                     Simulation.EndTurn();
                 }

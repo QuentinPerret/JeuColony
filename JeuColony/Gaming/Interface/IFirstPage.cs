@@ -11,7 +11,7 @@ namespace JeuColony
 {
     internal class IFirstPage : InterfaceUser
     {
-        readonly IBat _pnjPage;
+        readonly IPnj _pnjPage;
         readonly IBatiment _batPage;
         public IFirstPage(GameSimulation G, MapGame M) : base(G, M)
         {
@@ -31,26 +31,26 @@ namespace JeuColony
         }
         private void NavigateInterface(int nbPageMax)
         {
-            Key = Console.ReadKey().Key;
-            if (Key == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
+            KeyBat = Console.ReadKey().Key;
+            if (KeyBat == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
             }
-            if (Key == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
+            if (KeyBat == ConsoleKey.RightArrow && PAGE_OBJECT < nbPageMax)
             {
                 PAGE_OBJECT++;
                 POSITION_CURSOR = 0;
             }
-            else if (Key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
+            else if (KeyBat == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
                 POSITION_CURSOR = 0;
             }
-            if (Key == ConsoleKey.DownArrow && POSITION_CURSOR < 1)
+            if (KeyBat == ConsoleKey.DownArrow && POSITION_CURSOR < 1)
             {
                 POSITION_CURSOR++;
             }
-            if (Key == ConsoleKey.Enter)
+            if (KeyBat == ConsoleKey.Enter)
             {
                 if (POSITION_CURSOR == 0)
                 {
@@ -62,7 +62,7 @@ namespace JeuColony
                     _batPage.PrintListBat();
                 }
             }
-            if (Key == ConsoleKey.Spacebar)
+            if (KeyBat == ConsoleKey.Spacebar)
             {
                 Simulation.EndTurn();
             }

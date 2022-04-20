@@ -45,11 +45,11 @@
   <ItemGroup>
     <Compile Include="Batiments\Cantina.cs" />
     <Compile Include="Batiments\Dormitory.cs" />
-    <Compile Include="Batiments\Forest.cs" />
-    <Compile Include="Batiments\Water.cs" />
-    <Compile Include="Batiments\Quarry.cs" />
+    <Compile Include="Batiments\NaturalElement\Forest.cs" />
+    <Compile Include="Batiments\NaturalElement\Water.cs" />
+    <Compile Include="Batiments\NaturalElement\Quarry.cs" />
     <Compile Include="Batiments\Batiment.cs" />
-    <Compile Include="Batiments\NaturalElement.cs" />
+    <Compile Include="Batiments\NaturalElement\NaturalElement.cs" />
     <Compile Include="Batiments\TrainingCamp.cs" />
     <Compile Include="Gaming\Interface\IBatiment.cs" />
     <Compile Include="Gaming\Interface\IFirstPage.cs" />

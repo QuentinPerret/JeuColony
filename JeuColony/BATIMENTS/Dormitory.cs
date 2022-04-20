@@ -2,8 +2,10 @@
 {
     class Dormitory : Batiment
     {
+        public int Capacity { get; set; }
         public Dormitory(int[] size, MapGame Map) : base(size, Map)
         {
+            Capacity = 4;
             HealthPointMax = 100;
             BatimentType = "Dormitory";
             //GenerateBatiment(size, coordinate, state, 1);

@@ -180,30 +180,70 @@ namespace JeuColony
             int i = 0;
             Batiment B = MapGame.ListBatiments[i];
             Dormitory D = (Dormitory)B;
-            Ally ally;
+            Ally ally = null;
             while (!(B is Dormitory) && i < MapGame.ListBatiments.Count)
             {
                 i++;
             }
-            switch (position)
+            if (CountCapacityAlly() <= MapGame.ListPNJAlly.Count)
             {
-                case 1:
-                    ally = new Builder(D, MapGame);
-                    break;
-                case 2:
-                    ally = new Digger(D, MapGame);
-                    break;
-                case 3:
-                    ally = new Forester(D, MapGame);
-                    break;
-                case 4:
-                    ally = new Soldier(D, MapGame);
-                    break;
-                default:
-                    ally = new Pioneer(D, MapGame);
-                    break;
+                Console.WriteLine("You don't have anymore place to accomodate a new Pnj, create a new Dormitory to do so!");
+                Console.ReadLine();
             }
-            MapGame.AddPNJAlly(ally);
+            else
+            {
+                switch (position)
+                {
+                    case 1:
+                        ally = new Builder(D, MapGame);
+                        break;
+                    case 2:
+                        ally = new Digger(D, MapGame);
+                        break;
+                    case 3:
+                        ally = new Forester(D, MapGame);
+                        break;
+                    case 4:
+                        if (CountTrainingCamp() == 0)
+                        {
+                            Console.WriteLine("You need 1 more Training Camp to create a Soldier");
+                            Console.ReadLine();
+                        }
+                        else
+                        {
+                            ally = new Soldier(D, MapGame);
+                        }
+                        break;
+                    default:
+                        ally = new Pioneer(D, MapGame);
+                        break;
+                }
+                MapGame.AddPNJAlly(ally);
+            }
+        }
+        private int CountCapacityAlly()
+        {
+            int res = 0;
+            foreach (Batiment B in MapGame.ListBatiments)
+            {
+                if (B is Dormitory D)
+                {
+                    res+= D.Capacity;
+                }
+            }
+            return res;
+        }
+        private int CountTrainingCamp()
+        {
+            int res = 0;
+            foreach(Batiment B in MapGame.ListBatiments)
+            {
+                if(B is TrainingCamp)
+                {
+                    res++;
+                }
+            }
+            return res;
         }
         protected void ProposeListProfession(int place)
         {

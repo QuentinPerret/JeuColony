@@ -56,8 +56,6 @@ namespace JeuColony
                 i++;
             }
             AddPNJAlly(new Pioneer((Dormitory)ListBatiments[i], this));
-            /*Random R = new Random();
-            _listPNJ[0].MoveTo(new int[] { R.Next(Nbl), R.Next(Nbl) }, this);*/
         }
         public void AddBatiment(Batiment B)
         {
@@ -65,7 +63,10 @@ namespace JeuColony
         }
         public void AddPNJAlly(Ally A)
         {
-            ListPNJAlly.Add(A);
+            if(A != null)
+            {
+                ListPNJAlly.Add(A);
+            }
         }
         public void AddPNJEnemy(Enemy E)
         {
@@ -74,27 +75,27 @@ namespace JeuColony
         public void AfficheMap()
         {
             string strRes = "  ";
-            for (int i = 0; i < Nbl; i++)
+            /*for (int i = 0; i < Nbl; i++)
             {
                 strRes += " " + i;
                 if (i < 10)
                 {
                     strRes += " ";
                 }
-            }
+            }*/ //uncomment to see column on map
 
             Console.Write(strRes);
             Console.WriteLine();
             for (int i = 0; i < Nbl; i++)
             {
-                if (i < 10)
+                /*if (i < 10)
                 {
                     Console.Write(" " + i);
                 }
                 else
                 {
                     Console.Write(i);
-                }
+                }*/ // uncomment to see line on map 
                 for (int j = 0; j < Nbc; j++)
                 {
                     int[] position = new int[] { i, j };
@@ -124,7 +125,7 @@ namespace JeuColony
         public void AfficheMapBat(Batiment B)
         {
             string strRes = "  ";
-            for (int i = 0; i < Nbl; i++)
+            /*for (int i = 0; i < Nbl; i++)
             {
                 strRes += " " + i;
                 if (i < 10)
@@ -132,20 +133,20 @@ namespace JeuColony
                     strRes += " ";
 
                 }
-            }
+            }*/
 
             Console.Write(strRes);
             Console.WriteLine();
             for (int i = 0; i < Nbl; i++)
             {
-                if (i < 10)
+                /*if (i < 10)
                 {
                     Console.Write(" " + i);
                 }
                 else
                 {
                     Console.Write(i);
-                }
+                }*/
                 for (int j = 0; j < Nbc; j++)
                 {
                     int[] position = new int[] { i, j };
@@ -185,7 +186,7 @@ namespace JeuColony
         public void AfficheMapPnj(PNJ P) //ajout l'affichage de tous les pnj de la liste 
         {
             string strRes = "  ";
-            for (int i = 0; i < Nbl; i++)
+            /*for (int i = 0; i < Nbl; i++)
             {
                 strRes += " " + i;
                 if (i < 10)
@@ -193,19 +194,19 @@ namespace JeuColony
                     strRes += " ";
 
                 }
-            }
+            }*/
             Console.Write(strRes);
             Console.WriteLine();
             for (int i = 0; i < Nbl; i++)
             {
-                if (i < 10)
+                /*if (i < 10)
                 {
                     Console.Write(" " + i);
                 }
                 else
                 {
                     Console.Write(i);
-                }
+                }*/
                 for (int j = 0; j < Nbc; j++)
                 {
                     int[] position = new int[] { i, j };

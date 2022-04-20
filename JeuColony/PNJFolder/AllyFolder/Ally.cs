@@ -14,11 +14,12 @@ namespace JeuColony.PNJFolder
         protected Batiment BatimentOccupied { get; set; }
         public string Profession { get; set; }
         public bool Immobilized { get; set; }
-        public Ally(Batiment B, MapGame M) : base(GenerateName(), M)
+        public Ally(Dormitory D, MapGame M) : base(GenerateName(), M)
         {
             Immobilized = false;
             GenerateAllStat();
-            Spawn(B);
+            Spawn(D);
+
         }
         static protected string GenerateName()
         {
@@ -39,7 +40,7 @@ namespace JeuColony.PNJFolder
         }
         protected virtual void GenerateHealthPointMax()
         {
-            HealthPointMax = 20;
+            HealthPointMax = 25;
         }
         protected virtual void GenerateHealthPoint()
         {
@@ -66,9 +67,10 @@ namespace JeuColony.PNJFolder
         {
             Speed = 1;
         }
-        protected void Spawn(Batiment B)
+        protected void Spawn(Dormitory D)
         {
-            (Coordinate[0], Coordinate[1]) = (B.Coordinate[0], B.Coordinate[1]);
+            (Coordinate[0], Coordinate[1]) = (D.Coordinate[0], D.Coordinate[1]);
+            D.PlaceLeft--;
         }
         public override string PagePNJ()
         {

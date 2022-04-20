@@ -3,11 +3,13 @@
     class Dormitory : Construction
     {
         public int Capacity { get; set; }
+        public int PlaceLeft { get; set; }
         public Dormitory(MapGame Map) : base(Map)
         {
-            TimeLeftToConstruct = 4;
+            TimeLeftToConstruct = 3;
             Size = new int[] { 2, 3 };
             Capacity = 4;
+            PlaceLeft = 4;
             BatimentType = "Dormitory";
             GeneratePositionAlea();
         }

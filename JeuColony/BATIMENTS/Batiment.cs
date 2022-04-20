@@ -17,12 +17,10 @@ namespace JeuColony.Batiments
         {
             return random.Next(max);
         }
-        public Batiment(/*int[] size,*/int[] coordinate, MapGame Map)
+        public Batiment(int[] coordinate, MapGame Map)
         {
-            //Size = size;
             MapGame = Map;
             Level = 1;
-            //_state = true; //by default the batiment is functional at its creation
             GeneratePosition(coordinate);
         }
         public Batiment(MapGame Map)

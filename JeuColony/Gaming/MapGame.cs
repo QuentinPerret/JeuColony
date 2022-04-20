@@ -24,6 +24,7 @@ namespace JeuColony
             ListPNJAlly = new List<Ally>();
             ListPNJEnemy = new List<Enemy>();
             Map = new Object[Nbl, Nbc];
+            AddBatiment(new TrainingCamp(this));
             GenerateInitialBatiments();
             GenerateFirstColon();
         }

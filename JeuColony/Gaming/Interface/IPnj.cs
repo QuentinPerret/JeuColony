@@ -178,14 +178,23 @@ namespace JeuColony
         public void CreatePnj(int position)
         {
             int i = 0;
+            Dormitory D = null;
             Batiment B = MapGame.ListBatiments[i];
-            Dormitory D = (Dormitory)B;
-            Ally ally = null;
-            while (!(B is Dormitory) && i < MapGame.ListBatiments.Count)
+            while (i < MapGame.ListBatiments.Count-1)
             {
+                if (B is Dormitory Dor)
+                {
+                    if (Dor.PlaceLeft > 0)
+                    {
+                        D = B as Dormitory;
+                        break;
+                    }
+                }
                 i++;
+                B = MapGame.ListBatiments[i];
             }
-            if (CountCapacityAlly() <= MapGame.ListPNJAlly.Count)
+            Ally ally = null;
+            if (CountPlaceleft() == 0 || D == null)
             {
                 Console.WriteLine("You don't have anymore place to accomodate a new Pnj, create a new Dormitory to do so!");
                 Console.ReadLine();
@@ -219,7 +228,7 @@ namespace JeuColony
                     case 3:
                         if (MapGame.Simulation.PlayerInventory.NbWood > 1 && MapGame.Simulation.PlayerInventory.NbWood > 0)
                         {
-                            ally = new Builder(D, MapGame);
+                            ally = new Forester(D, MapGame);
                         }
                         else
                         {
@@ -263,14 +272,14 @@ namespace JeuColony
                 MapGame.AddPNJAlly(ally);
             }
         }
-        private int CountCapacityAlly()
+        private int CountPlaceleft()
         {
             int res = 0;
             foreach (Batiment B in MapGame.ListBatiments)
             {
                 if (B is Dormitory D && D.TimeLeftToConstruct == 0)
                 {
-                    res+= D.Capacity;
+                    res+= D.PlaceLeft;
                 }
             }
             return res;

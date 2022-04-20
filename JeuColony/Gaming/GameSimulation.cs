@@ -45,7 +45,7 @@ namespace JeuColony
                 Ally A = MapGame.ListPNJAlly[i];
                 A.PlayOneTurn();
             }
-            if (NbRoundPlay < 11)
+            if (NbRoundPlay < 50)
             {
                 if (random.Next(10) == 0)
                 {

@@ -12,13 +12,15 @@ namespace JeuColony.PNJFolder
     {
         public string Name { get; }
         protected int HealthPointMax { get; set; }
-        protected int HealthPoint { get; set; }
-        protected int AttackPower { get; set; }
+        public int HealthPoint { get; set; }
+        public int AttackPower { get; set; }
         protected int Speed { get; set; }
         protected int Level { get; set; }
         public int[] Coordinate { get; set; } = new int[] { -1, -1 };
+        protected static readonly Random random = new Random();
+
         protected MapGame MapGame { get; }
-        public PNJ(string name , MapGame M) : this(name, 1 ,M) { }
+        public PNJ(string name, MapGame M) : this(name, 1, M) { }
         public PNJ(string name, int level, MapGame M)
         {
             Name = name;
@@ -50,27 +52,6 @@ namespace JeuColony.PNJFolder
         {
             return Math.Sqrt(Math.Pow((position[0] - Coordinate[0]), 2) + Math.Pow((position[1] - Coordinate[1]), 2));
         }
-        public Batiment MostNearObject(List<Batiment> list)
-        {
-            try 
-            {
-                int iRes = 0;
-                double distMin = int.MaxValue;
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i] is Batiment O)
-                    {
-                        if (HowFarFrom(O.Coordinate) < distMin)
-                        {
-                            distMin = HowFarFrom(O.Coordinate);
-                            iRes = i;
-                        }
-                    }
-                }
-                return list[iRes];
-            }
-            catch (ArgumentOutOfRangeException) { return MostNearObject(CreateListBatimentDormintory()); }
-        }
         public void MoveTo(int[] coordinate)
         {
             int moveLeft = Speed;
@@ -94,33 +75,8 @@ namespace JeuColony.PNJFolder
                 }
             }
         }
-        protected abstract List<Batiment> CreateListBatiment(); 
-        protected List<Batiment> CreateListBatimentDormintory()
-        {
-
-            List<Batiment> list = new List<Batiment>();
-            foreach (Batiment B in MapGame.ListBatiments)
-            {
-                if (B is Dormitory D)
-                {
-                    list.Add(D);
-                }
-            }
-            return list;
-        }
-
-        protected abstract void ExecuteAction();
-        public virtual void PlayOneTurn()
-        {
-            Batiment B = MostNearObject(CreateListBatiment());
-            if ((Coordinate[0], Coordinate[1]) == (B.Coordinate[0], B.Coordinate[1]))
-            {
-                ExecuteAction();
-            }
-            else
-            {
-                MoveTo(B.Coordinate);
-            }
-        }
+        protected abstract void ExecuteAction(object O);
+        public abstract void PlayOneTurn();
+        public abstract void Die();
     }
 }

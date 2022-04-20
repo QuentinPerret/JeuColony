@@ -16,6 +16,8 @@ namespace JeuColony
         public MapGame MapGame { get; set; }
         public PlayerInventory PlayerInventory { get; set; }
         public bool PLAY_TURN = true;
+        protected static readonly Random random = new Random();
+
         public GameSimulation()
         {
             NbRoundPlay = 0;
@@ -30,9 +32,17 @@ namespace JeuColony
             {
                 InterfaceUser.StartPrinting();
             }
-            foreach (PNJ P in MapGame.ListPNJ)
+            foreach (Enemy E in MapGame.ListPNJEnemy)
             {
-                P.PlayOneTurn();
+                E.PlayOneTurn();
+            }
+            foreach (Ally A in MapGame.ListPNJAlly)
+            {
+                A.PlayOneTurn();
+            }
+            if (random.Next(3) == 0)
+            {
+                MapGame.AddPNJEnemy(new Enemy("Enemy", NbRoundPlay / 10, MapGame));
             }
             MapGame.TestNaturalElement();
             PLAY_TURN = true ;

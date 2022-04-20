@@ -12,7 +12,8 @@ namespace JeuColony
         public int Nbc { get; }
         public Object[,] Map { get; private set; }
         public List<Batiment> ListBatiments { get; set; }
-        public List<PNJ> ListPNJ { get; set; }
+        public List<Ally> ListPNJAlly { get; set; }
+        public List<Enemy> ListPNJEnemy { get; set; }
         protected Random random = new Random();
         public MapGame(GameSimulation G)
         {
@@ -20,7 +21,8 @@ namespace JeuColony
             Nbc = 30;
             Nbl = 30;
             ListBatiments = new List<Batiment>();
-            ListPNJ = new List<PNJ>();
+            ListPNJAlly = new List<Ally>();
+            ListPNJEnemy = new List<Enemy>();
             Map = new Object[Nbl, Nbc];
             GenerateInitialBatiments();
             GenerateFirstColon();
@@ -53,7 +55,7 @@ namespace JeuColony
             {
                 i++;
             }
-            AddPNJ(new Pioneer((Dormitory)ListBatiments[i], this));
+            AddPNJAlly(new Pioneer((Dormitory)ListBatiments[i], this));
             /*Random R = new Random();
             _listPNJ[0].MoveTo(new int[] { R.Next(Nbl), R.Next(Nbl) }, this);*/
         }
@@ -61,9 +63,13 @@ namespace JeuColony
         {
             ListBatiments.Add(B);
         }
-        public void AddPNJ(PNJ P)
+        public void AddPNJAlly(Ally A)
         {
-            ListPNJ.Add(P);
+            ListPNJAlly.Add(A);
+        }
+        public void AddPNJEnemy(Enemy E)
+        {
+            ListPNJEnemy.Add(E);
         }
         public void AfficheMap()
         {
@@ -74,7 +80,6 @@ namespace JeuColony
                 if (i < 10)
                 {
                     strRes += " ";
-
                 }
             }
 
@@ -99,9 +104,13 @@ namespace JeuColony
                     }
                     else
                     {
-                        if (PnjOnCoord(position))
+                        if (AllyOnCoord(position))
                         {
                             Console.Write(" . ");
+                        }
+                        else if (EnemyOnCoord(position))
+                        {
+                            Console.WriteLine(" * ");
                         }
                         else
                         {
@@ -156,9 +165,13 @@ namespace JeuColony
                     }
                     else
                     {
-                        if (PnjOnCoord(position))
+                        if (AllyOnCoord(position))
                         {
                             Console.Write(" . ");
+                        }
+                        else if (EnemyOnCoord(position))
+                        {
+                            Console.WriteLine(" * ");
                         }
                         else
                         {
@@ -205,9 +218,13 @@ namespace JeuColony
                     {
                         Console.Write(Map[i, j]);
                     }
-                    else if (PnjOnCoord(position))
+                    else if (AllyOnCoord(position))
                     {
                         Console.WriteLine(" . ");
+                    }
+                    else if (EnemyOnCoord(position))
+                    {
+                        Console.WriteLine(" * ");
                     }
                     else
                     {
@@ -218,11 +235,22 @@ namespace JeuColony
                 Console.WriteLine();
             }
         }
-        public bool PnjOnCoord(int[] coord)
+        private bool AllyOnCoord(int[] coord)
         {
-            foreach (PNJ P in ListPNJ)
+            foreach (Ally A in ListPNJAlly)
             {
-                if (P.Coordinate[0] == coord[0] && P.Coordinate[1] == coord[1])
+                if (A.Coordinate[0] == coord[0] && A.Coordinate[1] == coord[1])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool EnemyOnCoord(int[] coord)
+        {
+            foreach (Enemy E in ListPNJEnemy)
+            {
+                if (E.Coordinate[0] == coord[0] && E.Coordinate[1] == coord[1])
                 {
                     return true;
                 }

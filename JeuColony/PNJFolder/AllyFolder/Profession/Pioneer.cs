@@ -29,9 +29,9 @@ namespace JeuColony.PNJFolder
             }
             return list;
         }
-        protected override void ExecuteAction()
+        protected override void ExecuteAction(object O)
         {
-            Batiment B = (Batiment)MapGame.Map[Coordinate[0], Coordinate[1]];
+            Batiment B  = O as Batiment;
             if(B is Quarry Q)
             {
                 Q.GetHarvast(this); 

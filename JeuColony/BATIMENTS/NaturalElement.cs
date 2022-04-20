@@ -21,6 +21,5 @@
             HealthPointMax = Hp;
             HealthPoint = Hp;
         }
-
     }
 }

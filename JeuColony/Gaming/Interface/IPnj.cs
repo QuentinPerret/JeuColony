@@ -19,7 +19,7 @@ namespace JeuColony
         public void PrintListPNJ()
         {
             Console.Clear();
-            PNJ P = MapGame.ListPNJ[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
+            PNJ P = MapGame.ListPNJAlly[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             if (P == null)
             {
                 MapGame.AfficheMap();
@@ -29,8 +29,8 @@ namespace JeuColony
                 MapGame.AfficheMapPnj(P);
             }
             AfficheListePNJ(POSITION_CURSOR);
-            int nbPageMax = MapGame.ListPNJ.Count / NB_PAGE_OBJECT -1;
-            if(MapGame.ListPNJ.Count % NB_PAGE_OBJECT != 0)
+            int nbPageMax = MapGame.ListPNJAlly.Count / NB_PAGE_OBJECT -1;
+            if(MapGame.ListPNJAlly.Count % NB_PAGE_OBJECT != 0)
             {
                 nbPageMax++;
             }
@@ -60,7 +60,7 @@ namespace JeuColony
                 POSITION_CURSOR = 0;
                 PrintListProfession();
             }
-            if (KeyPnj == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListPNJ.Count - 1)
+            if (KeyPnj == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListPNJAlly.Count - 1)
             {
                 POSITION_CURSOR++;
             }
@@ -128,11 +128,11 @@ namespace JeuColony
         public void AfficheListePNJ(int place)
         {
             Console.WriteLine("LIST PNJ");
-            for (int i = 0; i < MapGame.ListPNJ.Count && i < NB_PAGE_OBJECT; i++)
+            for (int i = 0; i < MapGame.ListPNJAlly.Count && i < NB_PAGE_OBJECT; i++)
             {
                 try
                 {
-                    Object O = MapGame.ListPNJ[i + PAGE_OBJECT * NB_PAGE_OBJECT];
+                    Object O = MapGame.ListPNJAlly[i + PAGE_OBJECT * NB_PAGE_OBJECT];
 
                     PNJ P = (PNJ)O;
                     if (i == place)
@@ -180,7 +180,7 @@ namespace JeuColony
             int i = 0;
             Batiment B = MapGame.ListBatiments[i];
             Dormitory D = (Dormitory)B;
-            PNJ Pnj;
+            Ally ally;
             while (!(B is Dormitory) && i < MapGame.ListBatiments.Count)
             {
                 i++;
@@ -188,22 +188,22 @@ namespace JeuColony
             switch (position)
             {
                 case 1:
-                    Pnj = new Builder(D, MapGame);
+                    ally = new Builder(D, MapGame);
                     break;
                 case 2:
-                    Pnj = new Digger(D, MapGame);
+                    ally = new Digger(D, MapGame);
                     break;
                 case 3:
-                    Pnj = new Forester(D, MapGame);
+                    ally = new Forester(D, MapGame);
                     break;
                 case 4:
-                    Pnj = new Soldier(D, MapGame);
+                    ally = new Soldier(D, MapGame);
                     break;
                 default:
-                    Pnj = new Pioneer(D, MapGame);
+                    ally = new Pioneer(D, MapGame);
                     break;
             }
-            MapGame.AddPNJ(Pnj);
+            MapGame.AddPNJAlly(ally);
         }
         protected void ProposeListProfession(int place)
         {
@@ -227,7 +227,7 @@ namespace JeuColony
         }
         protected void FocusPNJInterface()
         {
-            PNJ P = MapGame.ListPNJ[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
+            PNJ P = MapGame.ListPNJAlly[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
             Console.Clear();
             MapGame.AfficheMapPnj(P);
             Console.WriteLine(P.PagePNJ());

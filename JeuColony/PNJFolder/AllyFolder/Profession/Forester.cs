@@ -30,9 +30,11 @@ namespace JeuColony.PNJFolder
             }
             return list;
         }
-        protected override void ExecuteAction()
+        protected override void ExecuteAction(object O)
         {
-            if (MapGame.Map[Coordinate[0], Coordinate[1]] is Forest F) { F.GetHarvast(this); }
+            Batiment B = O as Batiment;
+
+            if (B is Forest F) { F.GetHarvast(this); }
         }
     }
 }

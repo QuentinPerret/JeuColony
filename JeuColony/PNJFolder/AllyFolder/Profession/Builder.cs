@@ -30,7 +30,7 @@ namespace JeuColony.PNJFolder
             }
             return list;
         }
-        protected override void ExecuteAction()
+        protected override void ExecuteAction(object O)
         {
             
         }

@@ -5,20 +5,25 @@ namespace JeuColony.PNJFolder
 {
     class Forester : Ally
     {
-        public Forester (Dormitory D, MapGame M) : base(D,M) { Profession = "Forester"; }
+        public Forester(Dormitory D, MapGame M) : base(D, M)
+        {
+            Profession = "Forester";
+            M.Simulation.PlayerInventory.NbStone -= 1;
+            M.Simulation.PlayerInventory.NbWood -= 2;
+        }
         protected override void GenerateLoggingPower()
         {
-            LoggingPower = 2 * Level;
+            LoggingPower = 2 ;
         }
         protected override void GenerateHealthPointMax()
         {
-            HealthPointMax = 25 * Level;
+            HealthPointMax = 25 ;
         }
         protected override void GenerateAttackPower()
         {
-            AttackPower = 2 * Level + 1;
+            AttackPower = 3;
         }
-        protected override List<Batiment> CreateListBatiment()
+        protected override List<Batiment> CreateListEnemy()
         {
             List<Batiment> list = new List<Batiment>();
             foreach (Batiment B in MapGame.ListBatiments)

@@ -2,10 +2,11 @@
 {
     abstract class NaturalElement : Batiment
     {
+        protected int NbRessouces;
         public NaturalElement(MapGame Map) : base(Map)
         {
             GenerateAleaSize();
-            GenerateHP();
+            GenerateHNbRessources();
             GeneratePositionAlea();
         }
 
@@ -14,12 +15,16 @@
             Size[0] = random.Next(1,4);
             Size[1] = random.Next(1,4);
         }
-        protected void GenerateHP()
+        protected void GenerateHNbRessources()
         {
-            int area = Size[0]*Size[1];
-            int Hp = 10 * area;
-            HealthPointMax = Hp;
-            HealthPoint = Hp;
+            NbRessouces = 2 * Size[0] * Size[1];
+        }
+        public void TestExistence()
+        {
+            if (NbRessouces <= 0)
+            {
+                MapGame.RemoveBat(this);
+            }
         }
     }
 }

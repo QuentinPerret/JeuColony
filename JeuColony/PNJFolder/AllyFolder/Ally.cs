@@ -39,15 +39,16 @@ namespace JeuColony.PNJFolder
         }
         protected virtual void GenerateHealthPointMax()
         {
-            HealthPointMax = 20 * Level;
+            HealthPointMax = 20;
         }
         protected virtual void GenerateHealthPoint()
         {
-            HealthPoint = 20 * Level;
+            int a  = HealthPointMax;
+            HealthPoint = a;
         }
         protected virtual void GenerateAttackPower()
         {
-            AttackPower = 2 * Level;
+            AttackPower = 2;
         }
         protected virtual void GenerateLoggingPower()
         {
@@ -68,8 +69,6 @@ namespace JeuColony.PNJFolder
         protected void Spawn(Batiment B)
         {
             (Coordinate[0], Coordinate[1]) = (B.Coordinate[0], B.Coordinate[1]);
-            BatimentOccupied = B;
-            B.AddPNJ(this);
         }
         public override string PagePNJ()
         {
@@ -88,7 +87,7 @@ namespace JeuColony.PNJFolder
             }
             return list;
         }
-        protected Batiment MostNearObject(List<Batiment> list)
+        protected Batiment MostNearBat(List<Batiment> list)
         {
             try
             {
@@ -109,13 +108,13 @@ namespace JeuColony.PNJFolder
             }
             catch (ArgumentOutOfRangeException)
             {
-                return MostNearObject(CreateListBatimentDormintory());
+                return MostNearBat(CreateListBatimentDormintory());
             }
         }
-        protected abstract List<Batiment> CreateListBatiment();
+        protected virtual List<Batiment> CreateListEnemy() { return null; }
         public override void PlayOneTurn()
         {
-            Batiment B = MostNearObject(CreateListBatiment());
+            Batiment B = MostNearBat(CreateListEnemy());
             if (!Immobilized)
             {
                 if ((Coordinate[0], Coordinate[1]) == (B.Coordinate[0], B.Coordinate[1]))

@@ -43,14 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Batiments\Cantina.cs" />
-    <Compile Include="Batiments\Dormitory.cs" />
+    <Compile Include="Batiments\Construction\Hospital.cs" />
+    <Compile Include="Batiments\Construction\Construction.cs" />
+    <Compile Include="Batiments\Construction\Dormitory.cs" />
     <Compile Include="Batiments\NaturalElement\Forest.cs" />
     <Compile Include="Batiments\NaturalElement\Water.cs" />
     <Compile Include="Batiments\NaturalElement\Quarry.cs" />
     <Compile Include="Batiments\Batiment.cs" />
     <Compile Include="Batiments\NaturalElement\NaturalElement.cs" />
-    <Compile Include="Batiments\TrainingCamp.cs" />
+    <Compile Include="Batiments\Construction\TrainingCamp.cs" />
     <Compile Include="Gaming\Interface\IBatiment.cs" />
     <Compile Include="Gaming\Interface\IFirstPage.cs" />
     <Compile Include="Gaming\Interface\InterfaceUser.cs" />
@@ -76,5 +77,6 @@
   <ItemGroup>
     <Content Include="Gaming\ListPrenom.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

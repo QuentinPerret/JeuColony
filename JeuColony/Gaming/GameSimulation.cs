@@ -45,9 +45,19 @@ namespace JeuColony
                 Ally A = MapGame.ListPNJAlly[i];
                 A.PlayOneTurn();
             }
-            if (random.Next(3) == 0)
+            if (NbRoundPlay < 11)
             {
-                MapGame.AddPNJEnemy(new Enemy("Enemy", NbRoundPlay / 10, MapGame));
+                if (random.Next(10) == 0)
+                {
+                    MapGame.AddPNJEnemy(new Enemy("Enemy", MapGame));
+                }
+            }
+            else
+            {
+                if (random.Next(3) == 0)
+                {
+                    MapGame.AddPNJEnemy(new Enemy("Enemy", MapGame));
+                }
             }
             MapGame.TestNaturalElement();
             PLAY_TURN = true ;

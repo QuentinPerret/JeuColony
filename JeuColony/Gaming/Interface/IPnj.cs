@@ -195,13 +195,37 @@ namespace JeuColony
                 switch (position)
                 {
                     case 1:
-                        ally = new Builder(D, MapGame);
+                        if (MapGame.Simulation.PlayerInventory.NbWood > 0 && MapGame.Simulation.PlayerInventory.NbWood > 0)
+                        {
+                            ally = new Builder(D, MapGame);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You need 1 stone and 1 wood to spawn a new Builder");
+                            Console.ReadLine();
+                        }
                         break;
                     case 2:
-                        ally = new Digger(D, MapGame);
+                        if (MapGame.Simulation.PlayerInventory.NbWood > 0 && MapGame.Simulation.PlayerInventory.NbWood > 1)
+                        {
+                            ally = new Digger(D, MapGame);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You need 2 stone and 1 wood to spawn a new Digger");
+                            Console.ReadLine();
+                        }
                         break;
                     case 3:
-                        ally = new Forester(D, MapGame);
+                        if (MapGame.Simulation.PlayerInventory.NbWood > 1 && MapGame.Simulation.PlayerInventory.NbWood > 0)
+                        {
+                            ally = new Builder(D, MapGame);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You need 1 stone and 2 wood to spawn a new Forester");
+                            Console.ReadLine();
+                        }
                         break;
                     case 4:
                         if (CountTrainingCamp() == 0)
@@ -211,11 +235,29 @@ namespace JeuColony
                         }
                         else
                         {
-                            ally = new Soldier(D, MapGame);
+                            if (MapGame.Simulation.PlayerInventory.NbWood > 1 && MapGame.Simulation.PlayerInventory.NbWood > 1)
+                            {
+                                ally = new Soldier(D, MapGame);
+                            }
+                            else
+                            {
+                                Console.WriteLine("You need 2 stone and 2 wood to spawn a new Soldier"); 
+                                Console.ReadLine();
+
+                            }
                         }
                         break;
                     default:
-                        ally = new Pioneer(D, MapGame);
+                        if (MapGame.Simulation.PlayerInventory.NbWood > 0 && MapGame.Simulation.PlayerInventory.NbWood > 0)
+                        {
+                            ally = new Pioneer(D, MapGame);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You need 1 stone and 1 wood to spawn a new Pioneer");
+                            Console.ReadLine();
+
+                        }
                         break;
                 }
                 MapGame.AddPNJAlly(ally);
@@ -226,7 +268,7 @@ namespace JeuColony
             int res = 0;
             foreach (Batiment B in MapGame.ListBatiments)
             {
-                if (B is Dormitory D)
+                if (B is Dormitory D && D.TimeLeftToConstruct == 0)
                 {
                     res+= D.Capacity;
                 }
@@ -238,7 +280,7 @@ namespace JeuColony
             int res = 0;
             foreach(Batiment B in MapGame.ListBatiments)
             {
-                if(B is TrainingCamp)
+                if(B is TrainingCamp && B.TimeLeftToConstruct == 0)
                 {
                     res++;
                 }

@@ -5,20 +5,25 @@ namespace JeuColony.PNJFolder
 {
     class Digger : Ally
     {
-        public Digger(Dormitory D, MapGame M) : base(D,M) { Profession = "Digger"; }
+        public Digger(Dormitory D, MapGame M) : base(D, M)
+        {
+            Profession = "Digger";
+            M.Simulation.PlayerInventory.NbStone -= 2;
+            M.Simulation.PlayerInventory.NbWood -= 1;
+        }
         protected override void GenerateDiggingPower()
         {
             DiggingPower = 2;
         }
         protected override void GenerateHealthPointMax()
         {
-            HealthPointMax = 25 * Level;
+            HealthPointMax = 25;
         }
         protected override void GenerateAttackPower()
         {
-            AttackPower = 2 * Level + 1;
+            AttackPower = 3;
         }
-        protected override List<Batiment> CreateListBatiment()
+        protected override List<Batiment> CreateListEnemy()
         {
             List<Batiment> list = new List<Batiment>();
             foreach (Batiment B in MapGame.ListBatiments)

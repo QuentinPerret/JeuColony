@@ -1,19 +1,22 @@
 ﻿namespace JeuColony.Batiments
 {
-    class Dormitory : Batiment
+    class Dormitory : Construction
     {
         public int Capacity { get; set; }
-        public Dormitory(int[] size, MapGame Map) : base(size, Map)
+        public Dormitory(MapGame Map) : base(Map)
         {
+            TimeLeftToConstruct = 4;
+            Size = new int[] { 2, 3 };
             Capacity = 4;
-            HealthPointMax = 100;
             BatimentType = "Dormitory";
-            //GenerateBatiment(size, coordinate, state, 1);
+            GeneratePositionAlea();
         }
-        public Dormitory(int[] size, int[] coordinate, MapGame Map) : base(size, coordinate, Map)
+        public Dormitory(int[] coord , MapGame Map) : base(coord, Map)
         {
+            TimeLeftToConstruct = 4;
+            Size = new int[] { 2, 3 };
+            Capacity = 4;
             BatimentType = "Dormitory";
-            HealthPointMax = 100;
         }
         protected int GenerateCapaMax(int level)
         {

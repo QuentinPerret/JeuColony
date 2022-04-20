@@ -4,7 +4,12 @@ namespace JeuColony.PNJFolder
 {
     class Pioneer : Ally
     {
-        public Pioneer(Dormitory D, MapGame M) : base(D, M) { Profession = "Pioneer"; }
+        public Pioneer(Dormitory D, MapGame M) : base(D, M)
+        {
+            Profession = "Pioneer";
+            M.Simulation.PlayerInventory.NbStone -= 1;
+            M.Simulation.PlayerInventory.NbWood -= 1;
+        }
         protected override void GenerateLoggingPower()
         {
             LoggingPower = 1;
@@ -17,7 +22,7 @@ namespace JeuColony.PNJFolder
         {
             BuildingPower = 1;
         }
-        protected override List<Batiment> CreateListBatiment()
+        protected override List<Batiment> CreateListEnemy()
         {
             List<Batiment> list = new List<Batiment>();
             foreach (Batiment B in MapGame.ListBatiments)

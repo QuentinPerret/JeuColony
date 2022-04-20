@@ -10,7 +10,7 @@ namespace JeuColony
     {
         public int NbWood { get; set; }
         public int NbStone { get; set; }
-        public PlayerInventory() { NbStone = 0; NbWood = 0; }
+        public PlayerInventory() { NbStone = 1; NbWood = 1; }
         public override string ToString()
         {
             string chRes = "\n";

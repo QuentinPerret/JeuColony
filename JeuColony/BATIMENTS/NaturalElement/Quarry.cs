@@ -16,8 +16,8 @@ namespace JeuColony.Batiments
         }
         public void GetHarvast(Ally P)
         {
-            HealthPoint -= P.DiggingPower;
-            MapGame.Simulation.PlayerInventory.NbStone += P.DiggingPower * 20;
+            NbRessouces -= P.DiggingPower;
+            MapGame.Simulation.PlayerInventory.NbStone += P.DiggingPower;
             TestExistence();
         }
     }

@@ -6,35 +6,22 @@ namespace JeuColony.Batiments
 {
     abstract class Batiment
     {
-        public int[] Size { get; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
+        public int[] Size { get; set; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
         public int[] Coordinate { get; protected set; } = new int[] { -1, -1 };//coordinate x and y
         protected int Level { get; set; }
-        protected int CapacityMax { get; }
-        protected int HealthPointMax { get; set; }
-        protected int HealthPoint { get; set; }
         public string BatimentType { get; set; }
-        public List<PNJ> _listPNJ;
+        public int TimeLeftToConstruct { get; set; }
         protected readonly MapGame MapGame;
         protected static readonly Random random = new Random();
         public static int GetSomeRandomNumber(int max)
         {
             return random.Next(max);
         }
-        public Batiment(int[] size, MapGame Map)
+        public Batiment(/*int[] size,*/int[] coordinate, MapGame Map)
         {
-            Size = size;
+            //Size = size;
             MapGame = Map;
             Level = 1;
-            _listPNJ = new List<PNJ>();
-            //_state = true; //by default the batiment is functional at its creation
-            GeneratePositionAlea();
-        }
-        public Batiment(int[] size, int[] coordinate, MapGame Map)
-        {
-            Size = size;
-            MapGame = Map;
-            Level = 1;
-            _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
             GeneratePosition(coordinate);
         }
@@ -42,15 +29,6 @@ namespace JeuColony.Batiments
         {
             MapGame = Map;
             Level = 1;
-            _listPNJ = new List<PNJ>();
-        }
-        public void AddPNJ(PNJ P)
-        {
-            _listPNJ.Add(P);
-        }
-        public void RemovePNJ(PNJ P)
-        {
-            _listPNJ.Remove(P);
         }
         public void ReverseSize()
         {
@@ -106,10 +84,6 @@ namespace JeuColony.Batiments
                 }
             }
         }
-        protected void GenerateStat()
-        {
-            HealthPoint = HealthPointMax;
-        }
 
         protected virtual string AfficheStatBatiment(int n, int[] tab, bool b, int p)
         {
@@ -122,16 +96,9 @@ namespace JeuColony.Batiments
             string chres ="";
             chres += "Batiment Type : " + BatimentType + "\n";
             chres += "Level : " + Level + "\n";
-            chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
             chres += "Position : " + Coordinate[0] + " , " + Coordinate[1] + "\n";
             return chres;
         }
-        public void TestExistence()
-        {
-            if(HealthPoint <= 0)
-            {
-                MapGame.RemoveBat(this);
-            }
-        }
+        
     }
 }

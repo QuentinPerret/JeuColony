@@ -15,16 +15,13 @@ namespace JeuColony.PNJFolder
         public int HealthPoint { get; set; }
         public int AttackPower { get; set; }
         protected int Speed { get; set; }
-        protected int Level { get; set; }
         public int[] Coordinate { get; set; } = new int[] { -1, -1 };
         protected static readonly Random random = new Random();
 
         protected MapGame MapGame { get; }
-        public PNJ(string name, MapGame M) : this(name, 1, M) { }
-        public PNJ(string name, int level, MapGame M)
+        public PNJ(string name, MapGame M)
         {
             Name = name;
-            Level = level;
             MapGame = M;
         }
         protected abstract void GenerateAllStat();
@@ -43,7 +40,6 @@ namespace JeuColony.PNJFolder
         {
             string chres = "";
             chres += "Name : " + Name + "\n";
-            chres += "Level : " + Level + "\n";
             chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
             chres += "Position : " + Coordinate[0] + " , " + Coordinate[1] + "\n";
             return chres;

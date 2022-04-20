@@ -29,7 +29,8 @@ namespace JeuColony
         }
         public void GenerateInitialBatiments()
         {
-            AddBatiment(new Dormitory(new int[] { 2, 2 }, this));
+            Dormitory D = new Dormitory(this) { TimeLeftToConstruct = 0 };
+            AddBatiment(D);
             int nbNaturalElement = 32;
             for (int i = 0; i < nbNaturalElement; i++)
             {
@@ -74,18 +75,19 @@ namespace JeuColony
         }
         public void AfficheMap()
         {
-            string strRes = "  ";
-            /*for (int i = 0; i < Nbl; i++)
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            /*string strRes = "  ";
+            for (int i = 0; i < Nbl; i++)
             {
                 strRes += " " + i;
                 if (i < 10)
                 {
                     strRes += " ";
                 }
-            }*/ //uncomment to see column on map
+             //uncomment to see column on map
 
-            Console.Write(strRes);
-            Console.WriteLine();
+            Console.Write(strRes);*/
             for (int i = 0; i < Nbl; i++)
             {
                 /*if (i < 10)
@@ -121,11 +123,14 @@ namespace JeuColony
                 }
                 Console.WriteLine();
             }
+                Console.ResetColor();
         }
         public void AfficheMapBat(Batiment B)
         {
-            string strRes = "  ";
-            /*for (int i = 0; i < Nbl; i++)
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            /*string strRes = "  ";
+            for (int i = 0; i < Nbl; i++)
             {
                 strRes += " " + i;
                 if (i < 10)
@@ -133,10 +138,9 @@ namespace JeuColony
                     strRes += " ";
 
                 }
-            }*/
+            }
 
-            Console.Write(strRes);
-            Console.WriteLine();
+            Console.Write(strRes);*/
             for (int i = 0; i < Nbl; i++)
             {
                 /*if (i < 10)
@@ -155,9 +159,11 @@ namespace JeuColony
                         if (Map[i, j] == B)
                         {
                             Console.BackgroundColor = ConsoleColor.Red;
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Black;
                             Console.Write(Map[i, j]);
                             Console.ResetColor();
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.ForegroundColor = ConsoleColor.Black;
                         }
                         else
                         {
@@ -172,7 +178,7 @@ namespace JeuColony
                         }
                         else if (EnemyOnCoord(position))
                         {
-                            Console.WriteLine(" * ");
+                            Console.Write(" * ");
                         }
                         else
                         {
@@ -182,11 +188,14 @@ namespace JeuColony
                 }
                 Console.WriteLine();
             }
+            Console.ResetColor();
         }
         public void AfficheMapPnj(PNJ P) //ajout l'affichage de tous les pnj de la liste 
         {
-            string strRes = "  ";
-            /*for (int i = 0; i < Nbl; i++)
+            Console.BackgroundColor= ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            /*string strRes = "  ";
+            for (int i = 0; i < Nbl; i++)
             {
                 strRes += " " + i;
                 if (i < 10)
@@ -194,9 +203,8 @@ namespace JeuColony
                     strRes += " ";
 
                 }
-            }*/
-            Console.Write(strRes);
-            Console.WriteLine();
+            }
+            Console.Write(strRes);*/
             for (int i = 0; i < Nbl; i++)
             {
                 /*if (i < 10)
@@ -213,7 +221,7 @@ namespace JeuColony
                     if (i == P.Coordinate[0] && j == P.Coordinate[1])
                         {
                             Console.BackgroundColor = ConsoleColor.Red;
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Black;
                         }
                     if (Map[i, j] != null)
                     {
@@ -221,20 +229,23 @@ namespace JeuColony
                     }
                     else if (AllyOnCoord(position))
                     {
-                        Console.WriteLine(" . ");
+                        Console.Write(" . ");
                     }
                     else if (EnemyOnCoord(position))
                     {
-                        Console.WriteLine(" * ");
+                        Console.Write(" * ");
                     }
                     else
                     {
                         Console.Write("   ");
                     }
                     Console.ResetColor();
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
                 Console.WriteLine();
             }
+            Console.ResetColor();
         }
         private bool AllyOnCoord(int[] coord)
         {

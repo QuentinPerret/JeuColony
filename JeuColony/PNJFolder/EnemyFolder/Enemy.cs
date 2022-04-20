@@ -9,22 +9,22 @@ namespace JeuColony.PNJFolder
     class Enemy :PNJ
     {
         public string Profession { get; set; }
-        public Enemy(string name, int level, MapGame M) : base(name, level, M)
+        public Enemy(string name, MapGame M) : base(name, M)
         {
             Spawn();
             GenerateAllStat();
         }
         protected virtual void GenerateHealthPointMax()
         {
-            HealthPointMax = 20 * Level;
+            HealthPointMax = 20;
         }
         protected virtual void GenerateHealthPoint()
         {
-            HealthPoint = 20 * Level;
+            HealthPoint = 20;
         }
         protected virtual void GenerateAttackPower()
         {
-            AttackPower = 2 * Level;
+            AttackPower = 2;
         }
         protected override void GenerateSpeed()
         {

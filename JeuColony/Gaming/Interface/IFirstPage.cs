@@ -15,17 +15,19 @@ namespace JeuColony
         readonly IBatiment _batPage;
         public IFirstPage(GameSimulation G, MapGame M) : base(G, M)
         {
-            _pnjPage = new IPnj(Simulation, MapGame, this);
-            _batPage = new IBatiment(Simulation, MapGame, this);
+            _pnjPage = new IPnj(GameSimulation, MapGame, this);
+            _batPage = new IBatiment(GameSimulation, MapGame, this);
         }
         public void PrintFirstPage()
         {
-            while (Simulation.PLAY_TURN)
+            while (GameSimulation.PLAY_TURN)
             {
                 Console.Clear();
                 MapGame.AfficheMap();
                 ProposeList(POSITION_CURSOR);
+                PrintInventory();
                 NavigateInterface(0);
+
             }
             //PrintFirstPage();
         }
@@ -64,12 +66,12 @@ namespace JeuColony
             }
             if (Key == ConsoleKey.Spacebar)
             {
-                Simulation.EndTurn();
+                GameSimulation.EndTurn();
             }
         }
         private void ProposeList(int place)
         {
-            Console.WriteLine("LIST OBJECT, Round Played : " + Simulation.NbRoundPlay);
+            Console.WriteLine("LIST OBJECT, Round Played : " + GameSimulation.NbRoundPlay);
             string[] list = new string[] { " - LIST PNJ", " - LIST BATIMENT" };
             for (int i = 0; i < list.Length; i++)
             {

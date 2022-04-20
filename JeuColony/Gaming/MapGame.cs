@@ -38,7 +38,7 @@ namespace JeuColony
                         AddBatiment(new Forest(new int[] { 2, 2 }, this));
                         break;
                     case 1:
-                        AddBatiment(new Mountain(new int[] { 2, 4 }, this));
+                        AddBatiment(new Quarry(new int[] { 2, 4 }, this));
                         break;
                     case 2:
                         AddBatiment(new Water(new int[] { 1, 1 }, this));
@@ -228,6 +228,46 @@ namespace JeuColony
                 }
             }
             return false;
+        }
+        public void RemoveBat(Batiment B)
+        {
+            ListBatiments.Remove(B);
+            for (int i = 0; i < Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < Map.GetLength(1); j++)
+                {
+                    if (Map[i, j] == B)
+                    {
+                        Map[i, j] = null;
+                    }
+                }
+            }
+        }
+        public void TestNaturalElement()
+        {
+            int nbNaturalElement = 0;
+            foreach(Batiment B in ListBatiments)
+            {
+                if(B is NaturalElement)
+                {
+                    nbNaturalElement++;
+                }
+            }
+            if (nbNaturalElement < 6)
+            {
+                CreateNaturalElement();
+            }
+        }
+        void CreateNaturalElement()
+        {
+            if (random.Next(2) == 0)
+            {
+                AddBatiment(new Forest(new int[] { 3, 1 }, this));
+            }
+            else
+            {
+                AddBatiment(new Quarry(new int[] { 2, 1 }, this));
+            }
         }
     }
 }

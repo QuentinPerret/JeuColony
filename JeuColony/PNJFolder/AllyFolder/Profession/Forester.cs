@@ -32,8 +32,7 @@ namespace JeuColony.PNJFolder
         }
         protected override void ExecuteAction()
         {
-            Forest F = (Forest)MapGame.Map[Coordinate[0], Coordinate[1]];
-            F.GetHarvast(this);
+            if (MapGame.Map[Coordinate[0], Coordinate[1]] is Forest F) { F.GetHarvast(this); }
         }
     }
 }

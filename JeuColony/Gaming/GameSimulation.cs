@@ -34,6 +34,7 @@ namespace JeuColony
             {
                 P.PlayOneTurn();
             }
+            MapGame.TestNaturalElement();
             PLAY_TURN = true ;
             NbRoundPlay ++;
         }

@@ -27,12 +27,16 @@ namespace JeuColony
             }
             AfficheListeBatiment(POSITION_CURSOR);
             int nbPageMax = MapGame.ListBatiments.Count / NB_PAGE_OBJECT;
+            if (MapGame.ListBatiments.Count % NB_PAGE_OBJECT != 0)
+            {
+                nbPageMax++;
+            }
             NavigateInterface(nbPageMax);
         }
         public void AfficheListeBatiment(int place)
         {
             Console.WriteLine("LIST BATIMENT");
-            for (int i = 0; i < MapGame.ListBatiments.Count && i < NB_PAGE_OBJECT + 1; i++)
+            for (int i = 0; i < MapGame.ListBatiments.Count && i < NB_PAGE_OBJECT; i++)
             {
                 try
                 {
@@ -73,7 +77,7 @@ namespace JeuColony
             }
             if(key == ConsoleKey.Spacebar)
             {
-                Simulation.EndTurn();
+                GameSimulation.EndTurn();
             }
             else 
             {
@@ -95,9 +99,9 @@ namespace JeuColony
             else if (Key == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
-                POSITION_CURSOR = 0;
+                POSITION_CURSOR = 7;
             }
-            if (Key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
+            if (Key == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT-1 && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < MapGame.ListBatiments.Count - 1)
             {
                 POSITION_CURSOR++;
             }
@@ -111,11 +115,11 @@ namespace JeuColony
                 POSITION_CURSOR = 0;
                 _firstPage.PrintFirstPage();
             }
-            if (Simulation.PLAY_TURN)
+            if (GameSimulation.PLAY_TURN)
             {
                 if (Key == ConsoleKey.Spacebar)
                 {
-                    Simulation.EndTurn();
+                    GameSimulation.EndTurn();
                 }
                 else
                 {

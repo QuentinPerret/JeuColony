@@ -48,24 +48,28 @@ namespace JeuColony.PNJFolder
         }
         protected double HowFarFrom(int[] position)
         {
-            return Math.Sqrt(Math.Pow((position[0] + Coordinate[0]), 2) + Math.Pow((position[1] + Coordinate[1]), 2));
+            return Math.Sqrt(Math.Pow((position[0] - Coordinate[0]), 2) + Math.Pow((position[1] - Coordinate[1]), 2));
         }
         public Batiment MostNearObject(List<Batiment> list)
         {
-            int iRes = 0;
-            double distMin = int.MaxValue;
-            for (int i = 0; i < list.Count; i++)
+            try 
             {
-                if (list[i] is Batiment O)
+                int iRes = 0;
+                double distMin = int.MaxValue;
+                for (int i = 0; i < list.Count; i++)
                 {
-                    if (HowFarFrom(O.Coordinate) < distMin)
+                    if (list[i] is Batiment O)
                     {
-                        distMin = HowFarFrom(O.Coordinate);
-                        iRes = i;
+                        if (HowFarFrom(O.Coordinate) < distMin)
+                        {
+                            distMin = HowFarFrom(O.Coordinate);
+                            iRes = i;
+                        }
                     }
                 }
+                return list[iRes];
             }
-            return list[iRes];
+            catch (ArgumentOutOfRangeException) { return MostNearObject(CreateListBatimentDormintory()); }
         }
         public void MoveTo(int[] coordinate)
         {
@@ -90,12 +94,26 @@ namespace JeuColony.PNJFolder
                 }
             }
         }
-        protected abstract List<Batiment> CreateListBatiment();
+        protected abstract List<Batiment> CreateListBatiment(); 
+        protected List<Batiment> CreateListBatimentDormintory()
+        {
+
+            List<Batiment> list = new List<Batiment>();
+            foreach (Batiment B in MapGame.ListBatiments)
+            {
+                if (B is Dormitory D)
+                {
+                    list.Add(D);
+                }
+            }
+            return list;
+        }
+
         protected abstract void ExecuteAction();
         public virtual void PlayOneTurn()
         {
             Batiment B = MostNearObject(CreateListBatiment());
-            if (Coordinate == B.Coordinate)
+            if ((Coordinate[0], Coordinate[1]) == (B.Coordinate[0], B.Coordinate[1]))
             {
                 ExecuteAction();
             }

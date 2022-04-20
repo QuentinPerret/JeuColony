@@ -11,5 +11,12 @@ namespace JeuColony
         public int NbWood { get; set; }
         public int NbStone { get; set; }
         public PlayerInventory() { NbStone = 0; NbWood = 0; }
+        public override string ToString()
+        {
+            string chRes = "\n";
+            chRes += "Number of wood : " + NbWood + "\n";
+            chRes += "Number of stone : " + NbStone + "\n";
+            return chRes;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace JeuColony.PNJFolder
             List<Batiment> list = new List<Batiment>();
             foreach (Batiment B in MapGame.ListBatiments)
             {
-                if (!(B is Dormitory))
+                if (!((B is Dormitory)||(B is Water)))
                 {
                     list.Add(B);
                 }
@@ -32,9 +32,9 @@ namespace JeuColony.PNJFolder
         protected override void ExecuteAction()
         {
             Batiment B = (Batiment)MapGame.Map[Coordinate[0], Coordinate[1]];
-            if(B is Mountain M)
+            if(B is Quarry Q)
             {
-                M.GetHarvast(this); 
+                Q.GetHarvast(this); 
             }
             if(B is Forest F)
             {

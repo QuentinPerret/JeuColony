@@ -1,5 +1,4 @@
 ﻿using System;
-using JeuColony.Batiments;
 
 namespace JeuColony
 {
@@ -12,7 +11,6 @@ namespace JeuColony
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);*/
             //ca plante parce que ca retirenbt les touchges indépendamenbts et pas une pour toutes
             GameSimulation G = new GameSimulation();
-            Dormitory Dfirst = (Dormitory)G.MapGame.ListBatiments[0];
             G.Start();
             Console.ReadLine();
         }

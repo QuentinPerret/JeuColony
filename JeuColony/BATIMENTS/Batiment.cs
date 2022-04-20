@@ -14,7 +14,7 @@ namespace JeuColony.Batiments
         protected int HealthPoint { get; set; }
         public string BatimentType { get; set; }
         public List<PNJ> _listPNJ;
-        private readonly MapGame M;
+        protected readonly MapGame MapGame;
         private static readonly Random random = new Random();
         public static int GetSomeRandomNumber(int max)
         {
@@ -23,7 +23,7 @@ namespace JeuColony.Batiments
         public Batiment(int[] size, MapGame Map)
         {
             Size = size;
-            M = Map;
+            MapGame = Map;
             Level = 1;
             _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
@@ -32,7 +32,7 @@ namespace JeuColony.Batiments
         public Batiment(int[] size, int[] coordinate, MapGame Map)
         {
             Size = size;
-            M = Map;
+            MapGame = Map;
             Level = 1;
             _listPNJ = new List<PNJ>();
             //_state = true; //by default the batiment is functional at its creation
@@ -56,19 +56,19 @@ namespace JeuColony.Batiments
             {
                 ReverseSize();
             }
-            while (!PositionClear(M) || Coordinate == new int[] { -1, -1 })
+            while (!PositionClear(MapGame) || Coordinate == new int[] { -1, -1 })
             {
-                Coordinate[0] = GetSomeRandomNumber(M.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
-                Coordinate[1] = GetSomeRandomNumber(M.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
+                Coordinate[0] = GetSomeRandomNumber(MapGame.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
+                Coordinate[1] = GetSomeRandomNumber(MapGame.Nbc - Size[0] - 1); // Génération aléatoire de la position en y
             }
-            ExtendBat(M);
+            ExtendBat(MapGame);
         }
         private void GeneratePosition(int[] coordinate)
         {
             Coordinate = coordinate;
-            if (PositionClear(M))
+            if (PositionClear(MapGame))
             {
-                ExtendBat(M);
+                ExtendBat(MapGame);
             }
             else { GeneratePositionAlea(); }
         }
@@ -119,6 +119,13 @@ namespace JeuColony.Batiments
             chres += "HP : " + HealthPoint + " / " + HealthPointMax + "\n";
             chres += "Position : " + Coordinate[0] + " , " + Coordinate[1] + "\n";
             return chres;
+        }
+        public void TestExistence()
+        {
+            if(HealthPoint <= 0)
+            {
+                MapGame.RemoveBat(this);
+            }
         }
     }
 }

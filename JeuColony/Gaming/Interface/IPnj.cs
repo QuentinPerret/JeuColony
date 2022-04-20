@@ -29,7 +29,11 @@ namespace JeuColony
                 MapGame.AfficheMapPnj(P);
             }
             AfficheListePNJ(POSITION_CURSOR);
-            int nbPageMax = MapGame.ListPNJ.Count / NB_PAGE_OBJECT;
+            int nbPageMax = MapGame.ListPNJ.Count / NB_PAGE_OBJECT -1;
+            if(MapGame.ListPNJ.Count % NB_PAGE_OBJECT != 0)
+            {
+                nbPageMax++;
+            }
             NavigateInterface(nbPageMax);
         }
 
@@ -72,9 +76,9 @@ namespace JeuColony
             }
             if (KeyPnj == ConsoleKey.Spacebar)
             {
-                Simulation.EndTurn();
+                GameSimulation.EndTurn();
             }
-            else if (Simulation.PLAY_TURN)
+            else if (GameSimulation.PLAY_TURN)
             {
                 PrintListPNJ();
             }
@@ -94,9 +98,9 @@ namespace JeuColony
             else if (KeyCreationPnj == ConsoleKey.LeftArrow && PAGE_OBJECT > 0)
             {
                 PAGE_OBJECT--;
-                POSITION_CURSOR = 0;
+                POSITION_CURSOR = 7;
             }
-            if (KeyCreationPnj == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < LIST_PROFESSION.Length - 1)
+            if (KeyCreationPnj == ConsoleKey.DownArrow && POSITION_CURSOR < NB_PAGE_OBJECT-1 && POSITION_CURSOR + PAGE_OBJECT * NB_PAGE_OBJECT < LIST_PROFESSION.Length - 1)
             {
                 POSITION_CURSOR++;
             }
@@ -114,9 +118,9 @@ namespace JeuColony
             if (KeyCreationPnj == ConsoleKey.Spacebar)
             {
                 KeyPnj = ConsoleKey.Spacebar;
-                Simulation.EndTurn();
+                GameSimulation.EndTurn();
             }
-            else if(Simulation.PLAY_TURN)
+            else if(GameSimulation.PLAY_TURN)
             {
                 PrintListProfession();
             }
@@ -124,7 +128,7 @@ namespace JeuColony
         public void AfficheListePNJ(int place)
         {
             Console.WriteLine("LIST PNJ");
-            for (int i = 0; i < MapGame.ListPNJ.Count && i < NB_PAGE_OBJECT + 1; i++)
+            for (int i = 0; i < MapGame.ListPNJ.Count && i < NB_PAGE_OBJECT; i++)
             {
                 try
                 {
@@ -236,9 +240,9 @@ namespace JeuColony
             }
             if (key == ConsoleKey.Spacebar)
             {
-                Simulation.EndTurn();
+                GameSimulation.EndTurn();
             }
-            else if (Simulation.PLAY_TURN)
+            else if (GameSimulation.PLAY_TURN)
             {
                 FocusPNJInterface();
             }

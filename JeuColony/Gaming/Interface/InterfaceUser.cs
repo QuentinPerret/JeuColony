@@ -14,17 +14,21 @@ namespace JeuColony
         protected int PAGE_OBJECT = 0;
         protected readonly int NB_PAGE_OBJECT = 8;
         protected ConsoleKey Key { get; set; }
-        public GameSimulation Simulation { get; set; }
+        public GameSimulation GameSimulation { get; set; }
         public MapGame MapGame { get; set; }
         public InterfaceUser(GameSimulation G, MapGame M)
         {
-            Simulation = G;
+            GameSimulation = G;
             MapGame = M;
         }
         public void StartPrinting()
         {
-            IFirstPage FirstPage = new IFirstPage(Simulation, MapGame);
+            IFirstPage FirstPage = new IFirstPage(GameSimulation, MapGame);
             FirstPage.PrintFirstPage();
+        }
+        protected void PrintInventory()
+        {
+            Console.WriteLine("\nINVENTORY : \n" + GameSimulation.PlayerInventory);
         }
     }
 }

@@ -47,7 +47,7 @@
     <Compile Include="Batiments\Dormitory.cs" />
     <Compile Include="Batiments\Forest.cs" />
     <Compile Include="Batiments\Water.cs" />
-    <Compile Include="Batiments\Mountain.cs" />
+    <Compile Include="Batiments\Quarry.cs" />
     <Compile Include="Batiments\Batiment.cs" />
     <Compile Include="Batiments\NaturalElement.cs" />
     <Compile Include="Batiments\TrainingCamp.cs" />

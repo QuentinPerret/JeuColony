@@ -69,7 +69,7 @@ namespace JeuColony
         }
         private void ProposeList(int place)
         {
-            Console.WriteLine("LIST OBJECT, Round Played : " + Simulation.nbRoundPlay);
+            Console.WriteLine("LIST OBJECT, Round Played : " + Simulation.NbRoundPlay);
             string[] list = new string[] { " - LIST PNJ", " - LIST BATIMENT" };
             for (int i = 0; i < list.Length; i++)
             {

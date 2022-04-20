@@ -67,7 +67,7 @@ namespace JeuColony.PNJFolder
         }
         protected void Spawn(Batiment B)
         {
-            Coordinate = B.Coordinate;
+            (Coordinate[0],Coordinate[1]) = (B.Coordinate[0], B.Coordinate[1]);
             BatimentOccupied = B;
             B.AddPNJ(this);
         }

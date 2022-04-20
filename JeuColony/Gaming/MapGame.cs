@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JeuColony;
+﻿using JeuColony.Batiments;
 using JeuColony.PNJFolder;
-using JeuColony.Batiments;
+using System;
+using System.Collections.Generic;
 
 namespace JeuColony
 {
@@ -57,7 +53,7 @@ namespace JeuColony
             {
                 i++;
             }
-            AddPNJ(new Pioneer((Dormitory)ListBatiments[i],this));
+            AddPNJ(new Pioneer((Dormitory)ListBatiments[i], this));
             /*Random R = new Random();
             _listPNJ[0].MoveTo(new int[] { R.Next(Nbl), R.Next(Nbl) }, this);*/
         }
@@ -71,30 +67,79 @@ namespace JeuColony
         }
         public void AfficheMap()
         {
-            string chRes = "";
+            string strRes = "  ";
             for (int i = 0; i < Nbl; i++)
             {
+                strRes += " " + i;
+                if (i < 10)
+                {
+                    strRes += " ";
+
+                }
+            }
+
+            Console.Write(strRes);
+            Console.WriteLine();
+            for (int i = 0; i < Nbl; i++)
+            {
+                if (i < 10)
+                {
+                    Console.Write(" " + i);
+                }
+                else
+                {
+                    Console.Write(i);
+                }
                 for (int j = 0; j < Nbc; j++)
                 {
+                    int[] position = new int[] { i, j };
                     if (Map[i, j] != null)
                     {
-                        chRes += Map[i, j].ToString();
+                        Console.Write(Map[i, j].ToString());
                     }
                     else
                     {
-                        chRes += "   ";
+                        if (PnjOnCoord(position))
+                        {
+                            Console.Write(" . ");
+                        }
+                        else
+                        {
+                            Console.Write("   ");
+                        }
                     }
                 }
-                chRes += "\n";
+                Console.WriteLine();
             }
-            Console.WriteLine(chRes);
         }
         public void AfficheMapBat(Batiment B)
         {
+            string strRes = "  ";
             for (int i = 0; i < Nbl; i++)
             {
+                strRes += " " + i;
+                if (i < 10)
+                {
+                    strRes += " ";
+
+                }
+            }
+
+            Console.Write(strRes);
+            Console.WriteLine();
+            for (int i = 0; i < Nbl; i++)
+            {
+                if (i < 10)
+                {
+                    Console.Write(" " + i);
+                }
+                else
+                {
+                    Console.Write(i);
+                }
                 for (int j = 0; j < Nbc; j++)
                 {
+                    int[] position = new int[] { i, j };
                     if (Map[i, j] != null)
                     {
                         if (Map[i, j] == B)
@@ -111,7 +156,14 @@ namespace JeuColony
                     }
                     else
                     {
-                        Console.Write("   ");
+                        if (PnjOnCoord(position))
+                        {
+                            Console.Write(" . ");
+                        }
+                        else
+                        {
+                            Console.Write("   ");
+                        }
                     }
                 }
                 Console.WriteLine();
@@ -119,29 +171,63 @@ namespace JeuColony
         }
         public void AfficheMapPnj(PNJ P) //ajout l'affichage de tous les pnj de la liste 
         {
+            string strRes = "  ";
             for (int i = 0; i < Nbl; i++)
             {
+                strRes += " " + i;
+                if (i < 10)
+                {
+                    strRes += " ";
+
+                }
+            }
+            Console.Write(strRes);
+            Console.WriteLine();
+            for (int i = 0; i < Nbl; i++)
+            {
+                if (i < 10)
+                {
+                    Console.Write(" " + i);
+                }
+                else
+                {
+                    Console.Write(i);
+                }
                 for (int j = 0; j < Nbc; j++)
                 {
                     int[] position = new int[] { i, j };
-                    if (i == P.Coordinate[0] && j ==P.Coordinate[1])
-                    {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write(" . ");
-                    }
-                    else if ( Map[i, j] != null)
+                    if (i == P.Coordinate[0] && j == P.Coordinate[1])
+                        {
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                    if (Map[i, j] != null)
                     {
                         Console.Write(Map[i, j]);
+                    }
+                    else if (PnjOnCoord(position))
+                    {
+                        Console.WriteLine(" . ");
                     }
                     else
                     {
                         Console.Write("   ");
                     }
                     Console.ResetColor();
-                } 
-            Console.WriteLine();
+                }
+                Console.WriteLine();
             }
+        }
+        public bool PnjOnCoord(int[] coord)
+        {
+            foreach (PNJ P in ListPNJ)
+            {
+                if (P.Coordinate[0] == coord[0] && P.Coordinate[1] == coord[1])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

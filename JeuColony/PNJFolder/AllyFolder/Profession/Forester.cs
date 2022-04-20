@@ -21,7 +21,7 @@ namespace JeuColony.PNJFolder
         protected override List<Batiment> CreateListBatiment()
         {
             List<Batiment> list = new List<Batiment>();
-            foreach (Batiment B in Map.ListBatiments)
+            foreach (Batiment B in MapGame.ListBatiments)
             {
                 if (B is Forest F)
                 {
@@ -32,7 +32,7 @@ namespace JeuColony.PNJFolder
         }
         protected override void ExecuteAction()
         {
-            Forest F = (Forest)Map.Map[Coordinate[0], Coordinate[1]];
+            Forest F = (Forest)MapGame.Map[Coordinate[0], Coordinate[1]];
             F.GetHarvast(this);
         }
     }

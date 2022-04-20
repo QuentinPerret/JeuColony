@@ -20,7 +20,7 @@ namespace JeuColony.PNJFolder
         protected override List<Batiment> CreateListBatiment()
         {
             List<Batiment> list = new List<Batiment>();
-            foreach (Batiment B in Map.ListBatiments)
+            foreach (Batiment B in MapGame.ListBatiments)
             {
                 if (!(B is Dormitory))
                 {
@@ -31,7 +31,7 @@ namespace JeuColony.PNJFolder
         }
         protected override void ExecuteAction()
         {
-            Batiment B = (Batiment)Map.Map[Coordinate[0], Coordinate[1]];
+            Batiment B = (Batiment)MapGame.Map[Coordinate[0], Coordinate[1]];
             if(B is Mountain M)
             {
                 M.GetHarvast(this); 

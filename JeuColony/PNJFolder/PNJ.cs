@@ -16,14 +16,14 @@ namespace JeuColony.PNJFolder
         protected int AttackPower { get; set; }
         protected int Speed { get; set; }
         protected int Level { get; set; }
-        public int[] Coordinate { get; set; }
-        protected MapGame Map { get; }
+        public int[] Coordinate { get; set; } = new int[] { -1, -1 };
+        protected MapGame MapGame { get; }
         public PNJ(string name , MapGame M) : this(name, 1 ,M) { }
         public PNJ(string name, int level, MapGame M)
         {
             Name = name;
             Level = level;
-            Map = M;
+            MapGame = M;
         }
         protected abstract void GenerateAllStat();
         protected abstract void GenerateSpeed();
@@ -84,7 +84,7 @@ namespace JeuColony.PNJFolder
                 {
                     Coordinate[1]++;
                 }
-                else if (coordinate[1] > coordinate[1])
+                else if (Coordinate[1] > coordinate[1])
                 {
                     Coordinate[1]--;
                 }

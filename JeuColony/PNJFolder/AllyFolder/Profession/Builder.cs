@@ -21,7 +21,7 @@ namespace JeuColony.PNJFolder
         protected override List<Batiment> CreateListBatiment()
         {
             List<Batiment> list = new List<Batiment>();
-            foreach(Batiment B in Map.ListBatiments)
+            foreach(Batiment B in MapGame.ListBatiments)
             {
                 if (B is Dormitory D)
                 {

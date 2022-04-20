@@ -163,6 +163,103 @@ namespace JeuColony
         public void InstallBatiment(Batiment Bat)
         {
 
+        }
+        public void PrintListTypeBat()
+        {
+            Console.Clear();
+            MapGame.AfficheMap();
+            ProposeListTypeBat(POSITION_CURSOR);
+            int nbPageMax = LIST_BATIMENT.Length / NB_PAGE_OBJECT;
+            NavigateInterfaceCreationBat(nbPageMax);
+            PAGE_OBJECT = 0;
+            POSITION_CURSOR = 0;
+        }
+        public void PrintPreview(Batiment B)
+        {
+            Console.Clear();
+            PreviewBatimentCreation(B);
+            NavigateMap(B);
+        }
+        public void PreviewBatimentCreation(Batiment B)
+        {
+
+            Preview = new object[MapGame.Nbl, MapGame.Nbc];
+            //AfficheMap(B);
+            problem = false;
+            Preview[x, y] = B;
+            for (int i = 0; i < MapGame.Nbl - B.Size[0]; i++)
+            {
+                for (int j = 0; j < MapGame.Nbc - B.Size[1]; j++)
+                {
+                    if (Preview[i, j] == Preview[x, y] || Preview[i + B.Size[0], j + B.Size[1]] == Preview[x, y] || Preview[i, j + B.Size[1]] == Preview[x, y] || Preview[i + B.Size[0], j] == Preview[x, y])
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write("   ");
+                        Console.BackgroundColor = ConsoleColor.Black;
+                    }
+                    else if (MapGame.Map[i, j] != null)
+                    {
+                        Console.Write(MapGame.Map[i, j].ToString());
+
+                    }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+                    if (MapGame.Map[x, y] != null || MapGame.Map[x + B.Size[0], y + B.Size[1]] != null || MapGame.Map[x, y + B.Size[1]] != null || MapGame.Map[x + B.Size[0], y] != null)
+                    {
+                        problem = true;
+                    }
+                    else
+                    {
+                        problem = false;
+                    }
+                }
+                Console.Write("\n");
+            }
+        }
+        protected void ProposeListTypeBat(int place)
+        {
+            Console.WriteLine("LIST TYPE BATIMENT");
+            for (int i = 0; i < LIST_BATIMENT.Length; i++)
+            {
+                if (i == place)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    //Console.WriteLine((i + "- " + O)) ;
+                    Console.WriteLine(LIST_BATIMENT[i]);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    //Console.WriteLine(i + "- " + O);
+                    Console.WriteLine(LIST_BATIMENT[i]);
+                }
+            }
+        }
+        public Batiment CreateBat(int position)
+        {
+            Batiment Bat;
+            switch (position)
+            {
+                case 1:
+                    Bat = new TrainingCamp(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
+                    break;
+                case 2:
+                    Bat = new Cantina(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
+                    break;
+
+                default:
+                    Bat = new Dormitory(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
+                    break;
+            }
+            
+            return Bat;
+        }
+        public void InstallBatiment(Batiment Bat)
+        {
+
             Console.Clear();
             PreviewBatimentCreation(Bat);
             //NavigateInterfaceBatimentCreation();

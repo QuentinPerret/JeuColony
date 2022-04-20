@@ -6,7 +6,7 @@ using JeuColony.Batiments;
 
 namespace JeuColony.PNJFolder
 {
-     abstract class Ally : PNJ
+    abstract class Ally : PNJ
     {
         public int DiggingPower { get; set; }
         protected int BuildingPower { get; set; }
@@ -14,8 +14,6 @@ namespace JeuColony.PNJFolder
         protected Batiment BatimentOccupied { get; set; }
         public string Profession { get; set; }
         public bool Immobilized { get; set; }
-
-        static protected Random random = new Random();
         public Ally(Batiment B, MapGame M) : base(GenerateName(), M)
         {
             Immobilized = false;
@@ -27,7 +25,7 @@ namespace JeuColony.PNJFolder
             var Fpath = @"..\..\Gaming\ListPrenom.txt";
             //C:\Users\Utilisateur\source\repos\JeuColony\JeuColony\Gaming\ListPrenom.txt
             //C:\Users\Utilisateur\source\repos\JeuColony\JeuColony\PNJFolder\AllyFolder\Ally.cs
-            string[] content = File.ReadAllLines (Fpath, Encoding.UTF8);
+            string[] content = File.ReadAllLines(Fpath, Encoding.UTF8);
             return content[random.Next(content.Length)];
         }
         protected override void GenerateAllStat()
@@ -45,7 +43,7 @@ namespace JeuColony.PNJFolder
         }
         protected virtual void GenerateHealthPoint()
         {
-            HealthPoint = HealthPointMax;
+            HealthPoint = 20 * Level;
         }
         protected virtual void GenerateAttackPower()
         {
@@ -69,7 +67,7 @@ namespace JeuColony.PNJFolder
         }
         protected void Spawn(Batiment B)
         {
-            (Coordinate[0],Coordinate[1]) = (B.Coordinate[0], B.Coordinate[1]);
+            (Coordinate[0], Coordinate[1]) = (B.Coordinate[0], B.Coordinate[1]);
             BatimentOccupied = B;
             B.AddPNJ(this);
         }
@@ -129,10 +127,14 @@ namespace JeuColony.PNJFolder
                     MoveTo(B.Coordinate);
                 }
             }
+            TestDeath();
         }
-        public override void Die()
+        public override void TestDeath()
         {
-            MapGame.ListPNJAlly.Remove(this);
+            if (HealthPoint < 0)
+            {
+                MapGame.ListPNJAlly.Remove(this);
+            }
         }
     }
 }

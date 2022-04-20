@@ -77,6 +77,6 @@ namespace JeuColony.PNJFolder
         }
         protected abstract void ExecuteAction(object O);
         public abstract void PlayOneTurn();
-        public abstract void Die();
+        public abstract void TestDeath();
     }
 }

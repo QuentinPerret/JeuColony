@@ -110,7 +110,7 @@ namespace JeuColony
                         }
                         else if (EnemyOnCoord(position))
                         {
-                            Console.WriteLine(" * ");
+                            Console.Write(" * ");
                         }
                         else
                         {

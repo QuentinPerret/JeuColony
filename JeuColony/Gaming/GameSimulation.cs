@@ -26,18 +26,23 @@ namespace JeuColony
             MapGame = new MapGame(this);
             InterfaceUser = new InterfaceUser(this,MapGame);
         }
-        public void PlayOneTurn()
+        public void PlayFirstTurn()
         {
             while (PLAY_TURN)
             {
                 InterfaceUser.StartPrinting();
             }
-            foreach (Enemy E in MapGame.ListPNJEnemy)
-            {
+        }
+        public void PlayOneTurn()
+        {
+            for(int i = 0; i < MapGame.ListPNJEnemy.Count; i++)
+            {   
+                Enemy E= MapGame.ListPNJEnemy[i];
                 E.PlayOneTurn();
             }
-            foreach (Ally A in MapGame.ListPNJAlly)
+            for(int i = 0; i < MapGame.ListPNJAlly.Count; i++)
             {
+                Ally A = MapGame.ListPNJAlly[i];
                 A.PlayOneTurn();
             }
             if (random.Next(3) == 0)
@@ -47,10 +52,15 @@ namespace JeuColony
             MapGame.TestNaturalElement();
             PLAY_TURN = true ;
             NbRoundPlay ++;
+            while (PLAY_TURN)
+            {
+                InterfaceUser.StartPrinting();
+            }
         }
         public void Start()
         {
-            while(true)
+            PlayFirstTurn();
+            while(MapGame.ListPNJAlly.Count > 0)
             {
                 PlayOneTurn();
             }

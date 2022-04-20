@@ -9,14 +9,18 @@ namespace JeuColony.PNJFolder
     class Enemy :PNJ
     {
         public string Profession { get; set; }
-        public Enemy(string name,int level,MapGame M) : base(name,level, M) { Spawn(); }
+        public Enemy(string name, int level, MapGame M) : base(name, level, M)
+        {
+            Spawn();
+            GenerateAllStat();
+        }
         protected virtual void GenerateHealthPointMax()
         {
             HealthPointMax = 20 * Level;
         }
         protected virtual void GenerateHealthPoint()
         {
-            HealthPoint = HealthPointMax;
+            HealthPoint = 20 * Level;
         }
         protected virtual void GenerateAttackPower()
         {
@@ -24,7 +28,7 @@ namespace JeuColony.PNJFolder
         }
         protected override void GenerateSpeed()
         {
-            Speed = 1;
+            Speed = 2;
         }
         protected override void GenerateAllStat()
         {
@@ -37,17 +41,8 @@ namespace JeuColony.PNJFolder
         {
             Ally A = O as Ally;
             A.Immobilized = true;
-            A.HealthPoint -= AttackPower * 5;
-            HealthPoint -= A.AttackPower * 5;
-            if(A.HealthPoint < 0)
-            {
-                A.Die();
-            }
-            if(HealthPoint < 0)
-            {
-                A.Immobilized = false;
-                Die();
-            }
+            A.HealthPoint -= AttackPower;
+            HealthPoint -= A.AttackPower;
         }
         protected List<Ally> CreateListPnj()
         {
@@ -73,7 +68,7 @@ namespace JeuColony.PNJFolder
             return Pres;
         }
         public override void PlayOneTurn()
-        {
+         {
             Ally P = MostNearObject(CreateListPnj());
             if ((Coordinate[0], Coordinate[1]) == (P.Coordinate[0], P.Coordinate[1]))
             {
@@ -83,10 +78,14 @@ namespace JeuColony.PNJFolder
             {
                 MoveTo(P.Coordinate);
             }
+            TestDeath();
         }
-        public override void Die()
+        public override void TestDeath()
         {
-            MapGame.ListPNJEnemy.Remove(this);
+            if(HealthPoint < 0)
+            {
+                MapGame.ListPNJEnemy.Remove(this);
+            }
 
         }
         protected void Spawn()

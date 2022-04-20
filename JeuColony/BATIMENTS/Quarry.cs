@@ -4,17 +4,9 @@ namespace JeuColony.Batiments
 {
     class Quarry : NaturalElement
     {
-        public Quarry(int[] size, int[] coordinate, MapGame Map) : base(size, coordinate, Map)
+        public Quarry( MapGame Map) : base(Map)
         {
             BatimentType = "Mountain";
-            HealthPointMax = 50;
-            HealthPoint = 50;
-        }
-        public Quarry(int[] size, MapGame Map) : base(size, Map)
-        {
-            BatimentType = "Mountain";
-            HealthPointMax = 50;
-            HealthPoint = 50;
         }
         public override string ToString()
         {

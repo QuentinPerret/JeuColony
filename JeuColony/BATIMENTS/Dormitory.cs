@@ -8,7 +8,11 @@
             BatimentType = "Dormitory";
             //GenerateBatiment(size, coordinate, state, 1);
         }
-        public Dormitory(int[] size, int[] coordinate, MapGame Map) : base(size, coordinate, Map) { BatimentType = "Dormitory"; }
+        public Dormitory(int[] size, int[] coordinate, MapGame Map) : base(size, coordinate, Map)
+        {
+            BatimentType = "Dormitory";
+            HealthPointMax = 100;
+        }
         protected int GenerateCapaMax(int level)
         {
             return level * 3;

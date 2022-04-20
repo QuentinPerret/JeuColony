@@ -35,13 +35,13 @@ namespace JeuColony
                 switch (alea)
                 {
                     case 0:
-                        AddBatiment(new Forest(new int[] { 2, 2 }, this));
+                        AddBatiment(new Forest(this));
                         break;
                     case 1:
-                        AddBatiment(new Quarry(new int[] { 2, 4 }, this));
+                        AddBatiment(new Quarry(this));
                         break;
                     case 2:
-                        AddBatiment(new Water(new int[] { 1, 1 }, this));
+                        AddBatiment(new Water(this));
                         break;
                 }
             }
@@ -248,7 +248,7 @@ namespace JeuColony
             int nbNaturalElement = 0;
             foreach(Batiment B in ListBatiments)
             {
-                if(B is NaturalElement)
+                if(B is NaturalElement && !(B is Water))
                 {
                     nbNaturalElement++;
                 }
@@ -262,11 +262,11 @@ namespace JeuColony
         {
             if (random.Next(2) == 0)
             {
-                AddBatiment(new Forest(new int[] { 3, 1 }, this));
+                AddBatiment(new Forest(this));
             }
             else
             {
-                AddBatiment(new Quarry(new int[] { 2, 1 }, this));
+                AddBatiment(new Quarry(this));
             }
         }
     }

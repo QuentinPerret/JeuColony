@@ -15,7 +15,7 @@ namespace JeuColony.Batiments
         public string BatimentType { get; set; }
         public List<PNJ> _listPNJ;
         protected readonly MapGame MapGame;
-        private static readonly Random random = new Random();
+        protected static readonly Random random = new Random();
         public static int GetSomeRandomNumber(int max)
         {
             return random.Next(max);
@@ -38,6 +38,12 @@ namespace JeuColony.Batiments
             //_state = true; //by default the batiment is functional at its creation
             GeneratePosition(coordinate);
         }
+        public Batiment(MapGame Map)
+        {
+            MapGame = Map;
+            Level = 1;
+            _listPNJ = new List<PNJ>();
+        }
         public void AddPNJ(PNJ P)
         {
             _listPNJ.Add(P);
@@ -50,13 +56,13 @@ namespace JeuColony.Batiments
         {
             (Size[0], Size[1]) = (Size[1], Size[0]);
         }
-        private void GeneratePositionAlea()
+        protected void GeneratePositionAlea()
         {
             if (GetSomeRandomNumber(2) == 0)
             {
                 ReverseSize();
             }
-            while (!PositionClear(MapGame) || Coordinate == new int[] { -1, -1 })
+            while (!PositionClear(MapGame))
             {
                 Coordinate[0] = GetSomeRandomNumber(MapGame.Nbl - Size[1] - 1); // Génération aléatoire de la position en x
                 Coordinate[1] = GetSomeRandomNumber(MapGame.Nbc - Size[0] - 1); // Génération aléatoire de la position en y

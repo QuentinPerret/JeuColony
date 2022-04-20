@@ -4,17 +4,9 @@ namespace JeuColony.Batiments
 {
     class Forest : NaturalElement
     {
-        public Forest(int[] size, int[] coordinate, MapGame Map) : base(size, coordinate, Map)
+        public Forest(MapGame Map) : base(Map)
         {
             BatimentType = "Forest";
-            HealthPointMax = 50;
-            HealthPoint = 50;
-        }
-        public Forest(int[] size, MapGame Map) : base(size, Map)
-        {
-            BatimentType = "Forest";
-            HealthPointMax =  50;
-            HealthPoint = 50;
         }
         public override string ToString()
         {

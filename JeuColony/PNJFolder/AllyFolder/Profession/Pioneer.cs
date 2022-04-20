@@ -22,7 +22,7 @@ namespace JeuColony.PNJFolder
         {
             BuildingPower = 1;
         }
-        protected override List<Batiment> CreateListEnemy()
+        protected override List<Batiment> CreateListBat()
         {
             List<Batiment> list = new List<Batiment>();
             foreach (Batiment B in MapGame.ListBatiments)

@@ -23,21 +23,22 @@ namespace JeuColony.PNJFolder
         {
             AttackPower = 3;
         }
-        protected override List<Batiment> CreateListEnemy()
+        protected override List<Batiment> CreateListBat()
         {
             List<Batiment> list = new List<Batiment>();
-            foreach(Batiment B in MapGame.ListBatiments)
+            foreach (Batiment B in MapGame.ListBatiments)
             {
-                if (B is Dormitory D)
+                if (B is Construction && B.TimeLeftToConstruct > 0)
                 {
-                    list.Add(D);
+                    list.Add(B);
                 }
             }
             return list;
         }
         protected override void ExecuteAction(object O)
         {
-            
+            Construction B = O as Construction;
+            B.TimeLeftToConstruct --;
         }
     }
 }

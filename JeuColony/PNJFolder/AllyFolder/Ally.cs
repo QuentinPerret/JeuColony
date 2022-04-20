@@ -111,10 +111,10 @@ namespace JeuColony.PNJFolder
                 return MostNearBat(CreateListBatimentDormintory());
             }
         }
-        protected virtual List<Batiment> CreateListEnemy() { return null; }
+        protected virtual List<Batiment> CreateListBat() { return null; }
         public override void PlayOneTurn()
         {
-            Batiment B = MostNearBat(CreateListEnemy());
+            Batiment B = MostNearBat(CreateListBat());
             if (!Immobilized)
             {
                 if ((Coordinate[0], Coordinate[1]) == (B.Coordinate[0], B.Coordinate[1]))

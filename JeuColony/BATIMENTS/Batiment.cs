@@ -52,7 +52,7 @@ namespace JeuColony.Batiments
             {
                 ExtendBat(MapGame);
             }
-            else { GeneratePositionAlea(); }
+            //else { GeneratePositionAlea(); }
         }
         private bool PositionClear(MapGame M)
         {

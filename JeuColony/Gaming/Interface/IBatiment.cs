@@ -11,13 +11,13 @@ namespace JeuColony
 {
     internal class IBatiment : InterfaceUser
     {
-         readonly IFirstPage _firstPage;
+        readonly IFirstPage _firstPage;
         private static int x;
         private static int y;
         private static bool problem = false;
         public object[,] Preview { get; private set; }
         private ConsoleKey KeyCreationBat { get; set; }
-        private static readonly string[] LIST_BATIMENT = new string[] { "- DORMITORY", "- TRAININGCAMP", "-CANTINA" };
+        private static readonly string[] LIST_BATIMENT = new string[] { "- DORMITORY", "- TRAININGCAMP", "- CANTINA" };
         public IBatiment(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; y = MapGame.Nbc / 2; x = MapGame.Nbl / 2; }
         public void PrintListBat()
         {
@@ -80,10 +80,10 @@ namespace JeuColony
         public void PrintPreview(Batiment B)
         {
             Console.Clear();
-            PreviewBatimentCreation(B, x, y);
+            PreviewBatimentCreation(B);
             NavigateMap(B);
         }
-        public void PreviewBatimentCreation(Batiment B, int x, int y)
+        public void PreviewBatimentCreation(Batiment B)
         {
 
             Preview = new object[MapGame.Nbl, MapGame.Nbc];
@@ -107,7 +107,7 @@ namespace JeuColony
                     }
                     else
                     {
-                        Console.Write(" . ");
+                        Console.Write("   ");
                     }
                     if (MapGame.Map[x, y] != null || MapGame.Map[x + B.Size[0], y + B.Size[1]] != null || MapGame.Map[x, y + B.Size[1]] != null || MapGame.Map[x + B.Size[0], y] != null)
                     {
@@ -152,21 +152,19 @@ namespace JeuColony
                 case 2:
                     Bat = new Cantina(D, MapGame);
                     break;
-                
+
                 default:
                     Bat = new Dormitory(D, MapGame);
                     break;
             }
-            Bat.Coordinate[0]=x;
-            Bat.Coordinate[0] = y;
-            MapGame.AddBatiment(Bat);
+            
             return Bat;
         }
         public void InstallBatiment(Batiment Bat)
         {
 
             Console.Clear();
-            PreviewBatimentCreation(Bat, x, y);
+            PreviewBatimentCreation(Bat);
             //NavigateInterfaceBatimentCreation();
             Console.BackgroundColor = ConsoleColor.Green;
             Console.Write("Etes-vous sûr de vouloir placer ce batiment ici? (appuyer sur entrée si oui ou sur echap sinon)");
@@ -174,6 +172,8 @@ namespace JeuColony
             ConsoleKey key = Console.ReadKey().Key;
             if (key == ConsoleKey.Enter && !problem)
             {
+                Bat.Coordinate[0] = x;
+                Bat.Coordinate[1] = y;
                 MapGame.AddBatiment(Bat);
                 PrintListBat();
             }
@@ -189,9 +189,9 @@ namespace JeuColony
 
             if (key == ConsoleKey.Escape)
             {
-                
+
             }
-            while (key != ConsoleKey.Escape)
+            if (key != ConsoleKey.Escape)
             {
                 InstallBatiment(Bat);
             }
@@ -222,15 +222,15 @@ namespace JeuColony
 
             if (key == ConsoleKey.Spacebar)
             {
-                InstallBatiment( B);
+                InstallBatiment(B);
             }
             if (key == ConsoleKey.Escape)
             {
-                
+
 
             }
             Console.Clear();
-            PreviewBatimentCreation(B, x, y);
+            PreviewBatimentCreation(B);
             NavigateMap(B);
             //NavigateInterface(nbPageMax);
         }
@@ -290,11 +290,11 @@ namespace JeuColony
                 POSITION_CURSOR = 0;
                 PrintListBat();
             }
-            if(key == ConsoleKey.Spacebar)
+            if (key == ConsoleKey.Spacebar)
             {
                 GameSimulation.EndTurn();
             }
-            else 
+            else
             {
                 FocusBatInterface();
             }

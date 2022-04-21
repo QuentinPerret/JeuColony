@@ -12,13 +12,17 @@ namespace JeuColony
     internal class IBatiment : InterfaceUser
     {
         readonly IFirstPage _firstPage;
-        private static int x;
-        private static int y;
         private static bool problem = false;
+        int[] coordinateCreation;
         public object[,] Preview { get; private set; }
         private ConsoleKey KeyCreationBat { get; set; }
-        private static readonly string[] LIST_BATIMENT = new string[] { "- DORMITORY", "- TRAININGCAMP", "- CANTINA" };
-        public IBatiment(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; y = MapGame.Nbc / 2; x = MapGame.Nbl / 2; }
+        private ConsoleKey KeyBat { get; set; }
+        private static readonly string[] LIST_BATIMENT = new string[] { "- DORMITORY", "- TRAININGCAMP" };
+        public IBatiment(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M)
+        {
+            _firstPage = firstPage;
+            coordinateCreation = new int[] { MapGame.Nbc / 2, MapGame.Nbl / 2 };
+        }
         public void PrintListBat()
         {
             Console.Clear();
@@ -32,13 +36,13 @@ namespace JeuColony
                 MapGame.AfficheMapBat(B);
             }
             AfficheListeBatiment(POSITION_CURSOR);
-            int nbPageMax = MapGame.ListBatiments.Count / NB_PAGE_OBJECT;
+            int nbPageMax = MapGame.ListBatiments.Count / NB_PAGE_OBJECT-1;
             if (MapGame.ListBatiments.Count % NB_PAGE_OBJECT != 0)
             {
                 nbPageMax++;
             }
             NavigateInterface(nbPageMax);
-        }
+        }//Method that prints a list of batiments present on the map and start the navigation in it 
         public void AfficheListeBatiment(int place)
         {
             Console.WriteLine("LIST BATIMENT");
@@ -66,7 +70,7 @@ namespace JeuColony
                 catch (ArgumentOutOfRangeException) { }
             }
 
-        }
+        }//Method that prints a list of batiments present on the map
         public void PrintListTypeBat()
         {
             Console.Clear();
@@ -76,25 +80,30 @@ namespace JeuColony
             NavigateInterfaceCreationBat(nbPageMax);
             PAGE_OBJECT = 0;
             POSITION_CURSOR = 0;
-        }
-        public void PrintPreview(Batiment B)
+        }//Method that prints all batiment type possible and start the navigation in it
+        public void PrintPreview(int[]size)
         {
             Console.Clear();
-            PreviewBatimentCreation(B);
-            NavigateMap(B);
-        }
-        public void PreviewBatimentCreation(Batiment B)
+            PreviewBatimentCreation(size);
+        }//Method that prints the map with the preview of the batiment in creation and start the navigation in it
+        private bool InPreview(int[]position,int[] size) 
         {
-
-            Preview = new object[MapGame.Nbl, MapGame.Nbc];
-            //AfficheMap(B);
-            problem = false;
-            Preview[x, y] = B;
-            for (int i = 0; i < MapGame.Nbl - B.Size[0]; i++)
+            if (position[0] >= coordinateCreation[0]  && position[0] < coordinateCreation[0] + size[0])
             {
-                for (int j = 0; j < MapGame.Nbc - B.Size[1]; j++)
+                if(position[1] >= coordinateCreation[1] && position[1] < coordinateCreation[1] + size[1])
                 {
-                    if (Preview[i, j] == Preview[x, y] || Preview[i + B.Size[0], j + B.Size[1]] == Preview[x, y] || Preview[i, j + B.Size[1]] == Preview[x, y] || Preview[i + B.Size[0], j] == Preview[x, y])
+                    return true;
+                }
+            }
+            return false;
+        }//Method that returns true if the position inspect correspond to a case where it's wanted to preview the batiment
+        public void PreviewBatimentCreation(int[] size)
+        {
+            for (int i = 0; i < MapGame.Nbl - size[0]; i++)
+            {
+                for (int j = 0; j < MapGame.Nbc - size[1]; j++)
+                {
+                    if (InPreview(new int[] { i, j }, size))
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.Write("   ");
@@ -103,24 +112,16 @@ namespace JeuColony
                     else if (MapGame.Map[i, j] != null)
                     {
                         Console.Write(MapGame.Map[i, j].ToString());
-
                     }
                     else
                     {
                         Console.Write("   ");
                     }
-                    if (MapGame.Map[x, y] != null || MapGame.Map[x + B.Size[0], y + B.Size[1]] != null || MapGame.Map[x, y + B.Size[1]] != null || MapGame.Map[x + B.Size[0], y] != null)
-                    {
-                        problem = true;
-                    }
-                    else
-                    {
-                        problem = false;
-                    }
                 }
                 Console.Write("\n");
             }
-        }
+            NavigateMapPreview(size);
+        } //Method that prints the map with the preview of the batiment in creation and start the navigation in it
         protected void ProposeListTypeBat(int place)
         {
             Console.WriteLine("LIST TYPE BATIMENT");
@@ -140,197 +141,113 @@ namespace JeuColony
                     Console.WriteLine(LIST_BATIMENT[i]);
                 }
             }
-        }
-        public Batiment CreateBat(int position)
+        }//Method that prints all batiment type possible
+        public void CreateBat(int position,int[]coordinate,int[]size)
         {
-            Batiment Bat;
+            if (PositionClear(coordinate, size))
+            {
+                Batiment B = null;
+                switch (position)
+                {
+                    case 1:
+                        if (MapGame.Simulation.PlayerInventory.NbWood > 9 && MapGame.Simulation.PlayerInventory.NbWood > 9)
+                        {
+                            B = new TrainingCamp(coordinate, MapGame);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You need 10 stones and 10 woods to spawn a new Training Camp");
+                            Console.ReadLine();
+                        }
+                        break;
+                    case 2:
+                        if (MapGame.Simulation.PlayerInventory.NbWood > 19 && MapGame.Simulation.PlayerInventory.NbWood > 19)
+                        {
+                            B = new Hospital(coordinate, size, MapGame);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You need 20 stones and 20 woods to spawn a new Hospital");
+                            Console.ReadLine();
+                        }
+                        break;
+                    default:
+                        if (MapGame.Simulation.PlayerInventory.NbWood > 4 && MapGame.Simulation.PlayerInventory.NbWood > 4)
+                        {
+                            B = new Dormitory(coordinate, size, MapGame);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You need 5 stones and 5 woods to spawn a new Dormitory");
+                            Console.ReadLine();
+                        }
+                        break;
+                }
+                MapGame.AddBatiment(B);
+            }
+            else
+            {
+                Console.WriteLine("This position isn't avialable, please retry");
+                Console.ReadKey();
+            }
+        }//Method that creates the batiment considering the type choose represent by its position in the list print with ProposeListtypeBat() and his position choose
+        public int[] DefineSizeCreation(int position)
+        {
             switch (position)
             {
                 case 1:
-                    Bat = new TrainingCamp(D, MapGame);
-                    break;
+                    return new int[] { 3 , 3 };
                 case 2:
-                    Bat = new Cantina(D, MapGame);
-                    break;
-
+                    return new int[] { 4, 2 };
                 default:
-                    Bat = new Dormitory(D, MapGame);
-                    break;
+                    return new int[] { 2, 3 };
             }
-            
-            return Bat;
-        }
-        public void InstallBatiment(Batiment Bat)
+        }//Method that return the size of the type of batiment that is wanted to be created
+        private void NavigateMapPreview(int[] size)
         {
-
-        }
-        public void PrintListTypeBat()
-        {
-            Console.Clear();
-            MapGame.AfficheMap();
-            ProposeListTypeBat(POSITION_CURSOR);
-            int nbPageMax = LIST_BATIMENT.Length / NB_PAGE_OBJECT;
-            NavigateInterfaceCreationBat(nbPageMax);
-            PAGE_OBJECT = 0;
-            POSITION_CURSOR = 0;
-        }
-        public void PrintPreview(Batiment B)
-        {
-            Console.Clear();
-            PreviewBatimentCreation(B);
-            NavigateMap(B);
-        }
-        public void PreviewBatimentCreation(Batiment B)
-        {
-
-            Preview = new object[MapGame.Nbl, MapGame.Nbc];
-            //AfficheMap(B);
-            problem = false;
-            Preview[x, y] = B;
-            for (int i = 0; i < MapGame.Nbl - B.Size[0]; i++)
-            {
-                for (int j = 0; j < MapGame.Nbc - B.Size[1]; j++)
-                {
-                    if (Preview[i, j] == Preview[x, y] || Preview[i + B.Size[0], j + B.Size[1]] == Preview[x, y] || Preview[i, j + B.Size[1]] == Preview[x, y] || Preview[i + B.Size[0], j] == Preview[x, y])
-                    {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.Write("   ");
-                        Console.BackgroundColor = ConsoleColor.Black;
-                    }
-                    else if (MapGame.Map[i, j] != null)
-                    {
-                        Console.Write(MapGame.Map[i, j].ToString());
-
-                    }
-                    else
-                    {
-                        Console.Write("   ");
-                    }
-                    if (MapGame.Map[x, y] != null || MapGame.Map[x + B.Size[0], y + B.Size[1]] != null || MapGame.Map[x, y + B.Size[1]] != null || MapGame.Map[x + B.Size[0], y] != null)
-                    {
-                        problem = true;
-                    }
-                    else
-                    {
-                        problem = false;
-                    }
-                }
-                Console.Write("\n");
-            }
-        }
-        protected void ProposeListTypeBat(int place)
-        {
-            Console.WriteLine("LIST TYPE BATIMENT");
-            for (int i = 0; i < LIST_BATIMENT.Length; i++)
-            {
-                if (i == place)
-                {
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    //Console.WriteLine((i + "- " + O)) ;
-                    Console.WriteLine(LIST_BATIMENT[i]);
-                    Console.ResetColor();
-                }
-                else
-                {
-                    //Console.WriteLine(i + "- " + O);
-                    Console.WriteLine(LIST_BATIMENT[i]);
-                }
-            }
-        }
-        public Batiment CreateBat(int position)
-        {
-            Batiment Bat;
-            switch (position)
-            {
-                case 1:
-                    Bat = new TrainingCamp(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
-                    break;
-                case 2:
-                    Bat = new Cantina(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
-                    break;
-
-                default:
-                    Bat = new Dormitory(new int[] { 1, 1 }, new int[] { -1, -1 }, MapGame);
-                    break;
-            }
-            
-            return Bat;
-        }
-        public void InstallBatiment(Batiment Bat)
-        {
-
-            Console.Clear();
-            PreviewBatimentCreation(Bat);
-            //NavigateInterfaceBatimentCreation();
             Console.BackgroundColor = ConsoleColor.Green;
-            Console.Write("Etes-vous sûr de vouloir placer ce batiment ici? (appuyer sur entrée si oui ou sur echap sinon)");
+            Console.WriteLine("\n Use arrows to position your batiment then press enter");
             Console.BackgroundColor = ConsoleColor.Black;
             ConsoleKey key = Console.ReadKey().Key;
-            if (key == ConsoleKey.Enter && !problem)
+            if (key == ConsoleKey.DownArrow && coordinateCreation[0] + size[0] < MapGame.Nbl)
             {
-                Bat.Coordinate[0] = x;
-                Bat.Coordinate[1] = y;
-                MapGame.AddBatiment(Bat);
+                coordinateCreation[0]++;
+            }
+            else if (key == ConsoleKey.UpArrow  && coordinateCreation[0] > 0)
+            {
+                coordinateCreation[0]--;
+            }
+            if (key == ConsoleKey.RightArrow && coordinateCreation[1] + size[1] < MapGame.Nbc)
+            {
+                coordinateCreation[1]++;
+            }
+            else if (key == ConsoleKey.LeftArrow && coordinateCreation[1] > 0)
+            {
+                coordinateCreation[1]--;
+            }
+            if (key == ConsoleKey.Enter)
+            {
+                CreateBat(POSITION_CURSOR,coordinateCreation,size);
                 PrintListBat();
             }
-            else if (problem)
+            if (key == ConsoleKey.V)
             {
-                Console.Clear();
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.Write("Impossible de placer ce batiment à cet endroit veuillez réessayer (appuyez sur une touche)");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ReadKey();
-                NavigateMap(Bat);
+                size = new int[] { size[1], size[0] };
             }
-
             if (key == ConsoleKey.Escape)
             {
-
+                PrintListTypeBat();
             }
-            if (key != ConsoleKey.Escape)
-            {
-                InstallBatiment(Bat);
-            }
-
-        }
-        private void NavigateMap(Batiment B)
-        {
-            Console.BackgroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n Appuyez sur les flèches pour placer un batiment puis sur espace pour le placer");
-            Console.BackgroundColor = ConsoleColor.Black;
-            ConsoleKey key = Console.ReadKey().Key;
-            if (key == ConsoleKey.DownArrow && x <= MapGame.Nbl - B.Size[1] - 2)
-            {
-                x++;
-            }
-            else if (key == ConsoleKey.UpArrow && x >= B.Size[0] + 1)
-            {
-                x--;
-            }
-            if (key == ConsoleKey.RightArrow && y <= MapGame.Nbc - B.Size[1] - 2)
-            {
-                y++;
-            }
-            else if (key == ConsoleKey.LeftArrow && y >= B.Size[1] + 1)
-            {
-                y--;
-            }
-
             if (key == ConsoleKey.Spacebar)
             {
-                InstallBatiment(B);
+                MapGame.Simulation.EndTurn();
             }
-            if (key == ConsoleKey.Escape)
+            if (MapGame.Simulation.PLAY_TURN)
             {
-
-
+                Console.Clear();
+                PreviewBatimentCreation(size);
             }
-            Console.Clear();
-            PreviewBatimentCreation(B);
-            NavigateMap(B);
-            //NavigateInterface(nbPageMax);
-        }
+        }//Method that allows to move the position of the batiment we are creating
         private void NavigateInterfaceCreationBat(int nbPageMax)
         {
             KeyCreationBat = Console.ReadKey().Key;
@@ -354,9 +271,8 @@ namespace JeuColony
             }
             if (KeyCreationBat == ConsoleKey.Enter)
             {
-                Batiment Bat = CreateBat(POSITION_CURSOR);
+                PrintPreview(DefineSizeCreation(POSITION_CURSOR));
                 POSITION_CURSOR = 0;
-                PrintPreview(Bat);
             }
             if (KeyCreationBat == ConsoleKey.Escape)
             {
@@ -366,13 +282,13 @@ namespace JeuColony
             if (KeyCreationBat == ConsoleKey.Spacebar)
             {
                 KeyBat = ConsoleKey.Spacebar;
-                Simulation.EndTurn();
+                MapGame.Simulation.EndTurn();
             }
-            else if (Simulation.PLAY_TURN)
+            else if (MapGame.Simulation.PLAY_TURN)
             {
                 PrintListTypeBat();
             }
-        }
+        }//Method that allows to navigate in the list of batiment's type print and select one to create the batiment
         protected void FocusBatInterface()
         {
             Batiment B = MapGame.ListBatiments[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];
@@ -395,7 +311,7 @@ namespace JeuColony
             {
                 FocusBatInterface();
             }
-        }
+        }//Method that prints stats of a precise batiment and allows to quit the page 
         private void NavigateInterface(int nbPageMax)
         {
             KeyBat = Console.ReadKey().Key;
@@ -444,6 +360,24 @@ namespace JeuColony
                     PrintListBat();
                 }
             }
+        }//Method that allows to navigate in the list of batiments present in the game
+        private bool PositionClear(int[]coordinate, int[]size)
+        {
+            for (int i = 0; i < size[0]; i++)
+            {
+                for (int j = 0; j < size[1]; j++)
+                {
+                    try
+                    {
+                        if (MapGame.Map[coordinate[0] + i, coordinate[1] + j] is Batiment)
+                        {
+                            return false;
+                        }
+                    }
+                    catch (IndexOutOfRangeException) { return false; }
+                }
+            }
+            return true;
         }
     }
 }

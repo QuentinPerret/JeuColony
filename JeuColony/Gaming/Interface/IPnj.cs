@@ -36,7 +36,6 @@ namespace JeuColony
             }
             NavigateInterface(nbPageMax);
         }
-
         private void NavigateInterface(int nbPageMax)
         {
             KeyPnj = Console.ReadKey().Key;
@@ -221,7 +220,7 @@ namespace JeuColony
                         }
                         else
                         {
-                            Console.WriteLine("You need 2 stone and 1 wood to spawn a new Digger");
+                            Console.WriteLine("You need 2 stones and 1 wood to spawn a new Digger");
                             Console.ReadLine();
                         }
                         break;
@@ -232,7 +231,7 @@ namespace JeuColony
                         }
                         else
                         {
-                            Console.WriteLine("You need 1 stone and 2 wood to spawn a new Forester");
+                            Console.WriteLine("You need 1 stone and 2 woods to spawn a new Forester");
                             Console.ReadLine();
                         }
                         break;
@@ -250,7 +249,7 @@ namespace JeuColony
                             }
                             else
                             {
-                                Console.WriteLine("You need 2 stone and 2 wood to spawn a new Soldier"); 
+                                Console.WriteLine("You need 2 stones and 2 woods to spawn a new Soldier"); 
                                 Console.ReadLine();
 
                             }

@@ -33,7 +33,7 @@ namespace JeuColony
         }
         private void NavigateInterface(int nbPageMax)
         {
-            KeyBat = Console.ReadKey().Key;
+            ConsoleKey KeyBat = Console.ReadKey().Key;
             if (KeyBat == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;

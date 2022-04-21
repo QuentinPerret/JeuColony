@@ -2,13 +2,16 @@
 {
     class TrainingCamp : Construction
     {
-        public TrainingCamp( MapGame Map) : base(Map)
+        public TrainingCamp( int[] coordinate,MapGame Map) : base(coordinate,Map)
         {
+            Map.Simulation.PlayerInventory.NbStone -= 10;
+            Map.Simulation.PlayerInventory.NbWood -= 10;
             TimeLeftToConstruct = 5;
             Size = new int[] { 3, 3 };
             BatimentType = "Training Camp";
-            GeneratePositionAlea();
+            GeneratePosition(coordinate);
         }
+
         protected int GenerateCapaMax(int level)
         {
             return level * 3;

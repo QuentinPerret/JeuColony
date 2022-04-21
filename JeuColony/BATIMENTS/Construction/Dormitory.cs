@@ -13,12 +13,15 @@
             BatimentType = "Dormitory";
             GeneratePositionAlea();
         }
-        public Dormitory(int[] coord , MapGame Map) : base(coord, Map)
+        public Dormitory(int[] coordinate ,int[] size, MapGame Map) : base(coordinate, Map)
         {
+            Map.Simulation.PlayerInventory.NbStone -= 5;
+            Map.Simulation.PlayerInventory.NbWood -= 5;
             TimeLeftToConstruct = 4;
-            Size = new int[] { 2, 3 };
+            Size = size;
             Capacity = 4;
             BatimentType = "Dormitory";
+            GeneratePosition(coordinate);
         }
         protected int GenerateCapaMax(int level)
         {

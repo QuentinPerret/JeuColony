@@ -2,11 +2,14 @@
 {
     class Hospital : Batiment
     {
-        public Hospital(MapGame Map) : base(Map)
+        public Hospital(int[]coordinate, int[]size ,MapGame Map) : base(coordinate,Map)
         {
+            Map.Simulation.PlayerInventory.NbStone -= 20;
+            Map.Simulation.PlayerInventory.NbWood -= 20;
             TimeLeftToConstruct = 5;
-            Size = new int[] { 4, 2 };
+            Size = size;
             BatimentType = "Hostital";
+            GeneratePosition(coordinate);
         }
         protected int GenerateCapaMax(int level)
         {

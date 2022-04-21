@@ -8,7 +8,6 @@ namespace JeuColony.Batiments
     {
         public int[] Size { get; set; } = new int[] { -1, -1 }; // size in a tab, Size[0] is the height, Size[1] is the width
         public int[] Coordinate { get; protected set; } = new int[] { -1, -1 };//coordinate x and y
-        protected int Level { get; set; }
         public string BatimentType { get; set; }
         public int TimeLeftToConstruct { get; set; }
         protected readonly MapGame MapGame;
@@ -20,13 +19,10 @@ namespace JeuColony.Batiments
         public Batiment(int[] coordinate, MapGame Map)
         {
             MapGame = Map;
-            Level = 1;
-            GeneratePosition(coordinate);
         }
         public Batiment(MapGame Map)
         {
             MapGame = Map;
-            Level = 1;
         }
         public void ReverseSize()
         {
@@ -45,13 +41,10 @@ namespace JeuColony.Batiments
             }
             ExtendBat(MapGame);
         }
-        private void GeneratePosition(int[] coordinate)
+        protected void GeneratePosition(int[] coordinate)
         {
             Coordinate = coordinate;
-            if (PositionClear(MapGame))
-            {
-                ExtendBat(MapGame);
-            }
+            ExtendBat(MapGame);
             //else { GeneratePositionAlea(); }
         }
         private bool PositionClear(MapGame M)
@@ -93,7 +86,6 @@ namespace JeuColony.Batiments
         {
             string chres ="";
             chres += "Batiment Type : " + BatimentType + "\n";
-            chres += "Level : " + Level + "\n";
             chres += "Position : " + Coordinate[0] + " , " + Coordinate[1] + "\n";
             return chres;
         }

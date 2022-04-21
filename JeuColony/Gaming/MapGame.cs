@@ -190,6 +190,7 @@ namespace JeuColony
             }
             Console.ResetColor();
         }
+        //method that generates the map with the PNJ
         public void AfficheMapPnj(PNJ P)
         {
             Console.BackgroundColor= ConsoleColor.Gray;
@@ -247,6 +248,7 @@ namespace JeuColony
             }
             Console.ResetColor();
         }
+        //check the psoition of a colon
         private bool AllyOnCoord(int[] coord)
         {
             foreach (Ally A in ListPNJAlly)

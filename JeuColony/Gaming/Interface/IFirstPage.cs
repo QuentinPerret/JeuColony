@@ -31,6 +31,7 @@ namespace JeuColony
             }
             //PrintFirstPage();
         }
+        //interface that gets users key
         private void NavigateInterface(int nbPageMax)
         {
             ConsoleKey KeyBat = Console.ReadKey().Key;
@@ -69,6 +70,7 @@ namespace JeuColony
                 GameSimulation.EndTurn();
             }
         }
+        //first page presentation
         private void ProposeList(int place)
         {
             Console.WriteLine("LIST OBJECT, Round Played : " + GameSimulation.NbRoundPlay);

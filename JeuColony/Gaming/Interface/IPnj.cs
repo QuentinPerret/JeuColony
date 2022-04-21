@@ -34,6 +34,7 @@ namespace JeuColony
             }
             NavigateInterface(nbPageMax);
         }
+        //interface that gets users key
         private void NavigateInterface(int nbPageMax)
         {
             ConsoleKey KeyPnj = Console.ReadKey().Key;
@@ -80,6 +81,7 @@ namespace JeuColony
                 PrintListPNJ();
             }
         }
+        //interface that gets batiment position (in red)
         private void NavigateInterfaceCreationPnj(int nbPageMax)
         {
             ConsoleKey KeyCreationPnj = Console.ReadKey().Key;
@@ -268,6 +270,7 @@ namespace JeuColony
                 MapGame.AddPNJAlly(ally);
             }
         }
+        //method that counts place left in batiment
         private int CountPlaceleft()
         {
             int res = 0;
@@ -312,6 +315,7 @@ namespace JeuColony
                 }
             }
         }
+        //method that spot pnj one by one on the map
         protected void FocusPNJInterface()
         {
             PNJ P = MapGame.ListPNJAlly[PAGE_OBJECT * NB_PAGE_OBJECT + POSITION_CURSOR];

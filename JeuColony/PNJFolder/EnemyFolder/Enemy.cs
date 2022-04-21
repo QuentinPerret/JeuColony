@@ -53,6 +53,7 @@ namespace JeuColony.PNJFolder
             }
             return list;
         }
+        //check what the nearest object is
         protected Ally MostNearObject(List<Ally> list)
         {
             Ally Pres = null;

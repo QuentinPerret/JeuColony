@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JeuColony.Batiments.Batiment">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAEAIAAhAAAAABAAAoAAAAAAAAEggQAEAAAAAA=</HashCode>
+      <FileName>Batiments\Batiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Batiments.Construction">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Batiments\Construction\Construction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Batiments.Dormitory">
+    <Position X="7.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAMAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Batiments\Construction\Dormitory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Batiments.TrainingCamp">
+    <Position X="9.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Batiments\Construction\TrainingCamp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Batiments.Forest">
+    <Position X="5.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Batiments\NaturalElement\Forest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Batiments.NaturalElement">
+    <Position X="2.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAAAIAAAAAQA=</HashCode>
+      <FileName>Batiments\NaturalElement\NaturalElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Batiments.Quarry">
+    <Position X="0.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Batiments\NaturalElement\Quarry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Batiments.Water">
+    <Position X="3" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Batiments\NaturalElement\Water.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.GameSimulation">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAAAAAAABAAgAAAIAAQAAAIQAAAAgABA=</HashCode>
+      <FileName>Gaming\GameSimulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.IBatiment">
+    <Position X="18" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAADAABYAAEEABABACAAAAAAAAAAAAAQAIAzAAAA=</HashCode>
+      <FileName>Gaming\Interface\IBatiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.IFirstPage">
+    <Position X="13.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAABAAAAAAgAAAIAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Gaming\Interface\IFirstPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.InterfaceUser">
+    <Position X="15.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAgAABACBABABAAAAAAAAAA=</HashCode>
+      <FileName>Gaming\Interface\InterfaceUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.IPnj">
+    <Position X="15.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAgBAgAAAAAABJABAAAAQACAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Gaming\Interface\IPnj.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.MapGame">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAIAQABAABAAAAEACCAAAAAAIABAABAQIBAACiAg=</HashCode>
+      <FileName>Gaming\MapGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PlayerInventory">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Gaming\PlayerInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.Program" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.Ally">
+    <Position X="5" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgQCABAEAAEBIEAAAAEEIIAMSAAAAAgABAACAA=</HashCode>
+      <FileName>PNJFolder\AllyFolder\Ally.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.Builder">
+    <Position X="5" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABAAAAA=</HashCode>
+      <FileName>PNJFolder\AllyFolder\Profession\Builder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.Digger">
+    <Position X="7.25" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAAAAAAAAAAAAAAAAAAAAAICAAAAAAABAAAAA=</HashCode>
+      <FileName>PNJFolder\AllyFolder\Profession\Digger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.Forester">
+    <Position X="9.5" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAAAAAAAAAAIAAAAAAAAAAIAAAAAAAABAAAAA=</HashCode>
+      <FileName>PNJFolder\AllyFolder\Profession\Forester.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.Pioneer">
+    <Position X="0.5" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAICAAAAAAABAAAAA=</HashCode>
+      <FileName>PNJFolder\AllyFolder\Profession\Pioneer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.Soldier">
+    <Position X="2.75" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAAAAAAAAAAAAAAAAAAAIAAAAAAACAABAAAAA=</HashCode>
+      <FileName>PNJFolder\AllyFolder\Profession\Soldier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.Enemy">
+    <Position X="11.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAABAAAAAAAAGAAAAAEIIAEAAAAAAgABAACAA=</HashCode>
+      <FileName>PNJFolder\EnemyFolder\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuColony.PNJFolder.PNJ">
+    <Position X="6" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAQAAABAAEBAAACAyBEIIIAAAAAAQAABAACAA=</HashCode>
+      <FileName>PNJFolder\PNJ.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

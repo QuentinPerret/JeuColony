@@ -45,6 +45,18 @@ namespace JeuColony.PNJFolder
                 return null;
             }
         }
+        protected override List<Batiment> CreateListBat()
+        {
+            List<Batiment> list = new List<Batiment>();
+            foreach (Batiment B in MapGame.ListBatiments)
+            {
+                if (!((B is Dormitory) || (B is Water)))
+                {
+                    list.Add(B);
+                }
+            }
+            return list;
+        }
         protected override void ExecuteAction(object O) { }
         public override void PlayOneTurn()
         {

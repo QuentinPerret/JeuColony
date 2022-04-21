@@ -5,17 +5,16 @@
         protected int NbRessouces;
         public NaturalElement(MapGame Map) : base(Map)
         {
-            GenerateAleaSize();
-            GenerateHNbRessources();
+            InitiateAleaSize();
+            InitiateNbRessources();
             GeneratePositionAlea();
         }
-
-        protected void GenerateAleaSize()
+        protected void InitiateAleaSize()
         {
             Size[0] = random.Next(1,4);
             Size[1] = random.Next(1,4);
         }
-        protected void GenerateHNbRessources()
+        protected void InitiateNbRessources()
         {
             NbRessouces = 2 * Size[0] * Size[1];
         }
@@ -25,6 +24,6 @@
             {
                 MapGame.RemoveBat(this);
             }
-        }
+        }//Verify if the Element cans still provide materials, if not it is delete
     }
 }

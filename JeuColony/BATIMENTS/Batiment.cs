@@ -16,10 +16,6 @@ namespace JeuColony.Batiments
         {
             return random.Next(max);
         }
-        public Batiment(int[] coordinate, MapGame Map)
-        {
-            MapGame = Map;
-        }
         public Batiment(MapGame Map)
         {
             MapGame = Map;
@@ -75,7 +71,6 @@ namespace JeuColony.Batiments
                 }
             }
         }
-
         protected virtual string AfficheStatBatiment(int n, int[] tab, bool b, int p)
         {
             string chRes = "";
@@ -89,6 +84,5 @@ namespace JeuColony.Batiments
             chres += "Position : " + Coordinate[0] + " , " + Coordinate[1] + "\n";
             return chres;
         }
-        
     }
 }

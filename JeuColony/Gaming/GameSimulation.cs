@@ -17,7 +17,6 @@ namespace JeuColony
         public PlayerInventory PlayerInventory { get; set; }
         public bool PLAY_TURN = true;
         protected static readonly Random random = new Random();
-
         public GameSimulation()
         {
             NbRoundPlay = 0;

@@ -13,7 +13,7 @@
             BatimentType = "Dormitory";
             GeneratePositionAlea();
         }
-        public Dormitory(int[] coordinate ,int[] size, MapGame Map) : base(coordinate, Map)
+        public Dormitory(int[] coordinate ,int[] size, MapGame Map) : base(Map)
         {
             Map.Simulation.PlayerInventory.NbStone -= 5;
             Map.Simulation.PlayerInventory.NbWood -= 5;
@@ -22,10 +22,6 @@
             Capacity = 4;
             BatimentType = "Dormitory";
             GeneratePosition(coordinate);
-        }
-        protected int GenerateCapaMax(int level)
-        {
-            return level * 3;
         }
         public override string ToString()
         {

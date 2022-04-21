@@ -19,7 +19,6 @@ namespace JeuColony.PNJFolder
             Immobilized = false;
             GenerateAllStat();
             Spawn(D);
-
         }
         static protected string GenerateName()
         {
@@ -113,7 +112,7 @@ namespace JeuColony.PNJFolder
                 return MostNearBat(CreateListBatimentDormintory());
             }
         }
-        protected virtual List<Batiment> CreateListBat() { return null; }
+        protected abstract List<Batiment> CreateListBat();
         public override void PlayOneTurn()
         {
             Batiment B = MostNearBat(CreateListBat());

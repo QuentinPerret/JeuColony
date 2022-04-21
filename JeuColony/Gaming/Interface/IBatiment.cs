@@ -11,12 +11,9 @@ namespace JeuColony
 {
     internal class IBatiment : InterfaceUser
     {
-        readonly IFirstPage _firstPage;
-        private static bool problem = false;
-        int[] coordinateCreation;
+        private readonly IFirstPage _firstPage;
+        private int[] coordinateCreation;
         public object[,] Preview { get; private set; }
-        private ConsoleKey KeyCreationBat { get; set; }
-        private ConsoleKey KeyBat { get; set; }
         private static readonly string[] LIST_BATIMENT = new string[] { "- DORMITORY", "- TRAININGCAMP" };
         public IBatiment(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M)
         {
@@ -99,15 +96,17 @@ namespace JeuColony
         }//Method that returns true if the position inspect correspond to a case where it's wanted to preview the batiment
         public void PreviewBatimentCreation(int[] size)
         {
-            for (int i = 0; i < MapGame.Nbl - size[0]; i++)
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            for (int i = 0; i < MapGame.Nbl; i++)
             {
-                for (int j = 0; j < MapGame.Nbc - size[1]; j++)
+                for (int j = 0; j < MapGame.Nbc; j++)
                 {
                     if (InPreview(new int[] { i, j }, size))
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.Write("   ");
-                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.Gray;
                     }
                     else if (MapGame.Map[i, j] != null)
                     {
@@ -120,6 +119,7 @@ namespace JeuColony
                 }
                 Console.Write("\n");
             }
+            Console.ResetColor();
             NavigateMapPreview(size);
         } //Method that prints the map with the preview of the batiment in creation and start the navigation in it
         protected void ProposeListTypeBat(int place)
@@ -157,17 +157,6 @@ namespace JeuColony
                         else
                         {
                             Console.WriteLine("You need 10 stones and 10 woods to spawn a new Training Camp");
-                            Console.ReadLine();
-                        }
-                        break;
-                    case 2:
-                        if (MapGame.Simulation.PlayerInventory.NbWood > 19 && MapGame.Simulation.PlayerInventory.NbWood > 19)
-                        {
-                            B = new Hospital(coordinate, size, MapGame);
-                        }
-                        else
-                        {
-                            Console.WriteLine("You need 20 stones and 20 woods to spawn a new Hospital");
                             Console.ReadLine();
                         }
                         break;
@@ -250,7 +239,7 @@ namespace JeuColony
         }//Method that allows to move the position of the batiment we are creating
         private void NavigateInterfaceCreationBat(int nbPageMax)
         {
-            KeyCreationBat = Console.ReadKey().Key;
+            ConsoleKey KeyCreationBat = Console.ReadKey().Key;
             if (KeyCreationBat == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
@@ -281,7 +270,6 @@ namespace JeuColony
             }
             if (KeyCreationBat == ConsoleKey.Spacebar)
             {
-                KeyBat = ConsoleKey.Spacebar;
                 MapGame.Simulation.EndTurn();
             }
             else if (MapGame.Simulation.PLAY_TURN)
@@ -314,7 +302,7 @@ namespace JeuColony
         }//Method that prints stats of a precise batiment and allows to quit the page 
         private void NavigateInterface(int nbPageMax)
         {
-            KeyBat = Console.ReadKey().Key;
+            ConsoleKey KeyBat = Console.ReadKey().Key;
             if (KeyBat == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;

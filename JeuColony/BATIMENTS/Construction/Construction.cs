@@ -8,10 +8,7 @@ namespace JeuColony.Batiments
 {
     internal class Construction : Batiment
     {
-        public Construction(MapGame Map) : base(Map)
-        {
-        }
-        public Construction(int[] coord , MapGame Map) : base(coord, Map) { }
+        public Construction(MapGame Map) : base(Map) { }
 
     }
 }

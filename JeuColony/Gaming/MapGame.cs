@@ -190,7 +190,7 @@ namespace JeuColony
             }
             Console.ResetColor();
         }
-        public void AfficheMapPnj(PNJ P) //ajout l'affichage de tous les pnj de la liste + affichage 
+        public void AfficheMapPnj(PNJ P)
         {
             Console.BackgroundColor= ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -298,7 +298,7 @@ namespace JeuColony
                 CreateNaturalElement();
             }
         }
-        void CreateNaturalElement()
+        private void CreateNaturalElement()
         {
             if (random.Next(2) == 0)
             {

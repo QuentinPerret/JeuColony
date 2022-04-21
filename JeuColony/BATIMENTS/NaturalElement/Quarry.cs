@@ -10,9 +10,7 @@ namespace JeuColony.Batiments
         }
         public override string ToString()
         {
-            string chRes = "";
-            chRes += " Q " /*\n####"*/;
-            return chRes;
+            return " Q ";
         }
         public void GetHarvast(Ally P)
         {

@@ -12,8 +12,6 @@ namespace JeuColony
     internal class IPnj : InterfaceUser
     {
         private static readonly string[] LIST_PROFESSION = new string[] { " - PIONEER", " - BUILDER", " - DIGGER", " - FORESTER", " - SOLDIER" };
-        private ConsoleKey KeyPnj { get; set; }
-        private ConsoleKey KeyCreationPnj { get; set; }
         readonly IFirstPage _firstPage;
         public IPnj(GameSimulation G, MapGame M, IFirstPage firstPage) : base(G, M) { _firstPage = firstPage; }
         public void PrintListPNJ()
@@ -38,7 +36,7 @@ namespace JeuColony
         }
         private void NavigateInterface(int nbPageMax)
         {
-            KeyPnj = Console.ReadKey().Key;
+            ConsoleKey KeyPnj = Console.ReadKey().Key;
             if (KeyPnj == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
@@ -84,7 +82,7 @@ namespace JeuColony
         }
         private void NavigateInterfaceCreationPnj(int nbPageMax)
         {
-            KeyCreationPnj = Console.ReadKey().Key;
+            ConsoleKey KeyCreationPnj = Console.ReadKey().Key;
             if (KeyCreationPnj == ConsoleKey.UpArrow && POSITION_CURSOR > 0)
             {
                 POSITION_CURSOR--;
@@ -116,7 +114,6 @@ namespace JeuColony
             }
             if (KeyCreationPnj == ConsoleKey.Spacebar)
             {
-                KeyPnj = ConsoleKey.Spacebar;
                 GameSimulation.EndTurn();
             }
             else if(GameSimulation.PLAY_TURN)
